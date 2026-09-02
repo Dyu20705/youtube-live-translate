@@ -1,0 +1,301 @@
+#!/usr/bin/env python3
+"""
+build_dataset.py - Constructs the deterministic S3 MT evaluation dataset.
+Aligns clean Japanese reference, realistic S2 ASR output, and English reference translation.
+Generates deterministic partial prefix variants (FULL, UNPUNCTUATED, 25%, 50%, 75%, 100%).
+"""
+
+import json
+import re
+from pathlib import Path
+from typing import Dict, List, Any
+
+DATASETS_DIR = Path(__file__).parent.resolve()
+MANIFEST_FILE = DATASETS_DIR / "manifest.json"
+PARTIALS_FILE = DATASETS_DIR / "partial_variants.json"
+
+# Core deterministic evaluation corpus
+# Spanning all required length buckets, linguistic features, and realistic S2 ASR outputs
+CORPUS_ITEMS: List[Dict[str, Any]] = [
+    # --- Bucket 1: Short Utterances (1–10 chars) ---
+    {
+        "id": "ja_short_01",
+        "category": "short_greeting",
+        "length_bucket": "1-10",
+        "audio_id": "ja_clip_short_01",
+        "reference_ja": "こんにちは。",
+        "asr_ja": "こんにちは",
+        "reference_en": "Hello.",
+        "linguistic_features": ["greeting", "polite"]
+    },
+    {
+        "id": "ja_short_02",
+        "category": "short_confirmation",
+        "length_bucket": "1-10",
+        "audio_id": "ja_clip_short_02",
+        "reference_ja": "はい、分かりました。",
+        "asr_ja": "はい分かりました",
+        "reference_en": "Yes, I understand.",
+        "linguistic_features": ["confirmation", "past_polite"]
+    },
+    {
+        "id": "ja_short_03",
+        "category": "short_thanks",
+        "length_bucket": "1-10",
+        "audio_id": "ja_clip_short_03",
+        "reference_ja": "ありがとうございます！",
+        "asr_ja": "ありがとうございます",
+        "reference_en": "Thank you very much!",
+        "linguistic_features": ["gratitude", "polite"]
+    },
+    {
+        "id": "ja_short_04",
+        "category": "short_colloquial",
+        "length_bucket": "1-10",
+        "audio_id": "ja_clip_short_04",
+        "reference_ja": "そうなんだよね。",
+        "asr_ja": "そうなんだよね",
+        "reference_en": "That's how it is, isn't it.",
+        "linguistic_features": ["colloquial", "sentence_final_particle"]
+    },
+
+    # --- Bucket 2: Medium Utterances (11–30 chars) ---
+    {
+        "id": "ja_med_01",
+        "category": "conversational_weather",
+        "length_bucket": "11-30",
+        "audio_id": "ja_clip_med_01",
+        "reference_ja": "今日の東京はとても天気が良くて暖かいですね。",
+        "asr_ja": "今日の東京はとても天気が良くて暖かいですね",
+        "reference_en": "The weather in Tokyo is very nice and warm today, isn't it.",
+        "linguistic_features": ["proper_noun", "particles", "sentence_final_ne"]
+    },
+    {
+        "id": "ja_med_02",
+        "category": "conversational_shopping",
+        "length_bucket": "11-30",
+        "audio_id": "ja_clip_med_02",
+        "reference_ja": "この商品は３０％オフで１５００円になりますよ。",
+        "asr_ja": "この商品は30%オフで1500円になりますよ",
+        "reference_en": "This product is 30% off, so it will be 1,500 yen.",
+        "linguistic_features": ["numbers", "currency", "percentage", "sentence_final_yo"]
+    },
+    {
+        "id": "ja_med_03",
+        "category": "conversational_proper_nouns",
+        "length_bucket": "11-30",
+        "audio_id": "ja_clip_med_03",
+        "reference_ja": "新宿の任天堂ストアに行ってみました。",
+        "asr_ja": "新宿の任天堂ストアに行ってみました",
+        "reference_en": "I tried going to the Nintendo Store in Shinjuku.",
+        "linguistic_features": ["proper_nouns", "location", "past_experience"]
+    },
+    {
+        "id": "ja_med_04",
+        "category": "conversational_streaming",
+        "length_bucket": "11-30",
+        "audio_id": "ja_clip_med_04",
+        "reference_ja": "YouTubeのライブ配信を始めたいと思います。",
+        "asr_ja": "YouTubeのライブ配信を始めたいと思います",
+        "reference_en": "I would like to start the YouTube live stream.",
+        "linguistic_features": ["loanwords", "volitional", "streaming_context"]
+    },
+    {
+        "id": "ja_med_05",
+        "category": "s2_fixture_conversational",
+        "length_bucket": "11-30",
+        "audio_id": "ja_conversational",
+        "reference_ja": "持ち主とはぐれた傘が風で舞い看板もなぎ倒されてしまったようです。",
+        "asr_ja": "こち主とはぐれた傘が風で舞い看板もなぎ倒されてしまったようです",
+        "reference_en": "An umbrella separated from its owner blew in the wind, and signboards also seem to have been knocked down.",
+        "linguistic_features": ["s2_real_audio_fixture", "asr_acoustic_error", "passive_causative"]
+    },
+
+    # --- Bucket 3: Medium-Long Utterances (31–60 chars) ---
+    {
+        "id": "ja_long_01",
+        "category": "travel_narrative",
+        "length_bucket": "31-60",
+        "audio_id": "ja_clip_long_01",
+        "reference_ja": "昨日は友達と一緒に渋谷のカフェに行って、美味しいコーヒーとケーキを楽しみました。",
+        "asr_ja": "昨日は友達と一緒に渋谷のカフェに行って美味しいコーヒーとケーキを楽しみました",
+        "reference_en": "Yesterday I went to a cafe in Shibuya with a friend and enjoyed delicious coffee and cake.",
+        "linguistic_features": ["past_narrative", "compound_clauses", "location", "particles"]
+    },
+    {
+        "id": "ja_long_02",
+        "category": "tech_explanation",
+        "length_bucket": "31-60",
+        "audio_id": "ja_clip_long_02",
+        "reference_ja": "この新しい音声認識モデルは、低遅延でリアルタイムに字幕を生成することができます。",
+        "asr_ja": "この新しい音声認識モデルは低遅延でリアルタイムに字幕を生成することができます",
+        "reference_en": "This new speech recognition model can generate subtitles in real-time with low latency.",
+        "linguistic_features": ["technical_terms", "compound_predicates", "potential_form"]
+    },
+    {
+        "id": "ja_long_03",
+        "category": "imperfect_asr_dialogue",
+        "length_bucket": "31-60",
+        "audio_id": "ja_clip_long_03",
+        "reference_ja": "ええと、明日の午後にラッセル博士ともう一度その件について相談するつもりです。",
+        "asr_ja": "えーと明日の午後にドクタラッセルともう一度その件について相談するつもりです",
+        "reference_en": "Well, I intend to discuss that matter once again with Dr. Russell tomorrow afternoon.",
+        "linguistic_features": ["filler", "proper_noun_asr_variation", "temporal", "intention"]
+    },
+    {
+        "id": "ja_long_04",
+        "category": "weather_warning",
+        "length_bucket": "31-60",
+        "audio_id": "ja_clip_long_04",
+        "reference_ja": "台風の影響により、明日の朝から関東地方の各地で強い雨と風が予想されています。",
+        "asr_ja": "台風の影響により明日の朝から関東地方の各地で強い雨と風が予想されています",
+        "reference_en": "Due to the typhoon, heavy rain and strong winds are expected in various parts of the Kanto region from tomorrow morning.",
+        "linguistic_features": ["formal_news", "cause_effect", "passive_form"]
+    },
+
+    # --- Bucket 4: Long Utterances (61–120 chars) ---
+    {
+        "id": "ja_vlong_01",
+        "category": "news_broadcast",
+        "length_bucket": "61-120",
+        "audio_id": "ja_clip_vlong_01",
+        "reference_ja": "気象庁の発表によりますと、非常に強い勢力の台風が勢力を維持したまま北上しており、沿岸部では高波や土砂崩れに厳重な警戒が必要とのことです。",
+        "asr_ja": "気象庁の発表によりますと非常に強い勢力の台風が勢力を維持したまま北上しており沿岸部では高波や土砂崩れに厳重な警戒が必要とのことです",
+        "reference_en": "According to the Meteorological Agency, a very powerful typhoon is moving north while maintaining its intensity, and strict vigilance is required for high waves and landslides in coastal areas.",
+        "linguistic_features": ["formal_reporting", "complex_subordination", "multiple_clauses"]
+    },
+    {
+        "id": "ja_vlong_02",
+        "category": "conversational_gaming_stream",
+        "length_bucket": "61-120",
+        "audio_id": "ja_clip_vlong_02",
+        "reference_ja": "みなさんこんばんは、今日の配信では新しくリリースされたゲームの難関ボスをノーダメージで倒せるか挑戦してみたいと思いますので、応援よろしくお願いしますね。",
+        "asr_ja": "皆さんこんばんは今日の配信では新しくリリースされたゲームの難関ボスをノーダメージで倒せるか挑戦してみたいと思いますので応援よろしくお願いしますね",
+        "reference_en": "Good evening everyone, in today's stream I would like to try defeating the difficult boss of the newly released game without taking damage, so thank you for your support.",
+        "linguistic_features": ["livestreamer_speech", "kanji_variation", "long_conversational_chain", "sentence_final_ne"]
+    },
+    {
+        "id": "ja_vlong_03",
+        "category": "business_announcement",
+        "length_bucket": "61-120",
+        "audio_id": "ja_clip_vlong_03",
+        "reference_ja": "当社は2026年9月より、次世代のAI技術を活用した新しいリアルタイム翻訳サービスの提供を開始することを本日正式に発表いたしました。",
+        "asr_ja": "当社は2026年9月より次世代のAI技術を活用した新しいリアルタイム翻訳サービスの提供を開始することを本日正式に発表いたしました",
+        "reference_en": "We officially announced today that starting in September 2026, we will begin offering a new real-time translation service utilizing next-generation AI technology.",
+        "linguistic_features": ["dates", "business_honorific", "technical_product"]
+    },
+
+    # --- Bucket 5: Extra-Long Utterances (>120 chars) ---
+    {
+        "id": "ja_xlong_01",
+        "category": "multi_sentence_monologue",
+        "length_bucket": ">120",
+        "audio_id": "ja_clip_xlong_01",
+        "reference_ja": "先週の週末に家族みんなで京都へ旅行に行ったのですが、観光名所の金閣寺や清水寺はどこも国内外からの観光客で非常に混雑していました。それでも美味しい抹茶アイスや湯豆腐を食べることができて、とても充実した素晴らしい思い出深い休日になりました。",
+        "asr_ja": "先週の週末に家族みんなで京都へ旅行に行ったのですが観光名所の金閣寺や清水寺はどこも国内外からの観光客で非常に混雑していましたそれでも美味しい抹茶アイスや湯豆腐を食べることができてとても充実した素晴らしい思い出深い休日になりました",
+        "reference_en": "Last weekend I went on a trip to Kyoto with my entire family, but tourist spots like Kinkaku-ji and Kiyomizu-dera were all extremely crowded with domestic and international tourists. Nevertheless, we were able to eat delicious matcha ice cream and boiled tofu, making it a very fulfilling, wonderful, and memorable holiday.",
+        "linguistic_features": ["multi_sentence", "compound_narrative", "cultural_terms", "high_token_count"]
+    },
+    {
+        "id": "ja_xlong_02",
+        "category": "technical_presentation",
+        "length_bucket": ">120",
+        "audio_id": "ja_clip_xlong_02",
+        "reference_ja": "本プロジェクトの目的は、クラウド依存を完全に排除し、ユーザーの手元にある一般的なノートパソコンのCPU上でのみ動作する超低遅延なリアルタイムストリーミング音声翻訳システムを実現することです。これにより、プライバシーを完全に保護しながら高品質な多言語コミュニケーション体験を提供できます。",
+        "asr_ja": "本プロジェクトの目的はクラウド依存を完全に排除しユーザーの手元にある一般的なノートパソコンのCPU上でのみ動作する超低遅延なリアルタイムストリーミング音声翻訳システムを実現することですこれによりプライバシーを完全に保護しながら高品質な多言語コミュニケーション体験を提供できます",
+        "reference_en": "The objective of this project is to completely eliminate cloud dependency and achieve an ultra-low-latency real-time streaming speech translation system running solely on the CPU of an ordinary laptop owned by the user. Through this, we can provide a high-quality multilingual communication experience while completely protecting privacy.",
+        "linguistic_features": ["architecture_domain", "formal_declarative", "dense_kanji_compounds", "high_token_count"]
+    }
+]
+
+
+def strip_punctuation(text: str) -> str:
+    """Removes Japanese and ASCII punctuation."""
+    return re.sub(r"[。、！？!?,\.\s]+", "", text)
+
+
+def generate_partial_variants(items: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """
+    Generates deterministic partial prefix variants:
+    - FULL (original clean reference)
+    - UNPUNCTUATED (clean without punctuation)
+    - PARTIAL 25% (first 25% chars of ASR text)
+    - PARTIAL 50% (first 50% chars of ASR text)
+    - PARTIAL 75% (first 75% chars of ASR text)
+    - PARTIAL 100% (full ASR text unpunctuated)
+    """
+    variants = []
+
+    for item in items:
+        item_id = item["id"]
+        ref_ja = item["reference_ja"]
+        asr_ja = item["asr_ja"]
+        ref_en = item["reference_en"]
+        
+        # 1. FULL (Clean reference)
+        variants.append({
+            "parent_id": item_id,
+            "condition": "FULL",
+            "source_text": ref_ja,
+            "source_type": "reference_clean",
+            "char_count": len(ref_ja),
+            "reference_en": ref_en,
+            "length_bucket": item["length_bucket"]
+        })
+
+        # 2. UNPUNCTUATED
+        unpunct_ja = strip_punctuation(ref_ja)
+        variants.append({
+            "parent_id": item_id,
+            "condition": "UNPUNCTUATED",
+            "source_text": unpunct_ja,
+            "source_type": "reference_unpunctuated",
+            "char_count": len(unpunct_ja),
+            "reference_en": ref_en,
+            "length_bucket": item["length_bucket"]
+        })
+
+        # 3. PARTIAL slices from ASR output
+        clean_asr = strip_punctuation(asr_ja)
+        n = len(clean_asr)
+        
+        fractions = [
+            ("PARTIAL_25", max(1, int(round(n * 0.25)))),
+            ("PARTIAL_50", max(1, int(round(n * 0.50)))),
+            ("PARTIAL_75", max(1, int(round(n * 0.75)))),
+            ("PARTIAL_100", n)
+        ]
+
+        for cond_name, prefix_len in fractions:
+            prefix_text = clean_asr[:prefix_len]
+            variants.append({
+                "parent_id": item_id,
+                "condition": cond_name,
+                "source_text": prefix_text,
+                "source_type": "asr_partial",
+                "char_count": len(prefix_text),
+                "prefix_ratio": round(prefix_len / n, 2),
+                "reference_en": ref_en,
+                "length_bucket": item["length_bucket"]
+            })
+
+    return variants
+
+
+def main():
+    DATASETS_DIR.mkdir(parents=True, exist_ok=True)
+
+    # Save manifest.json
+    with open(MANIFEST_FILE, "w", encoding="utf-8") as f:
+        json.dump(CORPUS_ITEMS, f, indent=2, ensure_ascii=False)
+    print(f"Saved dataset manifest ({len(CORPUS_ITEMS)} items) to {MANIFEST_FILE}")
+
+    # Generate and save partial variants
+    partial_variants = generate_partial_variants(CORPUS_ITEMS)
+    with open(PARTIALS_FILE, "w", encoding="utf-8") as f:
+        json.dump(partial_variants, f, indent=2, ensure_ascii=False)
+    print(f"Saved partial variants ({len(partial_variants)} conditions) to {PARTIALS_FILE}")
+
+
+if __name__ == "__main__":
+    main()

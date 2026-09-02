@@ -1,0 +1,4527 @@
+{
+  "schema_version": "s3_local_mt_v1",
+  "benchmark_timestamp_iso": "2026-09-02T05:24:23Z",
+  "environment": {
+    "os": "Linux 7.0.0-30-generic",
+    "cpu_arch": "x86_64",
+    "cpu_count_physical": 8,
+    "cpu_count_logical": 16,
+    "total_ram_gb": 13.42,
+    "python_version": "3.12.3"
+  },
+  "models": {
+    "marian": {
+      "engine_name": "CTranslate2-Marian",
+      "model_name": "opus-mt-ja-en",
+      "model_family": "MarianMT / OPUS-MT",
+      "quantization": "int8",
+      "model_size_mb": 77.97,
+      "src_lang": "ja",
+      "tgt_lang": "en",
+      "is_multilingual": false,
+      "parameters": {
+        "num_threads": 2,
+        "device": "cpu",
+        "compute_type": "int8",
+        "init_duration_ms": 425.88
+      }
+    },
+    "nllb": {
+      "engine_name": "CTranslate2-NLLB",
+      "model_name": "nllb-200-distilled-600M",
+      "model_family": "NLLB-200",
+      "quantization": "int8",
+      "model_size_mb": 634.82,
+      "src_lang": "jpn_Jpan",
+      "tgt_lang": "eng_Latn",
+      "is_multilingual": true,
+      "parameters": {
+        "num_threads": 2,
+        "device": "cpu",
+        "compute_type": "int8",
+        "src_lang": "jpn_Jpan",
+        "tgt_lang": "eng_Latn",
+        "init_duration_ms": 1010.47
+      }
+    }
+  },
+  "resource_profiles": {
+    "marian": {
+      "load_time_ms": 426.06,
+      "rss_before_mb": 390.61,
+      "rss_after_mb": 502.19,
+      "model_memory_overhead_mb": 111.58,
+      "peak_rss_mb": 514.0
+    },
+    "nllb": {
+      "load_time_ms": 1010.65,
+      "rss_before_mb": 514.01,
+      "rss_after_mb": 1223.43,
+      "model_memory_overhead_mb": 709.42,
+      "peak_rss_mb": 1231.36
+    }
+  },
+  "latency_benchmarks": {
+    "marian": {
+      "engine": "CTranslate2-Marian",
+      "model_name": "opus-mt-ja-en",
+      "quantization": "int8",
+      "parameters": {
+        "num_threads": 2,
+        "device": "cpu",
+        "compute_type": "int8",
+        "init_duration_ms": 425.88
+      },
+      "beam_size": 1,
+      "overall_latency": {
+        "cold_start_ms": 13.87,
+        "total_latency": {
+          "min": 11.76,
+          "p50": 65.73,
+          "p90": 160.36,
+          "p95": 180.19,
+          "p99": 197.15,
+          "max": 201.38,
+          "mean": 74.16,
+          "stddev": 53.61,
+          "count": 18
+        },
+        "tokenizer_latency": {
+          "min": 0.11,
+          "p50": 0.16,
+          "p90": 0.23,
+          "p95": 0.28,
+          "p99": 0.29,
+          "max": 0.29,
+          "mean": 0.17,
+          "stddev": 0.05,
+          "count": 18
+        },
+        "inference_latency": {
+          "min": 11.51,
+          "p50": 65.26,
+          "p90": 159.64,
+          "p95": 179.38,
+          "p99": 196.27,
+          "max": 200.5,
+          "mean": 73.7,
+          "stddev": 53.44,
+          "count": 18
+        },
+        "detokenizer_latency": {
+          "min": 0.15,
+          "p50": 0.27,
+          "p90": 0.49,
+          "p95": 0.53,
+          "p99": 0.58,
+          "max": 0.6,
+          "mean": 0.3,
+          "stddev": 0.13,
+          "count": 18
+        }
+      },
+      "length_scaling": {
+        "1-10": {
+          "total": {
+            "min": 11.76,
+            "p50": 18.89,
+            "p90": 22.48,
+            "p95": 22.58,
+            "p99": 22.66,
+            "max": 22.68,
+            "mean": 18.06,
+            "stddev": 4.52,
+            "count": 4
+          },
+          "tokenizer": {
+            "min": 0.11,
+            "p50": 0.12,
+            "p90": 0.13,
+            "p95": 0.13,
+            "p99": 0.13,
+            "max": 0.13,
+            "mean": 0.12,
+            "stddev": 0.01,
+            "count": 4
+          },
+          "inference": {
+            "min": 11.51,
+            "p50": 18.61,
+            "p90": 22.17,
+            "p95": 22.27,
+            "p99": 22.34,
+            "max": 22.36,
+            "mean": 17.77,
+            "stddev": 4.5,
+            "count": 4
+          },
+          "detokenizer": {
+            "min": 0.15,
+            "p50": 0.16,
+            "p90": 0.18,
+            "p95": 0.19,
+            "p99": 0.19,
+            "max": 0.19,
+            "mean": 0.16,
+            "stddev": 0.02,
+            "count": 4
+          }
+        },
+        "11-30": {
+          "total": {
+            "min": 35.45,
+            "p50": 43.31,
+            "p90": 61.6,
+            "p95": 64.56,
+            "p99": 66.93,
+            "max": 67.52,
+            "mean": 47.08,
+            "stddev": 11.95,
+            "count": 5
+          },
+          "tokenizer": {
+            "min": 0.12,
+            "p50": 0.13,
+            "p90": 0.15,
+            "p95": 0.16,
+            "p99": 0.16,
+            "max": 0.16,
+            "mean": 0.14,
+            "stddev": 0.01,
+            "count": 5
+          },
+          "inference": {
+            "min": 35.13,
+            "p50": 42.95,
+            "p90": 61.19,
+            "p95": 64.14,
+            "p99": 66.49,
+            "max": 67.08,
+            "mean": 46.72,
+            "stddev": 11.91,
+            "count": 5
+          },
+          "detokenizer": {
+            "min": 0.19,
+            "p50": 0.23,
+            "p90": 0.26,
+            "p95": 0.27,
+            "p99": 0.27,
+            "max": 0.27,
+            "mean": 0.23,
+            "stddev": 0.03,
+            "count": 5
+          }
+        },
+        "31-60": {
+          "total": {
+            "min": 64.34,
+            "p50": 75.43,
+            "p90": 96.76,
+            "p95": 99.55,
+            "p99": 101.78,
+            "max": 102.34,
+            "mean": 79.39,
+            "stddev": 15.19,
+            "count": 4
+          },
+          "tokenizer": {
+            "min": 0.16,
+            "p50": 0.17,
+            "p90": 0.17,
+            "p95": 0.17,
+            "p99": 0.17,
+            "max": 0.17,
+            "mean": 0.17,
+            "stddev": 0.01,
+            "count": 4
+          },
+          "inference": {
+            "min": 63.85,
+            "p50": 74.94,
+            "p90": 96.23,
+            "p95": 99.03,
+            "p99": 101.26,
+            "max": 101.82,
+            "mean": 78.89,
+            "stddev": 15.16,
+            "count": 4
+          },
+          "detokenizer": {
+            "min": 0.27,
+            "p50": 0.34,
+            "p90": 0.37,
+            "p95": 0.38,
+            "p99": 0.38,
+            "max": 0.38,
+            "mean": 0.33,
+            "stddev": 0.04,
+            "count": 4
+          }
+        },
+        "61-120": {
+          "total": {
+            "min": 77.78,
+            "p50": 100.67,
+            "p90": 142.9,
+            "p95": 148.18,
+            "p99": 152.4,
+            "max": 153.46,
+            "mean": 110.64,
+            "stddev": 31.69,
+            "count": 3
+          },
+          "tokenizer": {
+            "min": 0.2,
+            "p50": 0.2,
+            "p90": 0.21,
+            "p95": 0.21,
+            "p99": 0.21,
+            "max": 0.21,
+            "mean": 0.2,
+            "stddev": 0.01,
+            "count": 3
+          },
+          "inference": {
+            "min": 77.28,
+            "p50": 100.1,
+            "p90": 142.24,
+            "p95": 147.51,
+            "p99": 151.72,
+            "max": 152.77,
+            "mean": 110.05,
+            "stddev": 31.61,
+            "count": 3
+          },
+          "detokenizer": {
+            "min": 0.29,
+            "p50": 0.38,
+            "p90": 0.46,
+            "p95": 0.47,
+            "p99": 0.47,
+            "max": 0.47,
+            "mean": 0.38,
+            "stddev": 0.07,
+            "count": 3
+          }
+        },
+        ">120": {
+          "total": {
+            "min": 176.45,
+            "p50": 188.92,
+            "p90": 198.89,
+            "p95": 200.14,
+            "p99": 201.14,
+            "max": 201.38,
+            "mean": 188.92,
+            "stddev": 12.47,
+            "count": 2
+          },
+          "tokenizer": {
+            "min": 0.28,
+            "p50": 0.29,
+            "p90": 0.29,
+            "p95": 0.29,
+            "p99": 0.29,
+            "max": 0.29,
+            "mean": 0.29,
+            "stddev": 0.0,
+            "count": 2
+          },
+          "inference": {
+            "min": 175.66,
+            "p50": 188.08,
+            "p90": 198.01,
+            "p95": 199.25,
+            "p99": 200.25,
+            "max": 200.5,
+            "mean": 188.08,
+            "stddev": 12.42,
+            "count": 2
+          },
+          "detokenizer": {
+            "min": 0.52,
+            "p50": 0.56,
+            "p90": 0.59,
+            "p95": 0.59,
+            "p99": 0.6,
+            "max": 0.6,
+            "mean": 0.56,
+            "stddev": 0.04,
+            "count": 2
+          }
+        }
+      }
+    },
+    "nllb": {
+      "engine": "CTranslate2-NLLB",
+      "model_name": "nllb-200-distilled-600M",
+      "quantization": "int8",
+      "parameters": {
+        "num_threads": 2,
+        "device": "cpu",
+        "compute_type": "int8",
+        "src_lang": "jpn_Jpan",
+        "tgt_lang": "eng_Latn",
+        "init_duration_ms": 1010.47
+      },
+      "beam_size": 1,
+      "overall_latency": {
+        "cold_start_ms": 209.86,
+        "total_latency": {
+          "min": 177.79,
+          "p50": 699.61,
+          "p90": 1534.57,
+          "p95": 2105.67,
+          "p99": 2145.24,
+          "max": 2155.13,
+          "mean": 800.44,
+          "stddev": 567.07,
+          "count": 18
+        },
+        "tokenizer_latency": {
+          "min": 0.1,
+          "p50": 0.16,
+          "p90": 0.23,
+          "p95": 0.24,
+          "p99": 0.25,
+          "max": 0.25,
+          "mean": 0.17,
+          "stddev": 0.04,
+          "count": 18
+        },
+        "inference_latency": {
+          "min": 177.58,
+          "p50": 699.33,
+          "p90": 1534.18,
+          "p95": 2105.22,
+          "p99": 2144.8,
+          "max": 2154.7,
+          "mean": 800.14,
+          "stddev": 567.01,
+          "count": 18
+        },
+        "detokenizer_latency": {
+          "min": 0.09,
+          "p50": 0.13,
+          "p90": 0.18,
+          "p95": 0.2,
+          "p99": 0.2,
+          "max": 0.2,
+          "mean": 0.13,
+          "stddev": 0.03,
+          "count": 18
+        }
+      },
+      "length_scaling": {
+        "1-10": {
+          "total": {
+            "min": 177.79,
+            "p50": 243.05,
+            "p90": 295.65,
+            "p95": 299.43,
+            "p99": 302.46,
+            "max": 303.21,
+            "mean": 241.78,
+            "stddev": 50.79,
+            "count": 4
+          },
+          "tokenizer": {
+            "min": 0.1,
+            "p50": 0.12,
+            "p90": 0.13,
+            "p95": 0.13,
+            "p99": 0.13,
+            "max": 0.13,
+            "mean": 0.12,
+            "stddev": 0.01,
+            "count": 4
+          },
+          "inference": {
+            "min": 177.58,
+            "p50": 242.84,
+            "p90": 295.44,
+            "p95": 299.22,
+            "p99": 302.24,
+            "max": 303.0,
+            "mean": 241.56,
+            "stddev": 50.78,
+            "count": 4
+          },
+          "detokenizer": {
+            "min": 0.09,
+            "p50": 0.09,
+            "p90": 0.1,
+            "p95": 0.1,
+            "p99": 0.1,
+            "max": 0.1,
+            "mean": 0.09,
+            "stddev": 0.01,
+            "count": 4
+          }
+        },
+        "11-30": {
+          "total": {
+            "min": 401.61,
+            "p50": 402.94,
+            "p90": 660.78,
+            "p95": 693.88,
+            "p99": 720.36,
+            "max": 726.98,
+            "mean": 498.96,
+            "stddev": 129.65,
+            "count": 5
+          },
+          "tokenizer": {
+            "min": 0.14,
+            "p50": 0.15,
+            "p90": 0.19,
+            "p95": 0.2,
+            "p99": 0.21,
+            "max": 0.21,
+            "mean": 0.16,
+            "stddev": 0.03,
+            "count": 5
+          },
+          "inference": {
+            "min": 401.36,
+            "p50": 402.66,
+            "p90": 660.49,
+            "p95": 693.6,
+            "p99": 720.08,
+            "max": 726.71,
+            "mean": 498.68,
+            "stddev": 129.64,
+            "count": 5
+          },
+          "detokenizer": {
+            "min": 0.1,
+            "p50": 0.11,
+            "p90": 0.13,
+            "p95": 0.13,
+            "p99": 0.13,
+            "max": 0.13,
+            "mean": 0.12,
+            "stddev": 0.01,
+            "count": 5
+          }
+        },
+        "31-60": {
+          "total": {
+            "min": 672.23,
+            "p50": 797.17,
+            "p90": 925.96,
+            "p95": 942.11,
+            "p99": 955.03,
+            "max": 958.25,
+            "mean": 806.21,
+            "stddev": 108.33,
+            "count": 4
+          },
+          "tokenizer": {
+            "min": 0.16,
+            "p50": 0.16,
+            "p90": 0.16,
+            "p95": 0.16,
+            "p99": 0.16,
+            "max": 0.16,
+            "mean": 0.16,
+            "stddev": 0.0,
+            "count": 4
+          },
+          "inference": {
+            "min": 671.95,
+            "p50": 796.87,
+            "p90": 925.66,
+            "p95": 941.81,
+            "p99": 954.73,
+            "max": 957.96,
+            "mean": 805.91,
+            "stddev": 108.32,
+            "count": 4
+          },
+          "detokenizer": {
+            "min": 0.12,
+            "p50": 0.14,
+            "p90": 0.14,
+            "p95": 0.14,
+            "p99": 0.14,
+            "max": 0.14,
+            "mean": 0.13,
+            "stddev": 0.01,
+            "count": 4
+          }
+        },
+        "61-120": {
+          "total": {
+            "min": 988.9,
+            "p50": 1186.66,
+            "p90": 1272.18,
+            "p95": 1282.87,
+            "p99": 1291.42,
+            "max": 1293.55,
+            "mean": 1156.37,
+            "stddev": 126.21,
+            "count": 3
+          },
+          "tokenizer": {
+            "min": 0.18,
+            "p50": 0.2,
+            "p90": 0.22,
+            "p95": 0.22,
+            "p99": 0.23,
+            "max": 0.23,
+            "mean": 0.2,
+            "stddev": 0.02,
+            "count": 3
+          },
+          "inference": {
+            "min": 988.53,
+            "p50": 1186.34,
+            "p90": 1271.82,
+            "p95": 1282.5,
+            "p99": 1291.05,
+            "max": 1293.18,
+            "mean": 1156.02,
+            "stddev": 126.21,
+            "count": 3
+          },
+          "detokenizer": {
+            "min": 0.14,
+            "p50": 0.14,
+            "p90": 0.16,
+            "p95": 0.17,
+            "p99": 0.17,
+            "max": 0.17,
+            "mean": 0.15,
+            "stddev": 0.01,
+            "count": 3
+          }
+        },
+        ">120": {
+          "total": {
+            "min": 2096.94,
+            "p50": 2126.03,
+            "p90": 2149.31,
+            "p95": 2152.22,
+            "p99": 2154.55,
+            "max": 2155.13,
+            "mean": 2126.03,
+            "stddev": 29.1,
+            "count": 2
+          },
+          "tokenizer": {
+            "min": 0.24,
+            "p50": 0.25,
+            "p90": 0.25,
+            "p95": 0.25,
+            "p99": 0.25,
+            "max": 0.25,
+            "mean": 0.25,
+            "stddev": 0.0,
+            "count": 2
+          },
+          "inference": {
+            "min": 2096.49,
+            "p50": 2125.59,
+            "p90": 2148.87,
+            "p95": 2151.78,
+            "p99": 2154.11,
+            "max": 2154.7,
+            "mean": 2125.59,
+            "stddev": 29.1,
+            "count": 2
+          },
+          "detokenizer": {
+            "min": 0.2,
+            "p50": 0.2,
+            "p90": 0.2,
+            "p95": 0.2,
+            "p99": 0.2,
+            "max": 0.2,
+            "mean": 0.2,
+            "stddev": 0.0,
+            "count": 2
+          }
+        }
+      }
+    }
+  },
+  "quality_benchmarks": {
+    "marian": {
+      "path_a_clean": {
+        "aggregate_metrics": {
+          "bleu": 18.54,
+          "chrf": 48.27,
+          "chrf_plus_plus": 46.47,
+          "comet": 0.8337,
+          "sample_count": 18,
+          "details": {
+            "bleu_signature": "BLEU = 18.54 60.7/30.8/15.2/7.3 (BP = 0.869 ratio = 0.877 hyp_len = 313 ref_len = 357)",
+            "chrf_signature": "chrF2 = 48.27"
+          }
+        },
+        "sample_details": [
+          {
+            "id": "ja_short_01",
+            "category": "short_greeting",
+            "source_clean": "こんにちは。",
+            "reference_en": "Hello.",
+            "hypothesis_en": "Hi.",
+            "metrics": {
+              "sentence_bleu": 50.0,
+              "sentence_chrf_pp": 17.68
+            }
+          },
+          {
+            "id": "ja_short_02",
+            "category": "short_confirmation",
+            "source_clean": "はい、分かりました。",
+            "reference_en": "Yes, I understand.",
+            "hypothesis_en": "Yes, I understand.",
+            "metrics": {
+              "sentence_bleu": 100.0,
+              "sentence_chrf_pp": 100.0
+            }
+          },
+          {
+            "id": "ja_short_03",
+            "category": "short_thanks",
+            "source_clean": "ありがとうございます！",
+            "reference_en": "Thank you very much!",
+            "hypothesis_en": "Thank you!",
+            "metrics": {
+              "sentence_bleu": 32.34,
+              "sentence_chrf_pp": 43.76
+            }
+          },
+          {
+            "id": "ja_short_04",
+            "category": "short_colloquial",
+            "source_clean": "そうなんだよね。",
+            "reference_en": "That's how it is, isn't it.",
+            "hypothesis_en": "That's right.",
+            "metrics": {
+              "sentence_bleu": 6.55,
+              "sentence_chrf_pp": 21.19
+            }
+          },
+          {
+            "id": "ja_med_01",
+            "category": "conversational_weather",
+            "source_clean": "今日の東京はとても天気が良くて暖かいですね。",
+            "reference_en": "The weather in Tokyo is very nice and warm today, isn't it.",
+            "hypothesis_en": "Today, Tokyo is very sunny and warm, isn't it?",
+            "metrics": {
+              "sentence_bleu": 20.39,
+              "sentence_chrf_pp": 48.67
+            }
+          },
+          {
+            "id": "ja_med_02",
+            "category": "conversational_shopping",
+            "source_clean": "この商品は３０％オフで１５００円になりますよ。",
+            "reference_en": "This product is 30% off, so it will be 1,500 yen.",
+            "hypothesis_en": "This product will cost 1,500 yen on 30% off.",
+            "metrics": {
+              "sentence_bleu": 16.62,
+              "sentence_chrf_pp": 54.64
+            }
+          },
+          {
+            "id": "ja_med_03",
+            "category": "conversational_proper_nouns",
+            "source_clean": "新宿の任天堂ストアに行ってみました。",
+            "reference_en": "I tried going to the Nintendo Store in Shinjuku.",
+            "hypothesis_en": "I went to the Japanese Abbey.",
+            "metrics": {
+              "sentence_bleu": 10.18,
+              "sentence_chrf_pp": 15.53
+            }
+          },
+          {
+            "id": "ja_med_04",
+            "category": "conversational_streaming",
+            "source_clean": "YouTubeのライブ配信を始めたいと思います。",
+            "reference_en": "I would like to start the YouTube live stream.",
+            "hypothesis_en": "I want to start live on YouTube.",
+            "metrics": {
+              "sentence_bleu": 11.32,
+              "sentence_chrf_pp": 35.79
+            }
+          },
+          {
+            "id": "ja_med_05",
+            "category": "s2_fixture_conversational",
+            "source_clean": "持ち主とはぐれた傘が風で舞い看板もなぎ倒されてしまったようです。",
+            "reference_en": "An umbrella separated from its owner blew in the wind, and signboards also seem to have been knocked down.",
+            "hypothesis_en": "It seems that the umbrella that was separated from the owner was knocked down by the wind.",
+            "metrics": {
+              "sentence_bleu": 6.97,
+              "sentence_chrf_pp": 40.3
+            }
+          },
+          {
+            "id": "ja_long_01",
+            "category": "travel_narrative",
+            "source_clean": "昨日は友達と一緒に渋谷のカフェに行って、美味しいコーヒーとケーキを楽しみました。",
+            "reference_en": "Yesterday I went to a cafe in Shibuya with a friend and enjoyed delicious coffee and cake.",
+            "hypothesis_en": "Yesterday I went to a café in Shibuya with a friend and enjoyed a good cup of coffee and cake.",
+            "metrics": {
+              "sentence_bleu": 56.42,
+              "sentence_chrf_pp": 79.72
+            }
+          },
+          {
+            "id": "ja_long_02",
+            "category": "tech_explanation",
+            "source_clean": "この新しい音声認識モデルは、低遅延でリアルタイムに字幕を生成することができます。",
+            "reference_en": "This new speech recognition model can generate subtitles in real-time with low latency.",
+            "hypothesis_en": "This new audio recognition model can produce subtitles in real time at a low delay.",
+            "metrics": {
+              "sentence_bleu": 14.25,
+              "sentence_chrf_pp": 52.92
+            }
+          },
+          {
+            "id": "ja_long_03",
+            "category": "imperfect_asr_dialogue",
+            "source_clean": "ええと、明日の午後にラッセル博士ともう一度その件について相談するつもりです。",
+            "reference_en": "Well, I intend to discuss that matter once again with Dr. Russell tomorrow afternoon.",
+            "hypothesis_en": "Um, I'm going to talk to Dr. Russell again about it tomorrow afternoon.",
+            "metrics": {
+              "sentence_bleu": 15.92,
+              "sentence_chrf_pp": 42.32
+            }
+          },
+          {
+            "id": "ja_long_04",
+            "category": "weather_warning",
+            "source_clean": "台風の影響により、明日の朝から関東地方の各地で強い雨と風が予想されています。",
+            "reference_en": "Due to the typhoon, heavy rain and strong winds are expected in various parts of the Kanto region from tomorrow morning.",
+            "hypothesis_en": "Due to the typhoon's influence, from tomorrow morning, strong rain and wind are expected in many parts of the Kanto region.",
+            "metrics": {
+              "sentence_bleu": 31.49,
+              "sentence_chrf_pp": 69.14
+            }
+          },
+          {
+            "id": "ja_vlong_01",
+            "category": "news_broadcast",
+            "source_clean": "気象庁の発表によりますと、非常に強い勢力の台風が勢力を維持したまま北上しており、沿岸部では高波や土砂崩れに厳重な警戒が必要とのことです。",
+            "reference_en": "According to the Meteorological Agency, a very powerful typhoon is moving north while maintaining its intensity, and strict vigilance is required for high waves and landslides in coastal areas.",
+            "hypothesis_en": "The weather service announced that a very strong typhoon of forces was going north, holding its power, and that high waves and heavy ground - and heavy --stuff - were needed on the coast.",
+            "metrics": {
+              "sentence_bleu": 6.36,
+              "sentence_chrf_pp": 30.18
+            }
+          },
+          {
+            "id": "ja_vlong_02",
+            "category": "conversational_gaming_stream",
+            "source_clean": "みなさんこんばんは、今日の配信では新しくリリースされたゲームの難関ボスをノーダメージで倒せるか挑戦してみたいと思いますので、応援よろしくお願いしますね。",
+            "reference_en": "Good evening everyone, in today's stream I would like to try defeating the difficult boss of the newly released game without taking damage, so thank you for your support.",
+            "hypothesis_en": "Ladies and gentlemen, I'd like to try and no damage the new game's hard boss.",
+            "metrics": {
+              "sentence_bleu": 4.5,
+              "sentence_chrf_pp": 19.27
+            }
+          },
+          {
+            "id": "ja_vlong_03",
+            "category": "business_announcement",
+            "source_clean": "当社は2026年9月より、次世代のAI技術を活用した新しいリアルタイム翻訳サービスの提供を開始することを本日正式に発表いたしました。",
+            "reference_en": "We officially announced today that starting in September 2026, we will begin offering a new real-time translation service utilizing next-generation AI technology.",
+            "hypothesis_en": "We officially announced today that we will begin to provide a new real-time translation service using next generation AI technology from September 2026.",
+            "metrics": {
+              "sentence_bleu": 39.24,
+              "sentence_chrf_pp": 71.68
+            }
+          },
+          {
+            "id": "ja_xlong_01",
+            "category": "multi_sentence_monologue",
+            "source_clean": "先週の週末に家族みんなで京都へ旅行に行ったのですが、観光名所の金閣寺や清水寺はどこも国内外からの観光客で非常に混雑していました。それでも美味しい抹茶アイスや湯豆腐を食べることができて、とても充実した素晴らしい思い出深い休日になりました。",
+            "reference_en": "Last weekend I went on a trip to Kyoto with my entire family, but tourist spots like Kinkaku-ji and Kiyomizu-dera were all extremely crowded with domestic and international tourists. Nevertheless, we were able to eat delicious matcha ice cream and boiled tofu, making it a very fulfilling, wonderful, and memorable holiday.",
+            "hypothesis_en": "Last weekend our family traveled to Kyoto, but the Golden Temple and the Sanish Temple were all very crowded with tourists from abroad. Still, having eaten delicious fresh tea and hot water tofu made a very rich and memorable holiday.",
+            "metrics": {
+              "sentence_bleu": 7.81,
+              "sentence_chrf_pp": 35.27
+            }
+          },
+          {
+            "id": "ja_xlong_02",
+            "category": "technical_presentation",
+            "source_clean": "本プロジェクトの目的は、クラウド依存を完全に排除し、ユーザーの手元にある一般的なノートパソコンのCPU上でのみ動作する超低遅延なリアルタイムストリーミング音声翻訳システムを実現することです。これにより、プライバシーを完全に保護しながら高品質な多言語コミュニケーション体験を提供できます。",
+            "reference_en": "The objective of this project is to completely eliminate cloud dependency and achieve an ultra-low-latency real-time streaming speech translation system running solely on the CPU of an ordinary laptop owned by the user. Through this, we can provide a high-quality multilingual communication experience while completely protecting privacy.",
+            "hypothesis_en": "The purpose of this project is to eliminate cloud dependence completely and to achieve a low-recreive real time streaming audio translation system that only works on the CPU of a general laptop. This will provide a high-quality multi-site communication experience with complete privacy.",
+            "metrics": {
+              "sentence_bleu": 18.35,
+              "sentence_chrf_pp": 53.71
+            }
+          }
+        ]
+      },
+      "path_b_realistic_asr": {
+        "aggregate_metrics": {
+          "bleu": 13.14,
+          "chrf": 38.06,
+          "chrf_plus_plus": 36.25,
+          "comet": 0.7685,
+          "sample_count": 18,
+          "details": {
+            "bleu_signature": "BLEU = 13.14 54.4/25.3/11.9/7.6 (BP = 0.699 ratio = 0.737 hyp_len = 263 ref_len = 357)",
+            "chrf_signature": "chrF2 = 38.06"
+          }
+        },
+        "sample_details": [
+          {
+            "id": "ja_short_01",
+            "category": "short_greeting",
+            "source_asr": "こんにちは",
+            "reference_en": "Hello.",
+            "hypothesis_en": "Hello.",
+            "metrics": {
+              "sentence_bleu": 100.0,
+              "sentence_chrf_pp": 100.0
+            }
+          },
+          {
+            "id": "ja_short_02",
+            "category": "short_confirmation",
+            "source_asr": "はい分かりました",
+            "reference_en": "Yes, I understand.",
+            "hypothesis_en": "Yes, sir.",
+            "metrics": {
+              "sentence_bleu": 27.53,
+              "sentence_chrf_pp": 23.27
+            }
+          },
+          {
+            "id": "ja_short_03",
+            "category": "short_thanks",
+            "source_asr": "ありがとうございます",
+            "reference_en": "Thank you very much!",
+            "hypothesis_en": "Thank you.",
+            "metrics": {
+              "sentence_bleu": 28.25,
+              "sentence_chrf_pp": 40.21
+            }
+          },
+          {
+            "id": "ja_short_04",
+            "category": "short_colloquial",
+            "source_asr": "そうなんだよね",
+            "reference_en": "That's how it is, isn't it.",
+            "hypothesis_en": "I know.",
+            "metrics": {
+              "sentence_bleu": 5.2,
+              "sentence_chrf_pp": 5.16
+            }
+          },
+          {
+            "id": "ja_med_01",
+            "category": "conversational_weather",
+            "source_asr": "今日の東京はとても天気が良くて暖かいですね",
+            "reference_en": "The weather in Tokyo is very nice and warm today, isn't it.",
+            "hypothesis_en": "It's very nice and warm in Tokyo today.",
+            "metrics": {
+              "sentence_bleu": 21.88,
+              "sentence_chrf_pp": 48.74
+            }
+          },
+          {
+            "id": "ja_med_02",
+            "category": "conversational_shopping",
+            "source_asr": "この商品は30%オフで1500円になりますよ",
+            "reference_en": "This product is 30% off, so it will be 1,500 yen.",
+            "hypothesis_en": "And you can see that this is a product that's actually going to cost us about a million dollars.",
+            "metrics": {
+              "sentence_bleu": 2.52,
+              "sentence_chrf_pp": 17.31
+            }
+          },
+          {
+            "id": "ja_med_03",
+            "category": "conversational_proper_nouns",
+            "source_asr": "新宿の任天堂ストアに行ってみました",
+            "reference_en": "I tried going to the Nintendo Store in Shinjuku.",
+            "hypothesis_en": "I went to the Imperial Palace in New York.",
+            "metrics": {
+              "sentence_bleu": 10.55,
+              "sentence_chrf_pp": 19.82
+            }
+          },
+          {
+            "id": "ja_med_04",
+            "category": "conversational_streaming",
+            "source_asr": "YouTubeのライブ配信を始めたいと思います",
+            "reference_en": "I would like to start the YouTube live stream.",
+            "hypothesis_en": "I'm going to start a live presentation on YouTube.",
+            "metrics": {
+              "sentence_bleu": 10.55,
+              "sentence_chrf_pp": 33.79
+            }
+          },
+          {
+            "id": "ja_med_05",
+            "category": "s2_fixture_conversational",
+            "source_asr": "こち主とはぐれた傘が風で舞い看板もなぎ倒されてしまったようです",
+            "reference_en": "An umbrella separated from its owner blew in the wind, and signboards also seem to have been knocked down.",
+            "hypothesis_en": "It seems that the umbrella was knocked down by the wind.",
+            "metrics": {
+              "sentence_bleu": 5.01,
+              "sentence_chrf_pp": 27.45
+            }
+          },
+          {
+            "id": "ja_long_01",
+            "category": "travel_narrative",
+            "source_asr": "昨日は友達と一緒に渋谷のカフェに行って美味しいコーヒーとケーキを楽しみました",
+            "reference_en": "Yesterday I went to a cafe in Shibuya with a friend and enjoyed delicious coffee and cake.",
+            "hypothesis_en": "I went to a café in Shibuya yesterday with friends and enjoyed a good cup of coffee and cake.",
+            "metrics": {
+              "sentence_bleu": 29.63,
+              "sentence_chrf_pp": 62.91
+            }
+          },
+          {
+            "id": "ja_long_02",
+            "category": "tech_explanation",
+            "source_asr": "この新しい音声認識モデルは低遅延でリアルタイムに字幕を生成することができます",
+            "reference_en": "This new speech recognition model can generate subtitles in real-time with low latency.",
+            "hypothesis_en": "This new audio recognition model can produce subtitles in real time at low speed",
+            "metrics": {
+              "sentence_bleu": 16.06,
+              "sentence_chrf_pp": 53.78
+            }
+          },
+          {
+            "id": "ja_long_03",
+            "category": "imperfect_asr_dialogue",
+            "source_asr": "えーと明日の午後にドクタラッセルともう一度その件について相談するつもりです",
+            "reference_en": "Well, I intend to discuss that matter once again with Dr. Russell tomorrow afternoon.",
+            "hypothesis_en": "Uh, tomorrow afternoon, we're gonna talk about it again with Doctranssel.",
+            "metrics": {
+              "sentence_bleu": 7.17,
+              "sentence_chrf_pp": 36.58
+            }
+          },
+          {
+            "id": "ja_long_04",
+            "category": "weather_warning",
+            "source_asr": "台風の影響により明日の朝から関東地方の各地で強い雨と風が予想されています",
+            "reference_en": "Due to the typhoon, heavy rain and strong winds are expected in various parts of the Kanto region from tomorrow morning.",
+            "hypothesis_en": "The typhoon's effects will have caused heavy rains and wind to be expected in the Kanto region from tomorrow morning.",
+            "metrics": {
+              "sentence_bleu": 29.9,
+              "sentence_chrf_pp": 55.84
+            }
+          },
+          {
+            "id": "ja_vlong_01",
+            "category": "news_broadcast",
+            "source_asr": "気象庁の発表によりますと非常に強い勢力の台風が勢力を維持したまま北上しており沿岸部では高波や土砂崩れに厳重な警戒が必要とのことです",
+            "reference_en": "According to the Meteorological Agency, a very powerful typhoon is moving north while maintaining its intensity, and strict vigilance is required for high waves and landslides in coastal areas.",
+            "hypothesis_en": "The weather is still very strong, and the winds are still very strong, and the coastal areas require extreme precautions against high seas and mudslides.",
+            "metrics": {
+              "sentence_bleu": 4.22,
+              "sentence_chrf_pp": 26.4
+            }
+          },
+          {
+            "id": "ja_vlong_02",
+            "category": "conversational_gaming_stream",
+            "source_asr": "皆さんこんばんは今日の配信では新しくリリースされたゲームの難関ボスをノーダメージで倒せるか挑戦してみたいと思いますので応援よろしくお願いしますね",
+            "reference_en": "Good evening everyone, in today's stream I would like to try defeating the difficult boss of the newly released game without taking damage, so thank you for your support.",
+            "hypothesis_en": "I'm going to give you a few examples of how to do this.",
+            "metrics": {
+              "sentence_bleu": 1.11,
+              "sentence_chrf_pp": 8.66
+            }
+          },
+          {
+            "id": "ja_vlong_03",
+            "category": "business_announcement",
+            "source_asr": "当社は2026年9月より次世代のAI技術を活用した新しいリアルタイム翻訳サービスの提供を開始することを本日正式に発表いたしました",
+            "reference_en": "We officially announced today that starting in September 2026, we will begin offering a new real-time translation service utilizing next-generation AI technology.",
+            "hypothesis_en": "We've officially announced today that we will begin to provide a new real-time translation service using next-generation AI technology from September 2026.",
+            "metrics": {
+              "sentence_bleu": 36.6,
+              "sentence_chrf_pp": 73.04
+            }
+          },
+          {
+            "id": "ja_xlong_01",
+            "category": "multi_sentence_monologue",
+            "source_asr": "先週の週末に家族みんなで京都へ旅行に行ったのですが観光名所の金閣寺や清水寺はどこも国内外からの観光客で非常に混雑していましたそれでも美味しい抹茶アイスや湯豆腐を食べることができてとても充実した素晴らしい思い出深い休日になりました",
+            "reference_en": "Last weekend I went on a trip to Kyoto with my entire family, but tourist spots like Kinkaku-ji and Kiyomizu-dera were all extremely crowded with domestic and international tourists. Nevertheless, we were able to eat delicious matcha ice cream and boiled tofu, making it a very fulfilling, wonderful, and memorable holiday.",
+            "hypothesis_en": "Last weekend our family traveled to Kyoto, but the Golden Temple and the Sanish Temple were all very crowded from abroad.",
+            "metrics": {
+              "sentence_bleu": 1.62,
+              "sentence_chrf_pp": 18.9
+            }
+          },
+          {
+            "id": "ja_xlong_02",
+            "category": "technical_presentation",
+            "source_asr": "本プロジェクトの目的はクラウド依存を完全に排除しユーザーの手元にある一般的なノートパソコンのCPU上でのみ動作する超低遅延なリアルタイムストリーミング音声翻訳システムを実現することですこれによりプライバシーを完全に保護しながら高品質な多言語コミュニケーション体験を提供できます",
+            "reference_en": "The objective of this project is to completely eliminate cloud dependency and achieve an ultra-low-latency real-time streaming speech translation system running solely on the CPU of an ordinary laptop owned by the user. Through this, we can provide a high-quality multilingual communication experience while completely protecting privacy.",
+            "hypothesis_en": "The purpose of this project is to completely eliminate cloud dependence and to achieve a very low-recreive real-time streaming audio translation system that only works on the CPU of a general laptop.",
+            "metrics": {
+              "sentence_bleu": 20.13,
+              "sentence_chrf_pp": 40.94
+            }
+          }
+        ]
+      },
+      "quality_delta": {
+        "bleu_drop": 5.4,
+        "chrf_drop": 10.22
+      }
+    },
+    "nllb": {
+      "path_a_clean": {
+        "aggregate_metrics": {
+          "bleu": 26.63,
+          "chrf": 54.21,
+          "chrf_plus_plus": 52.0,
+          "comet": 0.8282,
+          "sample_count": 18,
+          "details": {
+            "bleu_signature": "BLEU = 26.63 61.5/34.1/21.4/14.6 (BP = 0.936 ratio = 0.938 hyp_len = 335 ref_len = 357)",
+            "chrf_signature": "chrF2 = 54.21"
+          }
+        },
+        "sample_details": [
+          {
+            "id": "ja_short_01",
+            "category": "short_greeting",
+            "source_clean": "こんにちは。",
+            "reference_en": "Hello.",
+            "hypothesis_en": "Hey, hey.",
+            "metrics": {
+              "sentence_bleu": 15.97,
+              "sentence_chrf_pp": 13.48
+            }
+          },
+          {
+            "id": "ja_short_02",
+            "category": "short_confirmation",
+            "source_clean": "はい、分かりました。",
+            "reference_en": "Yes, I understand.",
+            "hypothesis_en": "Yeah, I got it.",
+            "metrics": {
+              "sentence_bleu": 17.97,
+              "sentence_chrf_pp": 17.87
+            }
+          },
+          {
+            "id": "ja_short_03",
+            "category": "short_thanks",
+            "source_clean": "ありがとうございます！",
+            "reference_en": "Thank you very much!",
+            "hypothesis_en": "Thank you!",
+            "metrics": {
+              "sentence_bleu": 32.34,
+              "sentence_chrf_pp": 43.76
+            }
+          },
+          {
+            "id": "ja_short_04",
+            "category": "short_colloquial",
+            "source_clean": "そうなんだよね。",
+            "reference_en": "That's how it is, isn't it.",
+            "hypothesis_en": "I'm sure you are.",
+            "metrics": {
+              "sentence_bleu": 5.86,
+              "sentence_chrf_pp": 4.75
+            }
+          },
+          {
+            "id": "ja_med_01",
+            "category": "conversational_weather",
+            "source_clean": "今日の東京はとても天気が良くて暖かいですね。",
+            "reference_en": "The weather in Tokyo is very nice and warm today, isn't it.",
+            "hypothesis_en": "Today's Tokyo is very nice and warm.",
+            "metrics": {
+              "sentence_bleu": 33.4,
+              "sentence_chrf_pp": 50.99
+            }
+          },
+          {
+            "id": "ja_med_02",
+            "category": "conversational_shopping",
+            "source_clean": "この商品は３０％オフで１５００円になりますよ。",
+            "reference_en": "This product is 30% off, so it will be 1,500 yen.",
+            "hypothesis_en": "This product is going to be $1,500 with a 30% discount.",
+            "metrics": {
+              "sentence_bleu": 14.95,
+              "sentence_chrf_pp": 42.26
+            }
+          },
+          {
+            "id": "ja_med_03",
+            "category": "conversational_proper_nouns",
+            "source_clean": "新宿の任天堂ストアに行ってみました。",
+            "reference_en": "I tried going to the Nintendo Store in Shinjuku.",
+            "hypothesis_en": "I went to the Nintendo store at Newhouse.",
+            "metrics": {
+              "sentence_bleu": 18.04,
+              "sentence_chrf_pp": 36.69
+            }
+          },
+          {
+            "id": "ja_med_04",
+            "category": "conversational_streaming",
+            "source_clean": "YouTubeのライブ配信を始めたいと思います。",
+            "reference_en": "I would like to start the YouTube live stream.",
+            "hypothesis_en": "I'm going to start streaming YouTube live.",
+            "metrics": {
+              "sentence_bleu": 12.86,
+              "sentence_chrf_pp": 45.59
+            }
+          },
+          {
+            "id": "ja_med_05",
+            "category": "s2_fixture_conversational",
+            "source_clean": "持ち主とはぐれた傘が風で舞い看板もなぎ倒されてしまったようです。",
+            "reference_en": "An umbrella separated from its owner blew in the wind, and signboards also seem to have been knocked down.",
+            "hypothesis_en": "The umbrella that was left behind seemed to have been torn down by the wind and a sign.",
+            "metrics": {
+              "sentence_bleu": 9.88,
+              "sentence_chrf_pp": 33.62
+            }
+          },
+          {
+            "id": "ja_long_01",
+            "category": "travel_narrative",
+            "source_clean": "昨日は友達と一緒に渋谷のカフェに行って、美味しいコーヒーとケーキを楽しみました。",
+            "reference_en": "Yesterday I went to a cafe in Shibuya with a friend and enjoyed delicious coffee and cake.",
+            "hypothesis_en": "Yesterday, I went to a cafe in Shivaku with my friends and enjoyed delicious coffee and cake.",
+            "metrics": {
+              "sentence_bleu": 57.82,
+              "sentence_chrf_pp": 77.57
+            }
+          },
+          {
+            "id": "ja_long_02",
+            "category": "tech_explanation",
+            "source_clean": "この新しい音声認識モデルは、低遅延でリアルタイムに字幕を生成することができます。",
+            "reference_en": "This new speech recognition model can generate subtitles in real-time with low latency.",
+            "hypothesis_en": "This new voice recognition model can generate subtitles in real time with low latency.",
+            "metrics": {
+              "sentence_bleu": 53.04,
+              "sentence_chrf_pp": 82.29
+            }
+          },
+          {
+            "id": "ja_long_03",
+            "category": "imperfect_asr_dialogue",
+            "source_clean": "ええと、明日の午後にラッセル博士ともう一度その件について相談するつもりです。",
+            "reference_en": "Well, I intend to discuss that matter once again with Dr. Russell tomorrow afternoon.",
+            "hypothesis_en": "Well, I'm going to talk to Dr. Russell about it again tomorrow afternoon.",
+            "metrics": {
+              "sentence_bleu": 17.28,
+              "sentence_chrf_pp": 46.97
+            }
+          },
+          {
+            "id": "ja_long_04",
+            "category": "weather_warning",
+            "source_clean": "台風の影響により、明日の朝から関東地方の各地で強い雨と風が予想されています。",
+            "reference_en": "Due to the typhoon, heavy rain and strong winds are expected in various parts of the Kanto region from tomorrow morning.",
+            "hypothesis_en": "Due to the effects of this typhoon, heavy rain and winds are expected in parts of Kantong province from tomorrow morning.",
+            "metrics": {
+              "sentence_bleu": 43.33,
+              "sentence_chrf_pp": 69.19
+            }
+          },
+          {
+            "id": "ja_vlong_01",
+            "category": "news_broadcast",
+            "source_clean": "気象庁の発表によりますと、非常に強い勢力の台風が勢力を維持したまま北上しており、沿岸部では高波や土砂崩れに厳重な警戒が必要とのことです。",
+            "reference_en": "According to the Meteorological Agency, a very powerful typhoon is moving north while maintaining its intensity, and strict vigilance is required for high waves and landslides in coastal areas.",
+            "hypothesis_en": "According to the Meteorological Agency, very strong storms are continuing northward and coastal areas need to be on high alert for tidal waves and sand breaks.",
+            "metrics": {
+              "sentence_bleu": 19.51,
+              "sentence_chrf_pp": 42.85
+            }
+          },
+          {
+            "id": "ja_vlong_02",
+            "category": "conversational_gaming_stream",
+            "source_clean": "みなさんこんばんは、今日の配信では新しくリリースされたゲームの難関ボスをノーダメージで倒せるか挑戦してみたいと思いますので、応援よろしくお願いしますね。",
+            "reference_en": "Good evening everyone, in today's stream I would like to try defeating the difficult boss of the newly released game without taking damage, so thank you for your support.",
+            "hypothesis_en": "Hello, everyone, I'd like to challenge you in today's distribution whether or not we can defeat the newly released game of puzzle with no damage.",
+            "metrics": {
+              "sentence_bleu": 11.99,
+              "sentence_chrf_pp": 39.36
+            }
+          },
+          {
+            "id": "ja_vlong_03",
+            "category": "business_announcement",
+            "source_clean": "当社は2026年9月より、次世代のAI技術を活用した新しいリアルタイム翻訳サービスの提供を開始することを本日正式に発表いたしました。",
+            "reference_en": "We officially announced today that starting in September 2026, we will begin offering a new real-time translation service utilizing next-generation AI technology.",
+            "hypothesis_en": "We officially announced today that we will be launching a new real-time translation service using next generation AI technology starting in September 2026.",
+            "metrics": {
+              "sentence_bleu": 44.37,
+              "sentence_chrf_pp": 77.44
+            }
+          },
+          {
+            "id": "ja_xlong_01",
+            "category": "multi_sentence_monologue",
+            "source_clean": "先週の週末に家族みんなで京都へ旅行に行ったのですが、観光名所の金閣寺や清水寺はどこも国内外からの観光客で非常に混雑していました。それでも美味しい抹茶アイスや湯豆腐を食べることができて、とても充実した素晴らしい思い出深い休日になりました。",
+            "reference_en": "Last weekend I went on a trip to Kyoto with my entire family, but tourist spots like Kinkaku-ji and Kiyomizu-dera were all extremely crowded with domestic and international tourists. Nevertheless, we were able to eat delicious matcha ice cream and boiled tofu, making it a very fulfilling, wonderful, and memorable holiday.",
+            "hypothesis_en": "Last weekend, my family and I went on a trip to Kyoto. The tourist attractions of the Shinkansen Temple were full of domestic and foreign visitors but still we could eat delicious matcha ice cream and soup sauce, which was such an amazing holiday that it would be memorable.",
+            "metrics": {
+              "sentence_bleu": 22.31,
+              "sentence_chrf_pp": 41.89
+            }
+          },
+          {
+            "id": "ja_xlong_02",
+            "category": "technical_presentation",
+            "source_clean": "本プロジェクトの目的は、クラウド依存を完全に排除し、ユーザーの手元にある一般的なノートパソコンのCPU上でのみ動作する超低遅延なリアルタイムストリーミング音声翻訳システムを実現することです。これにより、プライバシーを完全に保護しながら高品質な多言語コミュニケーション体験を提供できます。",
+            "reference_en": "The objective of this project is to completely eliminate cloud dependency and achieve an ultra-low-latency real-time streaming speech translation system running solely on the CPU of an ordinary laptop owned by the user. Through this, we can provide a high-quality multilingual communication experience while completely protecting privacy.",
+            "hypothesis_en": "The goal of this project is to completely eliminate cloud dependency and create a real-time, ultra low latency streaming voice translation system that only runs on the CPUs of common laptop computers in your hands. This will allow you to provide high quality multilingual communication experiences while fully protecting privacy.",
+            "metrics": {
+              "sentence_bleu": 24.56,
+              "sentence_chrf_pp": 57.36
+            }
+          }
+        ]
+      },
+      "path_b_realistic_asr": {
+        "aggregate_metrics": {
+          "bleu": 24.14,
+          "chrf": 52.04,
+          "chrf_plus_plus": 49.69,
+          "comet": 0.7964,
+          "sample_count": 18,
+          "details": {
+            "bleu_signature": "BLEU = 24.14 62.3/34.8/21.6/14.3 (BP = 0.843 ratio = 0.854 hyp_len = 305 ref_len = 357)",
+            "chrf_signature": "chrF2 = 52.04"
+          }
+        },
+        "sample_details": [
+          {
+            "id": "ja_short_01",
+            "category": "short_greeting",
+            "source_asr": "こんにちは",
+            "reference_en": "Hello.",
+            "hypothesis_en": "Hey, how are you?",
+            "metrics": {
+              "sentence_bleu": 0.0,
+              "sentence_chrf_pp": 6.83
+            }
+          },
+          {
+            "id": "ja_short_02",
+            "category": "short_confirmation",
+            "source_asr": "はい分かりました",
+            "reference_en": "Yes, I understand.",
+            "hypothesis_en": "I got it.",
+            "metrics": {
+              "sentence_bleu": 14.79,
+              "sentence_chrf_pp": 7.93
+            }
+          },
+          {
+            "id": "ja_short_03",
+            "category": "short_thanks",
+            "source_asr": "ありがとうございます",
+            "reference_en": "Thank you very much!",
+            "hypothesis_en": "Thank you.",
+            "metrics": {
+              "sentence_bleu": 28.25,
+              "sentence_chrf_pp": 40.21
+            }
+          },
+          {
+            "id": "ja_short_04",
+            "category": "short_colloquial",
+            "source_asr": "そうなんだよね",
+            "reference_en": "That's how it is, isn't it.",
+            "hypothesis_en": "You know, right?",
+            "metrics": {
+              "sentence_bleu": 5.86,
+              "sentence_chrf_pp": 6.62
+            }
+          },
+          {
+            "id": "ja_med_01",
+            "category": "conversational_weather",
+            "source_asr": "今日の東京はとても天気が良くて暖かいですね",
+            "reference_en": "The weather in Tokyo is very nice and warm today, isn't it.",
+            "hypothesis_en": "Today's Tokyo is very nice and warm.",
+            "metrics": {
+              "sentence_bleu": 33.4,
+              "sentence_chrf_pp": 50.99
+            }
+          },
+          {
+            "id": "ja_med_02",
+            "category": "conversational_shopping",
+            "source_asr": "この商品は30%オフで1500円になりますよ",
+            "reference_en": "This product is 30% off, so it will be 1,500 yen.",
+            "hypothesis_en": "This product is a 30% discount.",
+            "metrics": {
+              "sentence_bleu": 12.78,
+              "sentence_chrf_pp": 36.32
+            }
+          },
+          {
+            "id": "ja_med_03",
+            "category": "conversational_proper_nouns",
+            "source_asr": "新宿の任天堂ストアに行ってみました",
+            "reference_en": "I tried going to the Nintendo Store in Shinjuku.",
+            "hypothesis_en": "I went to the Nintendo store in New York.",
+            "metrics": {
+              "sentence_bleu": 18.58,
+              "sentence_chrf_pp": 41.73
+            }
+          },
+          {
+            "id": "ja_med_04",
+            "category": "conversational_streaming",
+            "source_asr": "YouTubeのライブ配信を始めたいと思います",
+            "reference_en": "I would like to start the YouTube live stream.",
+            "hypothesis_en": "I'm going to start streaming YouTube live.",
+            "metrics": {
+              "sentence_bleu": 12.86,
+              "sentence_chrf_pp": 45.59
+            }
+          },
+          {
+            "id": "ja_med_05",
+            "category": "s2_fixture_conversational",
+            "source_asr": "こち主とはぐれた傘が風で舞い看板もなぎ倒されてしまったようです",
+            "reference_en": "An umbrella separated from its owner blew in the wind, and signboards also seem to have been knocked down.",
+            "hypothesis_en": "The umbrella that was there, and the signage on it, seemed to have been torn down.",
+            "metrics": {
+              "sentence_bleu": 10.62,
+              "sentence_chrf_pp": 31.72
+            }
+          },
+          {
+            "id": "ja_long_01",
+            "category": "travel_narrative",
+            "source_asr": "昨日は友達と一緒に渋谷のカフェに行って美味しいコーヒーとケーキを楽しみました",
+            "reference_en": "Yesterday I went to a cafe in Shibuya with a friend and enjoyed delicious coffee and cake.",
+            "hypothesis_en": "Yesterday, I went to a cafe in Shivaku with my friends and enjoyed delicious coffee and cake.",
+            "metrics": {
+              "sentence_bleu": 57.82,
+              "sentence_chrf_pp": 77.57
+            }
+          },
+          {
+            "id": "ja_long_02",
+            "category": "tech_explanation",
+            "source_asr": "この新しい音声認識モデルは低遅延でリアルタイムに字幕を生成することができます",
+            "reference_en": "This new speech recognition model can generate subtitles in real-time with low latency.",
+            "hypothesis_en": "This new voice recognition model can generate subtitles in real time with low latency.",
+            "metrics": {
+              "sentence_bleu": 53.04,
+              "sentence_chrf_pp": 82.29
+            }
+          },
+          {
+            "id": "ja_long_03",
+            "category": "imperfect_asr_dialogue",
+            "source_asr": "えーと明日の午後にドクタラッセルともう一度その件について相談するつもりです",
+            "reference_en": "Well, I intend to discuss that matter once again with Dr. Russell tomorrow afternoon.",
+            "hypothesis_en": "I'm going to talk to Dr. Russell about it again tomorrow afternoon.",
+            "metrics": {
+              "sentence_bleu": 15.42,
+              "sentence_chrf_pp": 41.9
+            }
+          },
+          {
+            "id": "ja_long_04",
+            "category": "weather_warning",
+            "source_asr": "台風の影響により明日の朝から関東地方の各地で強い雨と風が予想されています",
+            "reference_en": "Due to the typhoon, heavy rain and strong winds are expected in various parts of the Kanto region from tomorrow morning.",
+            "hypothesis_en": "Heavy rain and winds are expected to hit parts of Kanton from tomorrow morning.",
+            "metrics": {
+              "sentence_bleu": 17.37,
+              "sentence_chrf_pp": 51.96
+            }
+          },
+          {
+            "id": "ja_vlong_01",
+            "category": "news_broadcast",
+            "source_asr": "気象庁の発表によりますと非常に強い勢力の台風が勢力を維持したまま北上しており沿岸部では高波や土砂崩れに厳重な警戒が必要とのことです",
+            "reference_en": "According to the Meteorological Agency, a very powerful typhoon is moving north while maintaining its intensity, and strict vigilance is required for high waves and landslides in coastal areas.",
+            "hypothesis_en": "According to the Meteorological Agency, very strong typhoons are still rising in the north and coastal areas need to be on high alert for tidal waves and sand breaks.",
+            "metrics": {
+              "sentence_bleu": 20.19,
+              "sentence_chrf_pp": 44.8
+            }
+          },
+          {
+            "id": "ja_vlong_02",
+            "category": "conversational_gaming_stream",
+            "source_asr": "皆さんこんばんは今日の配信では新しくリリースされたゲームの難関ボスをノーダメージで倒せるか挑戦してみたいと思いますので応援よろしくお願いしますね",
+            "reference_en": "Good evening everyone, in today's stream I would like to try defeating the difficult boss of the newly released game without taking damage, so thank you for your support.",
+            "hypothesis_en": "Hello, guys. I'm going to try and beat the newly released game console with no damage so please support me.",
+            "metrics": {
+              "sentence_bleu": 9.65,
+              "sentence_chrf_pp": 29.44
+            }
+          },
+          {
+            "id": "ja_vlong_03",
+            "category": "business_announcement",
+            "source_asr": "当社は2026年9月より次世代のAI技術を活用した新しいリアルタイム翻訳サービスの提供を開始することを本日正式に発表いたしました",
+            "reference_en": "We officially announced today that starting in September 2026, we will begin offering a new real-time translation service utilizing next-generation AI technology.",
+            "hypothesis_en": "We officially announced today that we will be launching a new real-time translation service using next generation AI technology starting in September 2026.",
+            "metrics": {
+              "sentence_bleu": 44.37,
+              "sentence_chrf_pp": 77.44
+            }
+          },
+          {
+            "id": "ja_xlong_01",
+            "category": "multi_sentence_monologue",
+            "source_asr": "先週の週末に家族みんなで京都へ旅行に行ったのですが観光名所の金閣寺や清水寺はどこも国内外からの観光客で非常に混雑していましたそれでも美味しい抹茶アイスや湯豆腐を食べることができてとても充実した素晴らしい思い出深い休日になりました",
+            "reference_en": "Last weekend I went on a trip to Kyoto with my entire family, but tourist spots like Kinkaku-ji and Kiyomizu-dera were all extremely crowded with domestic and international tourists. Nevertheless, we were able to eat delicious matcha ice cream and boiled tofu, making it a very fulfilling, wonderful, and memorable holiday.",
+            "hypothesis_en": "Last weekend, my family and I went on a trip to Kyoto, but the tourist attractions of Shinkansen and Qingdao were so crowded with domestic and foreign tourists that we could eat delicious masascha ice cream and soup sauce.",
+            "metrics": {
+              "sentence_bleu": 19.21,
+              "sentence_chrf_pp": 41.34
+            }
+          },
+          {
+            "id": "ja_xlong_02",
+            "category": "technical_presentation",
+            "source_asr": "本プロジェクトの目的はクラウド依存を完全に排除しユーザーの手元にある一般的なノートパソコンのCPU上でのみ動作する超低遅延なリアルタイムストリーミング音声翻訳システムを実現することですこれによりプライバシーを完全に保護しながら高品質な多言語コミュニケーション体験を提供できます",
+            "reference_en": "The objective of this project is to completely eliminate cloud dependency and achieve an ultra-low-latency real-time streaming speech translation system running solely on the CPU of an ordinary laptop owned by the user. Through this, we can provide a high-quality multilingual communication experience while completely protecting privacy.",
+            "hypothesis_en": "The goal of this project is to completely eliminate cloud dependency and create a real-time, ultra-low delayed streaming voice translation system that only works on the CPUs of common laptops in your hands. This will allow you to provide high quality multilingual communication experiences while fully protecting privacy.",
+            "metrics": {
+              "sentence_bleu": 25.33,
+              "sentence_chrf_pp": 56.95
+            }
+          }
+        ]
+      },
+      "quality_delta": {
+        "bleu_drop": 2.49,
+        "chrf_drop": 2.31
+      }
+    }
+  },
+  "partial_stability_benchmarks": {
+    "marian": {
+      "condition_summary": {
+        "FULL": {
+          "count": 18,
+          "avg_latency_ms": 72.98,
+          "p50_latency_ms": 66.73,
+          "avg_chrf_pp": 46.21
+        },
+        "UNPUNCTUATED": {
+          "count": 18,
+          "avg_latency_ms": 63.64,
+          "p50_latency_ms": 61.37,
+          "avg_chrf_pp": 37.8
+        },
+        "PARTIAL_25": {
+          "count": 18,
+          "avg_latency_ms": 29.13,
+          "p50_latency_ms": 26.54,
+          "avg_chrf_pp": 11.43
+        },
+        "PARTIAL_50": {
+          "count": 18,
+          "avg_latency_ms": 44.9,
+          "p50_latency_ms": 48.91,
+          "avg_chrf_pp": 22.33
+        },
+        "PARTIAL_75": {
+          "count": 18,
+          "avg_latency_ms": 60.1,
+          "p50_latency_ms": 58.11,
+          "avg_chrf_pp": 33.55
+        },
+        "PARTIAL_100": {
+          "count": 18,
+          "avg_latency_ms": 63.15,
+          "p50_latency_ms": 60.87,
+          "avg_chrf_pp": 38.49
+        }
+      },
+      "overall_stability": {
+        "average_tps": 0.2659,
+        "total_destructive_revisions": 50,
+        "total_complete_rewrites": 20,
+        "average_revision_size": 8.11,
+        "total_utterances_evaluated": 18
+      },
+      "utterance_details": [
+        {
+          "id": "ja_short_01",
+          "category": "short_greeting",
+          "asr_full": "こんにちは",
+          "stream_hypotheses": [
+            "Shit.",
+            "Hey.",
+            "Hello.",
+            "Hello."
+          ],
+          "stability": {
+            "total_updates": 4,
+            "average_tps": 0.3333,
+            "destructive_revisions": 2,
+            "complete_rewrites": 2,
+            "average_revision_size": 2.0,
+            "step_details": [
+              {
+                "step": 1,
+                "prev_text": "Shit.",
+                "curr_text": "Hey.",
+                "tps": 0.0,
+                "is_destructive": true,
+                "is_rewrite": true,
+                "revision_size": 2,
+                "common_prefix": ""
+              },
+              {
+                "step": 2,
+                "prev_text": "Hey.",
+                "curr_text": "Hello.",
+                "tps": 0.0,
+                "is_destructive": true,
+                "is_rewrite": true,
+                "revision_size": 2,
+                "common_prefix": ""
+              },
+              {
+                "step": 3,
+                "prev_text": "Hello.",
+                "curr_text": "Hello.",
+                "tps": 1.0,
+                "is_destructive": false,
+                "is_rewrite": false,
+                "revision_size": 0,
+                "common_prefix": "Hello ."
+              }
+            ]
+          }
+        },
+        {
+          "id": "ja_short_02",
+          "category": "short_confirmation",
+          "asr_full": "はい分かりました",
+          "stream_hypotheses": [
+            "Yes.",
+            "Okay.",
+            "Yes, I understand.",
+            "Yes, sir."
+          ],
+          "stability": {
+            "total_updates": 4,
+            "average_tps": 0.1333,
+            "destructive_revisions": 3,
+            "complete_rewrites": 2,
+            "average_revision_size": 2.33,
+            "step_details": [
+              {
+                "step": 1,
+                "prev_text": "Yes.",
+                "curr_text": "Okay.",
+                "tps": 0.0,
+                "is_destructive": true,
+                "is_rewrite": true,
+                "revision_size": 2,
+                "common_prefix": ""
+              },
+              {
+                "step": 2,
+                "prev_text": "Okay.",
+                "curr_text": "Yes, I understand.",
+                "tps": 0.0,
+                "is_destructive": true,
+                "is_rewrite": true,
+                "revision_size": 2,
+                "common_prefix": ""
+              },
+              {
+                "step": 3,
+                "prev_text": "Yes, I understand.",
+                "curr_text": "Yes, sir.",
+                "tps": 0.4,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 3,
+                "common_prefix": "Yes ,"
+              }
+            ]
+          }
+        },
+        {
+          "id": "ja_short_03",
+          "category": "short_thanks",
+          "asr_full": "ありがとうございます",
+          "stream_hypotheses": [
+            "Yes.",
+            "Thank you.",
+            "Thank you.",
+            "Thank you."
+          ],
+          "stability": {
+            "total_updates": 4,
+            "average_tps": 0.6667,
+            "destructive_revisions": 1,
+            "complete_rewrites": 1,
+            "average_revision_size": 2.0,
+            "step_details": [
+              {
+                "step": 1,
+                "prev_text": "Yes.",
+                "curr_text": "Thank you.",
+                "tps": 0.0,
+                "is_destructive": true,
+                "is_rewrite": true,
+                "revision_size": 2,
+                "common_prefix": ""
+              },
+              {
+                "step": 2,
+                "prev_text": "Thank you.",
+                "curr_text": "Thank you.",
+                "tps": 1.0,
+                "is_destructive": false,
+                "is_rewrite": false,
+                "revision_size": 0,
+                "common_prefix": "Thank you ."
+              },
+              {
+                "step": 3,
+                "prev_text": "Thank you.",
+                "curr_text": "Thank you.",
+                "tps": 1.0,
+                "is_destructive": false,
+                "is_rewrite": false,
+                "revision_size": 0,
+                "common_prefix": "Thank you ."
+              }
+            ]
+          }
+        },
+        {
+          "id": "ja_short_04",
+          "category": "short_colloquial",
+          "asr_full": "そうなんだよね",
+          "stream_hypotheses": [
+            "Yeah.",
+            "I see.",
+            "Yeah.",
+            "I know."
+          ],
+          "stability": {
+            "total_updates": 4,
+            "average_tps": 0.0,
+            "destructive_revisions": 3,
+            "complete_rewrites": 3,
+            "average_revision_size": 2.33,
+            "step_details": [
+              {
+                "step": 1,
+                "prev_text": "Yeah.",
+                "curr_text": "I see.",
+                "tps": 0.0,
+                "is_destructive": true,
+                "is_rewrite": true,
+                "revision_size": 2,
+                "common_prefix": ""
+              },
+              {
+                "step": 2,
+                "prev_text": "I see.",
+                "curr_text": "Yeah.",
+                "tps": 0.0,
+                "is_destructive": true,
+                "is_rewrite": true,
+                "revision_size": 3,
+                "common_prefix": ""
+              },
+              {
+                "step": 3,
+                "prev_text": "Yeah.",
+                "curr_text": "I know.",
+                "tps": 0.0,
+                "is_destructive": true,
+                "is_rewrite": true,
+                "revision_size": 2,
+                "common_prefix": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "ja_med_01",
+          "category": "conversational_weather",
+          "asr_full": "今日の東京はとても天気が良くて暖かいですね",
+          "stream_hypotheses": [
+            "Today's Tokyo.",
+            "Tokyo is very heaven-like today.",
+            "It's very sunny in Tokyo today. It's very warm.",
+            "It's very nice and warm in Tokyo today."
+          ],
+          "stability": {
+            "total_updates": 4,
+            "average_tps": 0.0889,
+            "destructive_revisions": 3,
+            "complete_rewrites": 2,
+            "average_revision_size": 8.0,
+            "step_details": [
+              {
+                "step": 1,
+                "prev_text": "Today's Tokyo.",
+                "curr_text": "Tokyo is very heaven-like today.",
+                "tps": 0.0,
+                "is_destructive": true,
+                "is_rewrite": true,
+                "revision_size": 5,
+                "common_prefix": ""
+              },
+              {
+                "step": 2,
+                "prev_text": "Tokyo is very heaven-like today.",
+                "curr_text": "It's very sunny in Tokyo today. It's very warm.",
+                "tps": 0.0,
+                "is_destructive": true,
+                "is_rewrite": true,
+                "revision_size": 8,
+                "common_prefix": ""
+              },
+              {
+                "step": 3,
+                "prev_text": "It's very sunny in Tokyo today. It's very warm.",
+                "curr_text": "It's very nice and warm in Tokyo today.",
+                "tps": 0.2667,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 11,
+                "common_prefix": "It ' s very"
+              }
+            ]
+          }
+        },
+        {
+          "id": "ja_med_02",
+          "category": "conversational_shopping",
+          "asr_full": "この商品は30%オフで1500円になりますよ",
+          "stream_hypotheses": [
+            "And then we have three of these.",
+            "And I'm going to show you a little bit of a trick here.",
+            "And I'm going to show you a little bit of a trick.",
+            "And you can see that this is a product that's actually going to cost us about a million dollars."
+          ],
+          "stability": {
+            "total_updates": 4,
+            "average_tps": 0.3556,
+            "destructive_revisions": 3,
+            "complete_rewrites": 0,
+            "average_revision_size": 7.67,
+            "step_details": [
+              {
+                "step": 1,
+                "prev_text": "And then we have three of these.",
+                "curr_text": "And I'm going to show you a little bit of a trick here.",
+                "tps": 0.125,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 7,
+                "common_prefix": "And"
+              },
+              {
+                "step": 2,
+                "prev_text": "And I'm going to show you a little bit of a trick here.",
+                "curr_text": "And I'm going to show you a little bit of a trick.",
+                "tps": 0.875,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 2,
+                "common_prefix": "And I ' m going to show you a little bit of a trick"
+              },
+              {
+                "step": 3,
+                "prev_text": "And I'm going to show you a little bit of a trick.",
+                "curr_text": "And you can see that this is a product that's actually going to cost us about a million dollars.",
+                "tps": 0.0667,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 14,
+                "common_prefix": "And"
+              }
+            ]
+          }
+        },
+        {
+          "id": "ja_med_03",
+          "category": "conversational_proper_nouns",
+          "asr_full": "新宿の任天堂ストアに行ってみました",
+          "stream_hypotheses": [
+            "I'm in charge of the Tokyo Hotel.",
+            "The Imperial Innovation of the Tokyo Hotel.",
+            "I went to the Abbey in the Tokyo Abbey.",
+            "I went to the Imperial Palace in New York."
+          ],
+          "stability": {
+            "total_updates": 4,
+            "average_tps": 0.1333,
+            "destructive_revisions": 3,
+            "complete_rewrites": 2,
+            "average_revision_size": 8.0,
+            "step_details": [
+              {
+                "step": 1,
+                "prev_text": "I'm in charge of the Tokyo Hotel.",
+                "curr_text": "The Imperial Innovation of the Tokyo Hotel.",
+                "tps": 0.0,
+                "is_destructive": true,
+                "is_rewrite": true,
+                "revision_size": 10,
+                "common_prefix": ""
+              },
+              {
+                "step": 2,
+                "prev_text": "The Imperial Innovation of the Tokyo Hotel.",
+                "curr_text": "I went to the Abbey in the Tokyo Abbey.",
+                "tps": 0.0,
+                "is_destructive": true,
+                "is_rewrite": true,
+                "revision_size": 8,
+                "common_prefix": ""
+              },
+              {
+                "step": 3,
+                "prev_text": "I went to the Abbey in the Tokyo Abbey.",
+                "curr_text": "I went to the Imperial Palace in New York.",
+                "tps": 0.4,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 6,
+                "common_prefix": "I went to the"
+              }
+            ]
+          }
+        },
+        {
+          "id": "ja_med_04",
+          "category": "conversational_streaming",
+          "asr_full": "YouTubeのライブ配信を始めたいと思います",
+          "stream_hypotheses": [
+            "YouTub",
+            "Live YouTube",
+            "I started live on YouTube.",
+            "I'm going to start a live presentation on YouTube."
+          ],
+          "stability": {
+            "total_updates": 4,
+            "average_tps": 0.0556,
+            "destructive_revisions": 3,
+            "complete_rewrites": 2,
+            "average_revision_size": 2.67,
+            "step_details": [
+              {
+                "step": 1,
+                "prev_text": "YouTub",
+                "curr_text": "Live YouTube",
+                "tps": 0.0,
+                "is_destructive": true,
+                "is_rewrite": true,
+                "revision_size": 1,
+                "common_prefix": ""
+              },
+              {
+                "step": 2,
+                "prev_text": "Live YouTube",
+                "curr_text": "I started live on YouTube.",
+                "tps": 0.0,
+                "is_destructive": true,
+                "is_rewrite": true,
+                "revision_size": 2,
+                "common_prefix": ""
+              },
+              {
+                "step": 3,
+                "prev_text": "I started live on YouTube.",
+                "curr_text": "I'm going to start a live presentation on YouTube.",
+                "tps": 0.1667,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 5,
+                "common_prefix": "I"
+              }
+            ]
+          }
+        },
+        {
+          "id": "ja_med_05",
+          "category": "s2_fixture_conversational",
+          "asr_full": "こち主とはぐれた傘が風で舞い看板もなぎ倒されてしまったようです",
+          "stream_hypotheses": [
+            "I've lost my landlord.",
+            "A sign with an umbrella that's separated from the landlord.",
+            "And I was like, \"Oh, my God, I'm so sorry.",
+            "It seems that the umbrella was knocked down by the wind."
+          ],
+          "stability": {
+            "total_updates": 4,
+            "average_tps": 0.0,
+            "destructive_revisions": 3,
+            "complete_rewrites": 3,
+            "average_revision_size": 12.33,
+            "step_details": [
+              {
+                "step": 1,
+                "prev_text": "I've lost my landlord.",
+                "curr_text": "A sign with an umbrella that's separated from the landlord.",
+                "tps": 0.0,
+                "is_destructive": true,
+                "is_rewrite": true,
+                "revision_size": 7,
+                "common_prefix": ""
+              },
+              {
+                "step": 2,
+                "prev_text": "A sign with an umbrella that's separated from the landlord.",
+                "curr_text": "And I was like, \"Oh, my God, I'm so sorry.",
+                "tps": 0.0,
+                "is_destructive": true,
+                "is_rewrite": true,
+                "revision_size": 13,
+                "common_prefix": ""
+              },
+              {
+                "step": 3,
+                "prev_text": "And I was like, \"Oh, my God, I'm so sorry.",
+                "curr_text": "It seems that the umbrella was knocked down by the wind.",
+                "tps": 0.0,
+                "is_destructive": true,
+                "is_rewrite": true,
+                "revision_size": 17,
+                "common_prefix": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "ja_long_01",
+          "category": "travel_narrative",
+          "asr_full": "昨日は友達と一緒に渋谷のカフェに行って美味しいコーヒーとケーキを楽しみました",
+          "stream_hypotheses": [
+            "I wasn't going to go out with my friends yesterday.",
+            "I went to a café in Shibuya with a friend yesterday.",
+            "I went to a café in Shibuya yesterday with a friend and they said,",
+            "I went to a café in Shibuya yesterday with friends and enjoyed a good cup of coffee and cake."
+          ],
+          "stability": {
+            "total_updates": 4,
+            "average_tps": 0.4201,
+            "destructive_revisions": 3,
+            "complete_rewrites": 0,
+            "average_revision_size": 7.67,
+            "step_details": [
+              {
+                "step": 1,
+                "prev_text": "I wasn't going to go out with my friends yesterday.",
+                "curr_text": "I went to a café in Shibuya with a friend yesterday.",
+                "tps": 0.0769,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 12,
+                "common_prefix": "I"
+              },
+              {
+                "step": 2,
+                "prev_text": "I went to a café in Shibuya with a friend yesterday.",
+                "curr_text": "I went to a café in Shibuya yesterday with a friend and they said,",
+                "tps": 0.5833,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 5,
+                "common_prefix": "I went to a café in Shibuya"
+              },
+              {
+                "step": 3,
+                "prev_text": "I went to a café in Shibuya yesterday with a friend and they said,",
+                "curr_text": "I went to a café in Shibuya yesterday with friends and enjoyed a good cup of coffee and cake.",
+                "tps": 0.6,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 6,
+                "common_prefix": "I went to a café in Shibuya yesterday with"
+              }
+            ]
+          }
+        },
+        {
+          "id": "ja_long_02",
+          "category": "tech_explanation",
+          "asr_full": "この新しい音声認識モデルは低遅延でリアルタイムに字幕を生成することができます",
+          "stream_hypotheses": [
+            "This new voice recognition",
+            "This new audio recognition model is low-speed, ly.",
+            "This is a new voice recognition model.",
+            "This new audio recognition model can produce subtitles in real time at low speed"
+          ],
+          "stability": {
+            "total_updates": 4,
+            "average_tps": 0.2361,
+            "destructive_revisions": 3,
+            "complete_rewrites": 0,
+            "average_revision_size": 6.67,
+            "step_details": [
+              {
+                "step": 1,
+                "prev_text": "This new voice recognition",
+                "curr_text": "This new audio recognition model is low-speed, ly.",
+                "tps": 0.5,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 2,
+                "common_prefix": "This new"
+              },
+              {
+                "step": 2,
+                "prev_text": "This new audio recognition model is low-speed, ly.",
+                "curr_text": "This is a new voice recognition model.",
+                "tps": 0.0833,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 11,
+                "common_prefix": "This"
+              },
+              {
+                "step": 3,
+                "prev_text": "This is a new voice recognition model.",
+                "curr_text": "This new audio recognition model can produce subtitles in real time at low speed",
+                "tps": 0.125,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 7,
+                "common_prefix": "This"
+              }
+            ]
+          }
+        },
+        {
+          "id": "ja_long_03",
+          "category": "imperfect_asr_dialogue",
+          "asr_full": "えーと明日の午後にドクタラッセルともう一度その件について相談するつもりです",
+          "stream_hypotheses": [
+            "Uh, tomorrow afternoon.",
+            "Uh, tomorrow afternoon, Doctula Russell.",
+            "Uh, tomorrow afternoon, we'll talk about Doctula Russell again.",
+            "Uh, tomorrow afternoon, we're gonna talk about it again with Doctranssel."
+          ],
+          "stability": {
+            "total_updates": 4,
+            "average_tps": 0.6417,
+            "destructive_revisions": 3,
+            "complete_rewrites": 0,
+            "average_revision_size": 3.67,
+            "step_details": [
+              {
+                "step": 1,
+                "prev_text": "Uh, tomorrow afternoon.",
+                "curr_text": "Uh, tomorrow afternoon, Doctula Russell.",
+                "tps": 0.8,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 1,
+                "common_prefix": "Uh , tomorrow afternoon"
+              },
+              {
+                "step": 2,
+                "prev_text": "Uh, tomorrow afternoon, Doctula Russell.",
+                "curr_text": "Uh, tomorrow afternoon, we'll talk about Doctula Russell again.",
+                "tps": 0.625,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 3,
+                "common_prefix": "Uh , tomorrow afternoon ,"
+              },
+              {
+                "step": 3,
+                "prev_text": "Uh, tomorrow afternoon, we'll talk about Doctula Russell again.",
+                "curr_text": "Uh, tomorrow afternoon, we're gonna talk about it again with Doctranssel.",
+                "tps": 0.5,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 7,
+                "common_prefix": "Uh , tomorrow afternoon , we '"
+              }
+            ]
+          }
+        },
+        {
+          "id": "ja_long_04",
+          "category": "weather_warning",
+          "asr_full": "台風の影響により明日の朝から関東地方の各地で強い雨と風が予想されています",
+          "stream_hypotheses": [
+            "The typhoon's influence has made it clear.",
+            "The typhoon's effects have caused the Kanto region to start tomorrow morning.",
+            "The weather is very hot.",
+            "The typhoon's effects will have caused heavy rains and wind to be expected in the Kanto region from tomorrow morning."
+          ],
+          "stability": {
+            "total_updates": 4,
+            "average_tps": 0.2111,
+            "destructive_revisions": 3,
+            "complete_rewrites": 0,
+            "average_revision_size": 8.33,
+            "step_details": [
+              {
+                "step": 1,
+                "prev_text": "The typhoon's influence has made it clear.",
+                "curr_text": "The typhoon's effects have caused the Kanto region to start tomorrow morning.",
+                "tps": 0.4,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 6,
+                "common_prefix": "The typhoon ' s"
+              },
+              {
+                "step": 2,
+                "prev_text": "The typhoon's effects have caused the Kanto region to start tomorrow morning.",
+                "curr_text": "The weather is very hot.",
+                "tps": 0.0667,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 14,
+                "common_prefix": "The"
+              },
+              {
+                "step": 3,
+                "prev_text": "The weather is very hot.",
+                "curr_text": "The typhoon's effects will have caused heavy rains and wind to be expected in the Kanto region from tomorrow morning.",
+                "tps": 0.1667,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 5,
+                "common_prefix": "The"
+              }
+            ]
+          }
+        },
+        {
+          "id": "ja_vlong_01",
+          "category": "news_broadcast",
+          "asr_full": "気象庁の発表によりますと非常に強い勢力の台風が勢力を維持したまま北上しており沿岸部では高波や土砂崩れに厳重な警戒が必要とのことです",
+          "stream_hypotheses": [
+            "The weather is very strong.",
+            "The weather is still very strong.",
+            "The weather is still very strong, and according to the announcement by the weather agency, the very strong typhoons are still up north, and the coastal areas are still very high, and the dust debris is still very high.",
+            "The weather is still very strong, and the winds are still very strong, and the coastal areas require extreme precautions against high seas and mudslides."
+          ],
+          "stability": {
+            "total_updates": 4,
+            "average_tps": 0.513,
+            "destructive_revisions": 3,
+            "complete_rewrites": 0,
+            "average_revision_size": 13.33,
+            "step_details": [
+              {
+                "step": 1,
+                "prev_text": "The weather is very strong.",
+                "curr_text": "The weather is still very strong.",
+                "tps": 0.5,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 3,
+                "common_prefix": "The weather is"
+              },
+              {
+                "step": 2,
+                "prev_text": "The weather is still very strong.",
+                "curr_text": "The weather is still very strong, and according to the announcement by the weather agency, the very strong typhoons are still up north, and the coastal areas are still very high, and the dust debris is still very high.",
+                "tps": 0.8571,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 1,
+                "common_prefix": "The weather is still very strong"
+              },
+              {
+                "step": 3,
+                "prev_text": "The weather is still very strong, and according to the announcement by the weather agency, the very strong typhoons are still up north, and the coastal areas are still very high, and the dust debris is still very high.",
+                "curr_text": "The weather is still very strong, and the winds are still very strong, and the coastal areas require extreme precautions against high seas and mudslides.",
+                "tps": 0.1818,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 36,
+                "common_prefix": "The weather is still very strong , and"
+              }
+            ]
+          }
+        },
+        {
+          "id": "ja_vlong_02",
+          "category": "conversational_gaming_stream",
+          "asr_full": "皆さんこんばんは今日の配信では新しくリリースされたゲームの難関ボスをノーダメージで倒せるか挑戦してみたいと思いますので応援よろしくお願いしますね",
+          "stream_hypotheses": [
+            "I'm going to show you a couple of examples.",
+            "So, I'm going to show you a couple of examples.",
+            "I'm going to show you a few examples of how to do this.",
+            "I'm going to give you a few examples of how to do this."
+          ],
+          "stability": {
+            "total_updates": 4,
+            "average_tps": 0.1042,
+            "destructive_revisions": 3,
+            "complete_rewrites": 2,
+            "average_revision_size": 12.33,
+            "step_details": [
+              {
+                "step": 1,
+                "prev_text": "I'm going to show you a couple of examples.",
+                "curr_text": "So, I'm going to show you a couple of examples.",
+                "tps": 0.0,
+                "is_destructive": true,
+                "is_rewrite": true,
+                "revision_size": 12,
+                "common_prefix": ""
+              },
+              {
+                "step": 2,
+                "prev_text": "So, I'm going to show you a couple of examples.",
+                "curr_text": "I'm going to show you a few examples of how to do this.",
+                "tps": 0.0,
+                "is_destructive": true,
+                "is_rewrite": true,
+                "revision_size": 14,
+                "common_prefix": ""
+              },
+              {
+                "step": 3,
+                "prev_text": "I'm going to show you a few examples of how to do this.",
+                "curr_text": "I'm going to give you a few examples of how to do this.",
+                "tps": 0.3125,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 11,
+                "common_prefix": "I ' m going to"
+              }
+            ]
+          }
+        },
+        {
+          "id": "ja_vlong_03",
+          "category": "business_announcement",
+          "asr_full": "当社は2026年9月より次世代のAI技術を活用した新しいリアルタイム翻訳サービスの提供を開始することを本日正式に発表いたしました",
+          "stream_hypotheses": [
+            "We're the next generation from September 2026.",
+            "We're the new realtors using next generation AI technology from September 2026.",
+            "We're starting to provide a new real-time translation service using next-generation AI technology from September 2026.",
+            "We've officially announced today that we will begin to provide a new real-time translation service using next-generation AI technology from September 2026."
+          ],
+          "stability": {
+            "total_updates": 4,
+            "average_tps": 0.229,
+            "destructive_revisions": 3,
+            "complete_rewrites": 0,
+            "average_revision_size": 13.0,
+            "step_details": [
+              {
+                "step": 1,
+                "prev_text": "We're the next generation from September 2026.",
+                "curr_text": "We're the new realtors using next generation AI technology from September 2026.",
+                "tps": 0.4,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 6,
+                "common_prefix": "We ' re the"
+              },
+              {
+                "step": 2,
+                "prev_text": "We're the new realtors using next generation AI technology from September 2026.",
+                "curr_text": "We're starting to provide a new real-time translation service using next-generation AI technology from September 2026.",
+                "tps": 0.2,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 12,
+                "common_prefix": "We ' re"
+              },
+              {
+                "step": 3,
+                "prev_text": "We're starting to provide a new real-time translation service using next-generation AI technology from September 2026.",
+                "curr_text": "We've officially announced today that we will begin to provide a new real-time translation service using next-generation AI technology from September 2026.",
+                "tps": 0.087,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 21,
+                "common_prefix": "We '"
+              }
+            ]
+          }
+        },
+        {
+          "id": "ja_xlong_01",
+          "category": "multi_sentence_monologue",
+          "asr_full": "先週の週末に家族みんなで京都へ旅行に行ったのですが観光名所の金閣寺や清水寺はどこも国内外からの観光客で非常に混雑していましたそれでも美味しい抹茶アイスや湯豆腐を食べることができてとても充実した素晴らしい思い出深い休日になりました",
+          "stream_hypotheses": [
+            "I'm a tourist.",
+            "I was in the capital of the United States last week, and we all traveled to Kyoto last weekend.",
+            "Last weekend our family traveled to Kyoto, but the Golden Temple and the Sanish Temple were all very crowded from abroad.",
+            "Last weekend our family traveled to Kyoto, but the Golden Temple and the Sanish Temple were all very crowded from abroad."
+          ],
+          "stability": {
+            "total_updates": 4,
+            "average_tps": 0.3889,
+            "destructive_revisions": 2,
+            "complete_rewrites": 1,
+            "average_revision_size": 13.0,
+            "step_details": [
+              {
+                "step": 1,
+                "prev_text": "I'm a tourist.",
+                "curr_text": "I was in the capital of the United States last week, and we all traveled to Kyoto last weekend.",
+                "tps": 0.1667,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 5,
+                "common_prefix": "I"
+              },
+              {
+                "step": 2,
+                "prev_text": "I was in the capital of the United States last week, and we all traveled to Kyoto last weekend.",
+                "curr_text": "Last weekend our family traveled to Kyoto, but the Golden Temple and the Sanish Temple were all very crowded from abroad.",
+                "tps": 0.0,
+                "is_destructive": true,
+                "is_rewrite": true,
+                "revision_size": 21,
+                "common_prefix": ""
+              },
+              {
+                "step": 3,
+                "prev_text": "Last weekend our family traveled to Kyoto, but the Golden Temple and the Sanish Temple were all very crowded from abroad.",
+                "curr_text": "Last weekend our family traveled to Kyoto, but the Golden Temple and the Sanish Temple were all very crowded from abroad.",
+                "tps": 1.0,
+                "is_destructive": false,
+                "is_rewrite": false,
+                "revision_size": 0,
+                "common_prefix": "Last weekend our family traveled to Kyoto , but the Golden Temple and the Sanish Temple were all very crowded from abroad ."
+              }
+            ]
+          }
+        },
+        {
+          "id": "ja_xlong_02",
+          "category": "technical_presentation",
+          "asr_full": "本プロジェクトの目的はクラウド依存を完全に排除しユーザーの手元にある一般的なノートパソコンのCPU上でのみ動作する超低遅延なリアルタイムストリーミング音声翻訳システムを実現することですこれによりプライバシーを完全に保護しながら高品質な多言語コミュニケーション体験を提供できます",
+          "stream_hypotheses": [
+            "The goal of this project is to completely eliminate cloud dependence and get access to users.",
+            "The purpose of this project is to completely eliminate cloud dependence and to use a superlow-recur real time period only on the CPU of a general laptop with users",
+            "The purpose of this project is to completely eliminate cloud dependence and to achieve a superlow-recruit real-time streaming audio translation system that only works on the CPU of a general laptop that has a user's hands.",
+            "The purpose of this project is to completely eliminate cloud dependence and to achieve a very low-recreive real-time streaming audio translation system that only works on the CPU of a general laptop."
+          ],
+          "stability": {
+            "total_updates": 4,
+            "average_tps": 0.2757,
+            "destructive_revisions": 3,
+            "complete_rewrites": 0,
+            "average_revision_size": 20.67,
+            "step_details": [
+              {
+                "step": 1,
+                "prev_text": "The goal of this project is to completely eliminate cloud dependence and get access to users.",
+                "curr_text": "The purpose of this project is to completely eliminate cloud dependence and to use a superlow-recur real time period only on the CPU of a general laptop with users",
+                "tps": 0.0588,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 16,
+                "common_prefix": "The"
+              },
+              {
+                "step": 2,
+                "prev_text": "The purpose of this project is to completely eliminate cloud dependence and to use a superlow-recur real time period only on the CPU of a general laptop with users",
+                "curr_text": "The purpose of this project is to completely eliminate cloud dependence and to achieve a superlow-recruit real-time streaming audio translation system that only works on the CPU of a general laptop that has a user's hands.",
+                "tps": 0.4194,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 18,
+                "common_prefix": "The purpose of this project is to completely eliminate cloud dependence and to"
+              },
+              {
+                "step": 3,
+                "prev_text": "The purpose of this project is to completely eliminate cloud dependence and to achieve a superlow-recruit real-time streaming audio translation system that only works on the CPU of a general laptop that has a user's hands.",
+                "curr_text": "The purpose of this project is to completely eliminate cloud dependence and to achieve a very low-recreive real-time streaming audio translation system that only works on the CPU of a general laptop.",
+                "tps": 0.3488,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 28,
+                "common_prefix": "The purpose of this project is to completely eliminate cloud dependence and to achieve a"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "nllb": {
+      "condition_summary": {
+        "FULL": {
+          "count": 18,
+          "avg_latency_ms": 792.65,
+          "p50_latency_ms": 719.59,
+          "avg_chrf_pp": 45.77
+        },
+        "UNPUNCTUATED": {
+          "count": 18,
+          "avg_latency_ms": 744.51,
+          "p50_latency_ms": 657.81,
+          "avg_chrf_pp": 43.52
+        },
+        "PARTIAL_25": {
+          "count": 18,
+          "avg_latency_ms": 364.28,
+          "p50_latency_ms": 366.12,
+          "avg_chrf_pp": 13.96
+        },
+        "PARTIAL_50": {
+          "count": 18,
+          "avg_latency_ms": 470.43,
+          "p50_latency_ms": 462.11,
+          "avg_chrf_pp": 25.09
+        },
+        "PARTIAL_75": {
+          "count": 18,
+          "avg_latency_ms": 659.76,
+          "p50_latency_ms": 685.44,
+          "avg_chrf_pp": 38.01
+        },
+        "PARTIAL_100": {
+          "count": 18,
+          "avg_latency_ms": 739.67,
+          "p50_latency_ms": 654.33,
+          "avg_chrf_pp": 42.87
+        }
+      },
+      "overall_stability": {
+        "average_tps": 0.3084,
+        "total_destructive_revisions": 46,
+        "total_complete_rewrites": 20,
+        "average_revision_size": 9.43,
+        "total_utterances_evaluated": 18
+      },
+      "utterance_details": [
+        {
+          "id": "ja_short_01",
+          "category": "short_greeting",
+          "asr_full": "こんにちは",
+          "stream_hypotheses": [
+            "- What?",
+            "- What?",
+            "- Hi, how are you?",
+            "Hey, how are you?"
+          ],
+          "stability": {
+            "total_updates": 4,
+            "average_tps": 0.4444,
+            "destructive_revisions": 2,
+            "complete_rewrites": 1,
+            "average_revision_size": 4.5,
+            "step_details": [
+              {
+                "step": 1,
+                "prev_text": "- What?",
+                "curr_text": "- What?",
+                "tps": 1.0,
+                "is_destructive": false,
+                "is_rewrite": false,
+                "revision_size": 0,
+                "common_prefix": "- What ?"
+              },
+              {
+                "step": 2,
+                "prev_text": "- What?",
+                "curr_text": "- Hi, how are you?",
+                "tps": 0.3333,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 2,
+                "common_prefix": "-"
+              },
+              {
+                "step": 3,
+                "prev_text": "- Hi, how are you?",
+                "curr_text": "Hey, how are you?",
+                "tps": 0.0,
+                "is_destructive": true,
+                "is_rewrite": true,
+                "revision_size": 7,
+                "common_prefix": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "ja_short_02",
+          "category": "short_confirmation",
+          "asr_full": "はい分かりました",
+          "stream_hypotheses": [
+            "I know.",
+            "I know.",
+            "I got it.",
+            "I got it."
+          ],
+          "stability": {
+            "total_updates": 4,
+            "average_tps": 0.7778,
+            "destructive_revisions": 1,
+            "complete_rewrites": 0,
+            "average_revision_size": 2.0,
+            "step_details": [
+              {
+                "step": 1,
+                "prev_text": "I know.",
+                "curr_text": "I know.",
+                "tps": 1.0,
+                "is_destructive": false,
+                "is_rewrite": false,
+                "revision_size": 0,
+                "common_prefix": "I know ."
+              },
+              {
+                "step": 2,
+                "prev_text": "I know.",
+                "curr_text": "I got it.",
+                "tps": 0.3333,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 2,
+                "common_prefix": "I"
+              },
+              {
+                "step": 3,
+                "prev_text": "I got it.",
+                "curr_text": "I got it.",
+                "tps": 1.0,
+                "is_destructive": false,
+                "is_rewrite": false,
+                "revision_size": 0,
+                "common_prefix": "I got it ."
+              }
+            ]
+          }
+        },
+        {
+          "id": "ja_short_03",
+          "category": "short_thanks",
+          "asr_full": "ありがとうございます",
+          "stream_hypotheses": [
+            "I did.",
+            "Thank you.",
+            "Thank you.",
+            "Thank you."
+          ],
+          "stability": {
+            "total_updates": 4,
+            "average_tps": 0.6667,
+            "destructive_revisions": 1,
+            "complete_rewrites": 1,
+            "average_revision_size": 3.0,
+            "step_details": [
+              {
+                "step": 1,
+                "prev_text": "I did.",
+                "curr_text": "Thank you.",
+                "tps": 0.0,
+                "is_destructive": true,
+                "is_rewrite": true,
+                "revision_size": 3,
+                "common_prefix": ""
+              },
+              {
+                "step": 2,
+                "prev_text": "Thank you.",
+                "curr_text": "Thank you.",
+                "tps": 1.0,
+                "is_destructive": false,
+                "is_rewrite": false,
+                "revision_size": 0,
+                "common_prefix": "Thank you ."
+              },
+              {
+                "step": 3,
+                "prev_text": "Thank you.",
+                "curr_text": "Thank you.",
+                "tps": 1.0,
+                "is_destructive": false,
+                "is_rewrite": false,
+                "revision_size": 0,
+                "common_prefix": "Thank you ."
+              }
+            ]
+          }
+        },
+        {
+          "id": "ja_short_04",
+          "category": "short_colloquial",
+          "asr_full": "そうなんだよね",
+          "stream_hypotheses": [
+            "- Yes, I did.",
+            "- Yes, I did.",
+            "That's right.",
+            "You know, right?"
+          ],
+          "stability": {
+            "total_updates": 4,
+            "average_tps": 0.3333,
+            "destructive_revisions": 2,
+            "complete_rewrites": 2,
+            "average_revision_size": 5.5,
+            "step_details": [
+              {
+                "step": 1,
+                "prev_text": "- Yes, I did.",
+                "curr_text": "- Yes, I did.",
+                "tps": 1.0,
+                "is_destructive": false,
+                "is_rewrite": false,
+                "revision_size": 0,
+                "common_prefix": "- Yes , I did ."
+              },
+              {
+                "step": 2,
+                "prev_text": "- Yes, I did.",
+                "curr_text": "That's right.",
+                "tps": 0.0,
+                "is_destructive": true,
+                "is_rewrite": true,
+                "revision_size": 6,
+                "common_prefix": ""
+              },
+              {
+                "step": 3,
+                "prev_text": "That's right.",
+                "curr_text": "You know, right?",
+                "tps": 0.0,
+                "is_destructive": true,
+                "is_rewrite": true,
+                "revision_size": 5,
+                "common_prefix": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "ja_med_01",
+          "category": "conversational_weather",
+          "asr_full": "今日の東京はとても天気が良くて暖かいですね",
+          "stream_hypotheses": [
+            "Today's Tokyo.",
+            "Tokyo is so heavenly today.",
+            "Today's Tokyo is very warm and nice.",
+            "Today's Tokyo is very nice and warm."
+          ],
+          "stability": {
+            "total_updates": 4,
+            "average_tps": 0.2,
+            "destructive_revisions": 3,
+            "complete_rewrites": 2,
+            "average_revision_size": 5.0,
+            "step_details": [
+              {
+                "step": 1,
+                "prev_text": "Today's Tokyo.",
+                "curr_text": "Tokyo is so heavenly today.",
+                "tps": 0.0,
+                "is_destructive": true,
+                "is_rewrite": true,
+                "revision_size": 5,
+                "common_prefix": ""
+              },
+              {
+                "step": 2,
+                "prev_text": "Tokyo is so heavenly today.",
+                "curr_text": "Today's Tokyo is very warm and nice.",
+                "tps": 0.0,
+                "is_destructive": true,
+                "is_rewrite": true,
+                "revision_size": 6,
+                "common_prefix": ""
+              },
+              {
+                "step": 3,
+                "prev_text": "Today's Tokyo is very warm and nice.",
+                "curr_text": "Today's Tokyo is very nice and warm.",
+                "tps": 0.6,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 4,
+                "common_prefix": "Today ' s Tokyo is very"
+              }
+            ]
+          }
+        },
+        {
+          "id": "ja_med_02",
+          "category": "conversational_shopping",
+          "asr_full": "この商品は30%オフで1500円になりますよ",
+          "stream_hypotheses": [
+            "This product is three.",
+            "This product is 30% off.",
+            "This product is 30% off.",
+            "This product is a 30% discount."
+          ],
+          "stability": {
+            "total_updates": 4,
+            "average_tps": 0.6762,
+            "destructive_revisions": 2,
+            "complete_rewrites": 0,
+            "average_revision_size": 3.0,
+            "step_details": [
+              {
+                "step": 1,
+                "prev_text": "This product is three.",
+                "curr_text": "This product is 30% off.",
+                "tps": 0.6,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 2,
+                "common_prefix": "This product is"
+              },
+              {
+                "step": 2,
+                "prev_text": "This product is 30% off.",
+                "curr_text": "This product is 30% off.",
+                "tps": 1.0,
+                "is_destructive": false,
+                "is_rewrite": false,
+                "revision_size": 0,
+                "common_prefix": "This product is 30 % off ."
+              },
+              {
+                "step": 3,
+                "prev_text": "This product is 30% off.",
+                "curr_text": "This product is a 30% discount.",
+                "tps": 0.4286,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 4,
+                "common_prefix": "This product is"
+              }
+            ]
+          }
+        },
+        {
+          "id": "ja_med_03",
+          "category": "conversational_proper_nouns",
+          "asr_full": "新宿の任天堂ストアに行ってみました",
+          "stream_hypotheses": [
+            "I'm the new host.",
+            "I'm not going to be a newcomer.",
+            "I'm going to the Nintendo store at Newhouse.",
+            "I went to the Nintendo store in New York."
+          ],
+          "stability": {
+            "total_updates": 4,
+            "average_tps": 0.2732,
+            "destructive_revisions": 3,
+            "complete_rewrites": 0,
+            "average_revision_size": 7.0,
+            "step_details": [
+              {
+                "step": 1,
+                "prev_text": "I'm the new host.",
+                "curr_text": "I'm not going to be a newcomer.",
+                "tps": 0.4286,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 4,
+                "common_prefix": "I ' m"
+              },
+              {
+                "step": 2,
+                "prev_text": "I'm not going to be a newcomer.",
+                "curr_text": "I'm going to the Nintendo store at Newhouse.",
+                "tps": 0.3,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 7,
+                "common_prefix": "I ' m"
+              },
+              {
+                "step": 3,
+                "prev_text": "I'm going to the Nintendo store at Newhouse.",
+                "curr_text": "I went to the Nintendo store in New York.",
+                "tps": 0.0909,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 10,
+                "common_prefix": "I"
+              }
+            ]
+          }
+        },
+        {
+          "id": "ja_med_04",
+          "category": "conversational_streaming",
+          "asr_full": "YouTubeのライブ配信を始めたいと思います",
+          "stream_hypotheses": [
+            "YouTub.",
+            "I'm going to show you the video.",
+            "I started a live YouTube stream.",
+            "I'm going to start streaming YouTube live."
+          ],
+          "stability": {
+            "total_updates": 4,
+            "average_tps": 0.081,
+            "destructive_revisions": 3,
+            "complete_rewrites": 1,
+            "average_revision_size": 5.67,
+            "step_details": [
+              {
+                "step": 1,
+                "prev_text": "YouTub.",
+                "curr_text": "I'm going to show you the video.",
+                "tps": 0.0,
+                "is_destructive": true,
+                "is_rewrite": true,
+                "revision_size": 2,
+                "common_prefix": ""
+              },
+              {
+                "step": 2,
+                "prev_text": "I'm going to show you the video.",
+                "curr_text": "I started a live YouTube stream.",
+                "tps": 0.1,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 9,
+                "common_prefix": "I"
+              },
+              {
+                "step": 3,
+                "prev_text": "I started a live YouTube stream.",
+                "curr_text": "I'm going to start streaming YouTube live.",
+                "tps": 0.1429,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 6,
+                "common_prefix": "I"
+              }
+            ]
+          }
+        },
+        {
+          "id": "ja_med_05",
+          "category": "s2_fixture_conversational",
+          "asr_full": "こち主とはぐれた傘が風で舞い看板もなぎ倒されてしまったようです",
+          "stream_hypotheses": [
+            "I'm out of here with the Lord.",
+            "I'm the one with a windy umbrella.",
+            "And here's the umbrella that you have with your master, and there are signs down.",
+            "The umbrella that was there, and the signage on it, seemed to have been torn down."
+          ],
+          "stability": {
+            "total_updates": 4,
+            "average_tps": 0.1,
+            "destructive_revisions": 3,
+            "complete_rewrites": 2,
+            "average_revision_size": 12.0,
+            "step_details": [
+              {
+                "step": 1,
+                "prev_text": "I'm out of here with the Lord.",
+                "curr_text": "I'm the one with a windy umbrella.",
+                "tps": 0.3,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 7,
+                "common_prefix": "I ' m"
+              },
+              {
+                "step": 2,
+                "prev_text": "I'm the one with a windy umbrella.",
+                "curr_text": "And here's the umbrella that you have with your master, and there are signs down.",
+                "tps": 0.0,
+                "is_destructive": true,
+                "is_rewrite": true,
+                "revision_size": 10,
+                "common_prefix": ""
+              },
+              {
+                "step": 3,
+                "prev_text": "And here's the umbrella that you have with your master, and there are signs down.",
+                "curr_text": "The umbrella that was there, and the signage on it, seemed to have been torn down.",
+                "tps": 0.0,
+                "is_destructive": true,
+                "is_rewrite": true,
+                "revision_size": 19,
+                "common_prefix": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "ja_long_01",
+          "category": "travel_narrative",
+          "asr_full": "昨日は友達と一緒に渋谷のカフェに行って美味しいコーヒーとケーキを楽しみました",
+          "stream_hypotheses": [
+            "I was in a car accident with my friends yesterday.",
+            "Yesterday, I went to a cafe in Shivaku with my friends.",
+            "I went to a cafe in Shivaku yesterday with my friends and they gave me some delicious coffee.",
+            "Yesterday, I went to a cafe in Shivaku with my friends and enjoyed delicious coffee and cake."
+          ],
+          "stability": {
+            "total_updates": 4,
+            "average_tps": 0.0,
+            "destructive_revisions": 3,
+            "complete_rewrites": 3,
+            "average_revision_size": 14.33,
+            "step_details": [
+              {
+                "step": 1,
+                "prev_text": "I was in a car accident with my friends yesterday.",
+                "curr_text": "Yesterday, I went to a cafe in Shivaku with my friends.",
+                "tps": 0.0,
+                "is_destructive": true,
+                "is_rewrite": true,
+                "revision_size": 11,
+                "common_prefix": ""
+              },
+              {
+                "step": 2,
+                "prev_text": "Yesterday, I went to a cafe in Shivaku with my friends.",
+                "curr_text": "I went to a cafe in Shivaku yesterday with my friends and they gave me some delicious coffee.",
+                "tps": 0.0,
+                "is_destructive": true,
+                "is_rewrite": true,
+                "revision_size": 13,
+                "common_prefix": ""
+              },
+              {
+                "step": 3,
+                "prev_text": "I went to a cafe in Shivaku yesterday with my friends and they gave me some delicious coffee.",
+                "curr_text": "Yesterday, I went to a cafe in Shivaku with my friends and enjoyed delicious coffee and cake.",
+                "tps": 0.0,
+                "is_destructive": true,
+                "is_rewrite": true,
+                "revision_size": 19,
+                "common_prefix": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "ja_long_02",
+          "category": "tech_explanation",
+          "asr_full": "この新しい音声認識モデルは低遅延でリアルタイムに字幕を生成することができます",
+          "stream_hypotheses": [
+            "This is a new voice recognition module.",
+            "This new model of voice recognition is low latency.",
+            "This new model of voice recognition generates subtitles in real time with low latency.",
+            "This new voice recognition model can generate subtitles in real time with low latency."
+          ],
+          "stability": {
+            "total_updates": 4,
+            "average_tps": 0.2861,
+            "destructive_revisions": 3,
+            "complete_rewrites": 0,
+            "average_revision_size": 8.0,
+            "step_details": [
+              {
+                "step": 1,
+                "prev_text": "This is a new voice recognition module.",
+                "curr_text": "This new model of voice recognition is low latency.",
+                "tps": 0.125,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 7,
+                "common_prefix": "This"
+              },
+              {
+                "step": 2,
+                "prev_text": "This new model of voice recognition is low latency.",
+                "curr_text": "This new model of voice recognition generates subtitles in real time with low latency.",
+                "tps": 0.6,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 4,
+                "common_prefix": "This new model of voice recognition"
+              },
+              {
+                "step": 3,
+                "prev_text": "This new model of voice recognition generates subtitles in real time with low latency.",
+                "curr_text": "This new voice recognition model can generate subtitles in real time with low latency.",
+                "tps": 0.1333,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 13,
+                "common_prefix": "This new"
+              }
+            ]
+          }
+        },
+        {
+          "id": "ja_long_03",
+          "category": "imperfect_asr_dialogue",
+          "asr_full": "えーと明日の午後にドクタラッセルともう一度その件について相談するつもりです",
+          "stream_hypotheses": [
+            "Yeah, well, tomorrow afternoon.",
+            "Yeah, and Dr. Russell tomorrow afternoon.",
+            "I'll be back tomorrow afternoon with Dr. Russell about it again.",
+            "I'm going to talk to Dr. Russell about it again tomorrow afternoon."
+          ],
+          "stability": {
+            "total_updates": 4,
+            "average_tps": 0.1397,
+            "destructive_revisions": 3,
+            "complete_rewrites": 1,
+            "average_revision_size": 9.0,
+            "step_details": [
+              {
+                "step": 1,
+                "prev_text": "Yeah, well, tomorrow afternoon.",
+                "curr_text": "Yeah, and Dr. Russell tomorrow afternoon.",
+                "tps": 0.2857,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 5,
+                "common_prefix": "Yeah ,"
+              },
+              {
+                "step": 2,
+                "prev_text": "Yeah, and Dr. Russell tomorrow afternoon.",
+                "curr_text": "I'll be back tomorrow afternoon with Dr. Russell about it again.",
+                "tps": 0.0,
+                "is_destructive": true,
+                "is_rewrite": true,
+                "revision_size": 9,
+                "common_prefix": ""
+              },
+              {
+                "step": 3,
+                "prev_text": "I'll be back tomorrow afternoon with Dr. Russell about it again.",
+                "curr_text": "I'm going to talk to Dr. Russell about it again tomorrow afternoon.",
+                "tps": 0.1333,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 13,
+                "common_prefix": "I '"
+              }
+            ]
+          }
+        },
+        {
+          "id": "ja_long_04",
+          "category": "weather_warning",
+          "asr_full": "台風の影響により明日の朝から関東地方の各地で強い雨と風が予想されています",
+          "stream_hypotheses": [
+            "It's clear from the impact of the typhoon.",
+            "The impact of the typhoon will be felt in Kanton from tomorrow morning.",
+            "Heavy rain and winds have been blowing through parts of the province since tomorrow morning.",
+            "Heavy rain and winds are expected to hit parts of Kanton from tomorrow morning."
+          ],
+          "stability": {
+            "total_updates": 4,
+            "average_tps": 0.0833,
+            "destructive_revisions": 3,
+            "complete_rewrites": 2,
+            "average_revision_size": 12.33,
+            "step_details": [
+              {
+                "step": 1,
+                "prev_text": "It's clear from the impact of the typhoon.",
+                "curr_text": "The impact of the typhoon will be felt in Kanton from tomorrow morning.",
+                "tps": 0.0,
+                "is_destructive": true,
+                "is_rewrite": true,
+                "revision_size": 11,
+                "common_prefix": ""
+              },
+              {
+                "step": 2,
+                "prev_text": "The impact of the typhoon will be felt in Kanton from tomorrow morning.",
+                "curr_text": "Heavy rain and winds have been blowing through parts of the province since tomorrow morning.",
+                "tps": 0.0,
+                "is_destructive": true,
+                "is_rewrite": true,
+                "revision_size": 14,
+                "common_prefix": ""
+              },
+              {
+                "step": 3,
+                "prev_text": "Heavy rain and winds have been blowing through parts of the province since tomorrow morning.",
+                "curr_text": "Heavy rain and winds are expected to hit parts of Kanton from tomorrow morning.",
+                "tps": 0.25,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 12,
+                "common_prefix": "Heavy rain and winds"
+              }
+            ]
+          }
+        },
+        {
+          "id": "ja_vlong_01",
+          "category": "news_broadcast",
+          "asr_full": "気象庁の発表によりますと非常に強い勢力の台風が勢力を維持したまま北上しており沿岸部では高波や土砂崩れに厳重な警戒が必要とのことです",
+          "stream_hypotheses": [
+            "The weather agency says it's very strong.",
+            "The weather agency said that the storm was still very strong.",
+            "According to the Meteorological Agency, very strong typhoons are still rising in the north and high tides and sandfall along the coast.",
+            "According to the Meteorological Agency, very strong typhoons are still rising in the north and coastal areas need to be on high alert for tidal waves and sand breaks."
+          ],
+          "stability": {
+            "total_updates": 4,
+            "average_tps": 0.3222,
+            "destructive_revisions": 3,
+            "complete_rewrites": 1,
+            "average_revision_size": 9.0,
+            "step_details": [
+              {
+                "step": 1,
+                "prev_text": "The weather agency says it's very strong.",
+                "curr_text": "The weather agency said that the storm was still very strong.",
+                "tps": 0.3,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 7,
+                "common_prefix": "The weather agency"
+              },
+              {
+                "step": 2,
+                "prev_text": "The weather agency said that the storm was still very strong.",
+                "curr_text": "According to the Meteorological Agency, very strong typhoons are still rising in the north and high tides and sandfall along the coast.",
+                "tps": 0.0,
+                "is_destructive": true,
+                "is_rewrite": true,
+                "revision_size": 12,
+                "common_prefix": ""
+              },
+              {
+                "step": 3,
+                "prev_text": "According to the Meteorological Agency, very strong typhoons are still rising in the north and high tides and sandfall along the coast.",
+                "curr_text": "According to the Meteorological Agency, very strong typhoons are still rising in the north and coastal areas need to be on high alert for tidal waves and sand breaks.",
+                "tps": 0.6667,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 8,
+                "common_prefix": "According to the Meteorological Agency , very strong typhoons are still rising in the north and"
+              }
+            ]
+          }
+        },
+        {
+          "id": "ja_vlong_02",
+          "category": "conversational_gaming_stream",
+          "asr_full": "皆さんこんばんは今日の配信では新しくリリースされたゲームの難関ボスをノーダメージで倒せるか挑戦してみたいと思いますので応援よろしくお願いしますね",
+          "stream_hypotheses": [
+            "Good morning, guys. This is a new release today.",
+            "Hello, guys. No problem with the newly released game in today's distribution.",
+            "So, folks, in today's distribution I want to challenge you with no-damaging the newly released game.",
+            "Hello, guys. I'm going to try and beat the newly released game console with no damage so please support me."
+          ],
+          "stability": {
+            "total_updates": 4,
+            "average_tps": 0.0,
+            "destructive_revisions": 3,
+            "complete_rewrites": 3,
+            "average_revision_size": 17.33,
+            "step_details": [
+              {
+                "step": 1,
+                "prev_text": "Good morning, guys. This is a new release today.",
+                "curr_text": "Hello, guys. No problem with the newly released game in today's distribution.",
+                "tps": 0.0,
+                "is_destructive": true,
+                "is_rewrite": true,
+                "revision_size": 12,
+                "common_prefix": ""
+              },
+              {
+                "step": 2,
+                "prev_text": "Hello, guys. No problem with the newly released game in today's distribution.",
+                "curr_text": "So, folks, in today's distribution I want to challenge you with no-damaging the newly released game.",
+                "tps": 0.0,
+                "is_destructive": true,
+                "is_rewrite": true,
+                "revision_size": 17,
+                "common_prefix": ""
+              },
+              {
+                "step": 3,
+                "prev_text": "So, folks, in today's distribution I want to challenge you with no-damaging the newly released game.",
+                "curr_text": "Hello, guys. I'm going to try and beat the newly released game console with no damage so please support me.",
+                "tps": 0.0,
+                "is_destructive": true,
+                "is_rewrite": true,
+                "revision_size": 23,
+                "common_prefix": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "ja_vlong_03",
+          "category": "business_announcement",
+          "asr_full": "当社は2026年9月より次世代のAI技術を活用した新しいリアルタイム翻訳サービスの提供を開始することを本日正式に発表いたしました",
+          "stream_hypotheses": [
+            "We're going to be building the next generation by September 2026.",
+            "We're going to be building a new realtor that will use next-generation AI technology from September 2026.",
+            "We will start offering new real-time translation services using next generation AI technology from September 2026.",
+            "We officially announced today that we will be launching a new real-time translation service using next generation AI technology starting in September 2026."
+          ],
+          "stability": {
+            "total_updates": 4,
+            "average_tps": 0.1994,
+            "destructive_revisions": 3,
+            "complete_rewrites": 0,
+            "average_revision_size": 15.33,
+            "step_details": [
+              {
+                "step": 1,
+                "prev_text": "We're going to be building the next generation by September 2026.",
+                "curr_text": "We're going to be building a new realtor that will use next-generation AI technology from September 2026.",
+                "tps": 0.5,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 7,
+                "common_prefix": "We ' re going to be building"
+              },
+              {
+                "step": 2,
+                "prev_text": "We're going to be building a new realtor that will use next-generation AI technology from September 2026.",
+                "curr_text": "We will start offering new real-time translation services using next generation AI technology from September 2026.",
+                "tps": 0.0455,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 21,
+                "common_prefix": "We"
+              },
+              {
+                "step": 3,
+                "prev_text": "We will start offering new real-time translation services using next generation AI technology from September 2026.",
+                "curr_text": "We officially announced today that we will be launching a new real-time translation service using next generation AI technology starting in September 2026.",
+                "tps": 0.0526,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 18,
+                "common_prefix": "We"
+              }
+            ]
+          }
+        },
+        {
+          "id": "ja_xlong_01",
+          "category": "multi_sentence_monologue",
+          "asr_full": "先週の週末に家族みんなで京都へ旅行に行ったのですが観光名所の金閣寺や清水寺はどこも国内外からの観光客で非常に混雑していましたそれでも美味しい抹茶アイスや湯豆腐を食べることができてとても充実した素晴らしい思い出深い休日になりました",
+          "stream_hypotheses": [
+            "I went to Kyoto with my family last weekend, and it was a tourist destination.",
+            "Last weekend, my family and I went on a trip to Kyoto.",
+            "Last weekend, my family and I went on a trip to Kyoto. But the tourist attractions of Shinkansen and Qingdao were so crowded with domestic and foreign tourists that we could still eat delicious matcha ice cream and soup sauce.",
+            "Last weekend, my family and I went on a trip to Kyoto, but the tourist attractions of Shinkansen and Qingdao were so crowded with domestic and foreign tourists that we could eat delicious masascha ice cream and soup sauce."
+          ],
+          "stability": {
+            "total_updates": 4,
+            "average_tps": 0.4341,
+            "destructive_revisions": 2,
+            "complete_rewrites": 1,
+            "average_revision_size": 23.5,
+            "step_details": [
+              {
+                "step": 1,
+                "prev_text": "I went to Kyoto with my family last weekend, and it was a tourist destination.",
+                "curr_text": "Last weekend, my family and I went on a trip to Kyoto.",
+                "tps": 0.0,
+                "is_destructive": true,
+                "is_rewrite": true,
+                "revision_size": 17,
+                "common_prefix": ""
+              },
+              {
+                "step": 2,
+                "prev_text": "Last weekend, my family and I went on a trip to Kyoto.",
+                "curr_text": "Last weekend, my family and I went on a trip to Kyoto. But the tourist attractions of Shinkansen and Qingdao were so crowded with domestic and foreign tourists that we could still eat delicious matcha ice cream and soup sauce.",
+                "tps": 1.0,
+                "is_destructive": false,
+                "is_rewrite": false,
+                "revision_size": 0,
+                "common_prefix": "Last weekend , my family and I went on a trip to Kyoto ."
+              },
+              {
+                "step": 3,
+                "prev_text": "Last weekend, my family and I went on a trip to Kyoto. But the tourist attractions of Shinkansen and Qingdao were so crowded with domestic and foreign tourists that we could still eat delicious matcha ice cream and soup sauce.",
+                "curr_text": "Last weekend, my family and I went on a trip to Kyoto, but the tourist attractions of Shinkansen and Qingdao were so crowded with domestic and foreign tourists that we could eat delicious masascha ice cream and soup sauce.",
+                "tps": 0.3023,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 30,
+                "common_prefix": "Last weekend , my family and I went on a trip to Kyoto"
+              }
+            ]
+          }
+        },
+        {
+          "id": "ja_xlong_02",
+          "category": "technical_presentation",
+          "asr_full": "本プロジェクトの目的はクラウド依存を完全に排除しユーザーの手元にある一般的なノートパソコンのCPU上でのみ動作する超低遅延なリアルタイムストリーミング音声翻訳システムを実現することですこれによりプライバシーを完全に保護しながら高品質な多言語コミュニケーション体験を提供できます",
+          "stream_hypotheses": [
+            "The goal of this project is to completely eliminate cloud dependence and leave it up to the user.",
+            "The goal of this project is to completely eliminate cloud dependency and allow users to run ultra-low latency real time on the CPUs of common notebook computers.",
+            "The goal of this project is to completely eliminate cloud dependency and create a real-time, ultra-low delayed streaming voice translation system that works only on the CPUs of common laptop computers in your hands.",
+            "The goal of this project is to completely eliminate cloud dependency and create a real-time, ultra-low delayed streaming voice translation system that only works on the CPUs of common laptops in your hands. This will allow you to provide high quality multilingual communication experiences while fully protecting privacy."
+          ],
+          "stability": {
+            "total_updates": 4,
+            "average_tps": 0.5338,
+            "destructive_revisions": 3,
+            "complete_rewrites": 0,
+            "average_revision_size": 13.33,
+            "step_details": [
+              {
+                "step": 1,
+                "prev_text": "The goal of this project is to completely eliminate cloud dependence and leave it up to the user.",
+                "curr_text": "The goal of this project is to completely eliminate cloud dependency and allow users to run ultra-low latency real time on the CPUs of common notebook computers.",
+                "tps": 0.5263,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 9,
+                "common_prefix": "The goal of this project is to completely eliminate cloud"
+              },
+              {
+                "step": 2,
+                "prev_text": "The goal of this project is to completely eliminate cloud dependency and allow users to run ultra-low latency real time on the CPUs of common notebook computers.",
+                "curr_text": "The goal of this project is to completely eliminate cloud dependency and create a real-time, ultra-low delayed streaming voice translation system that works only on the CPUs of common laptop computers in your hands.",
+                "tps": 0.4,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 18,
+                "common_prefix": "The goal of this project is to completely eliminate cloud dependency and"
+              },
+              {
+                "step": 3,
+                "prev_text": "The goal of this project is to completely eliminate cloud dependency and create a real-time, ultra-low delayed streaming voice translation system that works only on the CPUs of common laptop computers in your hands.",
+                "curr_text": "The goal of this project is to completely eliminate cloud dependency and create a real-time, ultra-low delayed streaming voice translation system that only works on the CPUs of common laptops in your hands. This will allow you to provide high quality multilingual communication experiences while fully protecting privacy.",
+                "tps": 0.675,
+                "is_destructive": true,
+                "is_rewrite": false,
+                "revision_size": 13,
+                "common_prefix": "The goal of this project is to completely eliminate cloud dependency and create a real - time , ultra - low delayed streaming voice translation system that"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "retranslation_cost_benchmarks": {
+    "marian": {
+      "engine_name": "CTranslate2-Marian",
+      "total_utterances": 18,
+      "total_mt_calls": 72,
+      "avg_calls_per_utterance": 4.0,
+      "avg_total_cpu_time_per_utterance_ms": 196.59,
+      "avg_chars_translated_per_utterance": 103.6,
+      "overall_redundant_translation_ratio": 1.5,
+      "feasibility_assessment": {
+        "naive_streaming_feasible": true,
+        "architectural_recommendation": "Naive re-translation is computationally viable"
+      },
+      "utterance_data": [
+        {
+          "id": "ja_short_01",
+          "asr_text": "こんにちは",
+          "final_len": 5,
+          "mt_calls": 4,
+          "total_time_ms": 48.5,
+          "chars_translated": 12,
+          "redundancy_ratio": 1.4,
+          "avg_time_per_call_ms": 12.13
+        },
+        {
+          "id": "ja_short_02",
+          "asr_text": "はい分かりました",
+          "final_len": 8,
+          "mt_calls": 4,
+          "total_time_ms": 65.22,
+          "chars_translated": 20,
+          "redundancy_ratio": 1.5,
+          "avg_time_per_call_ms": 16.3
+        },
+        {
+          "id": "ja_short_03",
+          "asr_text": "ありがとうございます",
+          "final_len": 10,
+          "mt_calls": 4,
+          "total_time_ms": 58.27,
+          "chars_translated": 25,
+          "redundancy_ratio": 1.5,
+          "avg_time_per_call_ms": 14.57
+        },
+        {
+          "id": "ja_short_04",
+          "asr_text": "そうなんだよね",
+          "final_len": 7,
+          "mt_calls": 4,
+          "total_time_ms": 54.27,
+          "chars_translated": 18,
+          "redundancy_ratio": 1.57,
+          "avg_time_per_call_ms": 13.57
+        },
+        {
+          "id": "ja_med_01",
+          "asr_text": "今日の東京はとても天気が良くて暖かいですね",
+          "final_len": 21,
+          "mt_calls": 4,
+          "total_time_ms": 151.79,
+          "chars_translated": 52,
+          "redundancy_ratio": 1.48,
+          "avg_time_per_call_ms": 37.95
+        },
+        {
+          "id": "ja_med_02",
+          "asr_text": "この商品は30%オフで1500円になりますよ",
+          "final_len": 22,
+          "mt_calls": 4,
+          "total_time_ms": 224.14,
+          "chars_translated": 55,
+          "redundancy_ratio": 1.5,
+          "avg_time_per_call_ms": 56.04
+        },
+        {
+          "id": "ja_med_03",
+          "asr_text": "新宿の任天堂ストアに行ってみました",
+          "final_len": 17,
+          "mt_calls": 4,
+          "total_time_ms": 172.26,
+          "chars_translated": 42,
+          "redundancy_ratio": 1.47,
+          "avg_time_per_call_ms": 43.07
+        },
+        {
+          "id": "ja_med_04",
+          "asr_text": "YouTubeのライブ配信を始めたいと思います",
+          "final_len": 23,
+          "mt_calls": 4,
+          "total_time_ms": 112.68,
+          "chars_translated": 58,
+          "redundancy_ratio": 1.52,
+          "avg_time_per_call_ms": 28.17
+        },
+        {
+          "id": "ja_med_05",
+          "asr_text": "こち主とはぐれた傘が風で舞い看板もなぎ倒されてしまったようです",
+          "final_len": 31,
+          "mt_calls": 4,
+          "total_time_ms": 187.69,
+          "chars_translated": 78,
+          "redundancy_ratio": 1.52,
+          "avg_time_per_call_ms": 46.92
+        },
+        {
+          "id": "ja_long_01",
+          "asr_text": "昨日は友達と一緒に渋谷のカフェに行って美味しいコーヒーとケーキを楽しみました",
+          "final_len": 38,
+          "mt_calls": 4,
+          "total_time_ms": 247.7,
+          "chars_translated": 95,
+          "redundancy_ratio": 1.5,
+          "avg_time_per_call_ms": 61.92
+        },
+        {
+          "id": "ja_long_02",
+          "asr_text": "この新しい音声認識モデルは低遅延でリアルタイムに字幕を生成することができます",
+          "final_len": 38,
+          "mt_calls": 4,
+          "total_time_ms": 156.69,
+          "chars_translated": 95,
+          "redundancy_ratio": 1.5,
+          "avg_time_per_call_ms": 39.17
+        },
+        {
+          "id": "ja_long_03",
+          "asr_text": "えーと明日の午後にドクタラッセルともう一度その件について相談するつもりです",
+          "final_len": 37,
+          "mt_calls": 4,
+          "total_time_ms": 192.77,
+          "chars_translated": 92,
+          "redundancy_ratio": 1.49,
+          "avg_time_per_call_ms": 48.19
+        },
+        {
+          "id": "ja_long_04",
+          "asr_text": "台風の影響により明日の朝から関東地方の各地で強い雨と風が予想されています",
+          "final_len": 36,
+          "mt_calls": 4,
+          "total_time_ms": 210.12,
+          "chars_translated": 90,
+          "redundancy_ratio": 1.5,
+          "avg_time_per_call_ms": 52.53
+        },
+        {
+          "id": "ja_vlong_01",
+          "asr_text": "気象庁の発表によりますと非常に強い勢力の台風が勢力を維持したまま北上しており沿岸部では高波や土砂崩れに厳重な警戒が必要とのことです",
+          "final_len": 65,
+          "mt_calls": 4,
+          "total_time_ms": 322.08,
+          "chars_translated": 162,
+          "redundancy_ratio": 1.49,
+          "avg_time_per_call_ms": 80.52
+        },
+        {
+          "id": "ja_vlong_02",
+          "asr_text": "皆さんこんばんは今日の配信では新しくリリースされたゲームの難関ボスをノーダメージで倒せるか挑戦してみたいと思いますので応援よろしくお願いしますね",
+          "final_len": 72,
+          "mt_calls": 4,
+          "total_time_ms": 220.36,
+          "chars_translated": 180,
+          "redundancy_ratio": 1.5,
+          "avg_time_per_call_ms": 55.09
+        },
+        {
+          "id": "ja_vlong_03",
+          "asr_text": "当社は2026年9月より次世代のAI技術を活用した新しいリアルタイム翻訳サービスの提供を開始することを本日正式に発表いたしました",
+          "final_len": 64,
+          "mt_calls": 4,
+          "total_time_ms": 322.59,
+          "chars_translated": 160,
+          "redundancy_ratio": 1.5,
+          "avg_time_per_call_ms": 80.65
+        },
+        {
+          "id": "ja_xlong_01",
+          "asr_text": "先週の週末に家族みんなで京都へ旅行に行ったのですが観光名所の金閣寺や清水寺はどこも国内外からの観光客で非常に混雑していましたそれでも美味しい抹茶アイスや湯豆腐を食べることができてとても充実した素晴らしい思い出深い休日になりました",
+          "final_len": 114,
+          "mt_calls": 4,
+          "total_time_ms": 287.55,
+          "chars_translated": 285,
+          "redundancy_ratio": 1.5,
+          "avg_time_per_call_ms": 71.89
+        },
+        {
+          "id": "ja_xlong_02",
+          "asr_text": "本プロジェクトの目的はクラウド依存を完全に排除しユーザーの手元にある一般的なノートパソコンのCPU上でのみ動作する超低遅延なリアルタイムストリーミング音声翻訳システムを実現することですこれによりプライバシーを完全に保護しながら高品質な多言語コミュニケーション体験を提供できます",
+          "final_len": 138,
+          "mt_calls": 4,
+          "total_time_ms": 503.92,
+          "chars_translated": 345,
+          "redundancy_ratio": 1.5,
+          "avg_time_per_call_ms": 125.98
+        }
+      ]
+    },
+    "nllb": {
+      "engine_name": "CTranslate2-NLLB",
+      "total_utterances": 18,
+      "total_mt_calls": 72,
+      "avg_calls_per_utterance": 4.0,
+      "avg_total_cpu_time_per_utterance_ms": 2239.26,
+      "avg_chars_translated_per_utterance": 103.6,
+      "overall_redundant_translation_ratio": 1.5,
+      "feasibility_assessment": {
+        "naive_streaming_feasible": false,
+        "architectural_recommendation": "Event-driven / Wait-k throttling required to prevent CPU saturation"
+      },
+      "utterance_data": [
+        {
+          "id": "ja_short_01",
+          "asr_text": "こんにちは",
+          "final_len": 5,
+          "mt_calls": 4,
+          "total_time_ms": 919.01,
+          "chars_translated": 12,
+          "redundancy_ratio": 1.4,
+          "avg_time_per_call_ms": 229.75
+        },
+        {
+          "id": "ja_short_02",
+          "asr_text": "はい分かりました",
+          "final_len": 8,
+          "mt_calls": 4,
+          "total_time_ms": 764.47,
+          "chars_translated": 20,
+          "redundancy_ratio": 1.5,
+          "avg_time_per_call_ms": 191.12
+        },
+        {
+          "id": "ja_short_03",
+          "asr_text": "ありがとうございます",
+          "final_len": 10,
+          "mt_calls": 4,
+          "total_time_ms": 698.91,
+          "chars_translated": 25,
+          "redundancy_ratio": 1.5,
+          "avg_time_per_call_ms": 174.73
+        },
+        {
+          "id": "ja_short_04",
+          "asr_text": "そうなんだよね",
+          "final_len": 7,
+          "mt_calls": 4,
+          "total_time_ms": 1016.07,
+          "chars_translated": 18,
+          "redundancy_ratio": 1.57,
+          "avg_time_per_call_ms": 254.02
+        },
+        {
+          "id": "ja_med_01",
+          "asr_text": "今日の東京はとても天気が良くて暖かいですね",
+          "final_len": 21,
+          "mt_calls": 4,
+          "total_time_ms": 1343.94,
+          "chars_translated": 52,
+          "redundancy_ratio": 1.48,
+          "avg_time_per_call_ms": 335.99
+        },
+        {
+          "id": "ja_med_02",
+          "asr_text": "この商品は30%オフで1500円になりますよ",
+          "final_len": 22,
+          "mt_calls": 4,
+          "total_time_ms": 1119.07,
+          "chars_translated": 55,
+          "redundancy_ratio": 1.5,
+          "avg_time_per_call_ms": 279.77
+        },
+        {
+          "id": "ja_med_03",
+          "asr_text": "新宿の任天堂ストアに行ってみました",
+          "final_len": 17,
+          "mt_calls": 4,
+          "total_time_ms": 1625.26,
+          "chars_translated": 42,
+          "redundancy_ratio": 1.47,
+          "avg_time_per_call_ms": 406.32
+        },
+        {
+          "id": "ja_med_04",
+          "asr_text": "YouTubeのライブ配信を始めたいと思います",
+          "final_len": 23,
+          "mt_calls": 4,
+          "total_time_ms": 1305.97,
+          "chars_translated": 58,
+          "redundancy_ratio": 1.52,
+          "avg_time_per_call_ms": 326.49
+        },
+        {
+          "id": "ja_med_05",
+          "asr_text": "こち主とはぐれた傘が風で舞い看板もなぎ倒されてしまったようです",
+          "final_len": 31,
+          "mt_calls": 4,
+          "total_time_ms": 2336.29,
+          "chars_translated": 78,
+          "redundancy_ratio": 1.52,
+          "avg_time_per_call_ms": 584.07
+        },
+        {
+          "id": "ja_long_01",
+          "asr_text": "昨日は友達と一緒に渋谷のカフェに行って美味しいコーヒーとケーキを楽しみました",
+          "final_len": 38,
+          "mt_calls": 4,
+          "total_time_ms": 2654.89,
+          "chars_translated": 95,
+          "redundancy_ratio": 1.5,
+          "avg_time_per_call_ms": 663.72
+        },
+        {
+          "id": "ja_long_02",
+          "asr_text": "この新しい音声認識モデルは低遅延でリアルタイムに字幕を生成することができます",
+          "final_len": 38,
+          "mt_calls": 4,
+          "total_time_ms": 2273.91,
+          "chars_translated": 95,
+          "redundancy_ratio": 1.5,
+          "avg_time_per_call_ms": 568.48
+        },
+        {
+          "id": "ja_long_03",
+          "asr_text": "えーと明日の午後にドクタラッセルともう一度その件について相談するつもりです",
+          "final_len": 37,
+          "mt_calls": 4,
+          "total_time_ms": 1827.09,
+          "chars_translated": 92,
+          "redundancy_ratio": 1.49,
+          "avg_time_per_call_ms": 456.77
+        },
+        {
+          "id": "ja_long_04",
+          "asr_text": "台風の影響により明日の朝から関東地方の各地で強い雨と風が予想されています",
+          "final_len": 36,
+          "mt_calls": 4,
+          "total_time_ms": 2459.84,
+          "chars_translated": 90,
+          "redundancy_ratio": 1.5,
+          "avg_time_per_call_ms": 614.96
+        },
+        {
+          "id": "ja_vlong_01",
+          "asr_text": "気象庁の発表によりますと非常に強い勢力の台風が勢力を維持したまま北上しており沿岸部では高波や土砂崩れに厳重な警戒が必要とのことです",
+          "final_len": 65,
+          "mt_calls": 4,
+          "total_time_ms": 3341.18,
+          "chars_translated": 162,
+          "redundancy_ratio": 1.49,
+          "avg_time_per_call_ms": 835.29
+        },
+        {
+          "id": "ja_vlong_02",
+          "asr_text": "皆さんこんばんは今日の配信では新しくリリースされたゲームの難関ボスをノーダメージで倒せるか挑戦してみたいと思いますので応援よろしくお願いしますね",
+          "final_len": 72,
+          "mt_calls": 4,
+          "total_time_ms": 2988.87,
+          "chars_translated": 180,
+          "redundancy_ratio": 1.5,
+          "avg_time_per_call_ms": 747.22
+        },
+        {
+          "id": "ja_vlong_03",
+          "asr_text": "当社は2026年9月より次世代のAI技術を活用した新しいリアルタイム翻訳サービスの提供を開始することを本日正式に発表いたしました",
+          "final_len": 64,
+          "mt_calls": 4,
+          "total_time_ms": 3072.94,
+          "chars_translated": 160,
+          "redundancy_ratio": 1.5,
+          "avg_time_per_call_ms": 768.24
+        },
+        {
+          "id": "ja_xlong_01",
+          "asr_text": "先週の週末に家族みんなで京都へ旅行に行ったのですが観光名所の金閣寺や清水寺はどこも国内外からの観光客で非常に混雑していましたそれでも美味しい抹茶アイスや湯豆腐を食べることができてとても充実した素晴らしい思い出深い休日になりました",
+          "final_len": 114,
+          "mt_calls": 4,
+          "total_time_ms": 4839.01,
+          "chars_translated": 285,
+          "redundancy_ratio": 1.5,
+          "avg_time_per_call_ms": 1209.75
+        },
+        {
+          "id": "ja_xlong_02",
+          "asr_text": "本プロジェクトの目的はクラウド依存を完全に排除しユーザーの手元にある一般的なノートパソコンのCPU上でのみ動作する超低遅延なリアルタイムストリーミング音声翻訳システムを実現することですこれによりプライバシーを完全に保護しながら高品質な多言語コミュニケーション体験を提供できます",
+          "final_len": 138,
+          "mt_calls": 4,
+          "total_time_ms": 5719.99,
+          "chars_translated": 345,
+          "redundancy_ratio": 1.5,
+          "avg_time_per_call_ms": 1430.0
+        }
+      ]
+    }
+  },
+  "e2e_streaming_pipeline": {
+    "marian": {
+      "benchmark_sample": "ja_conversational.wav",
+      "audio_duration_sec": 13.96,
+      "total_wall_clock_time_sec": 1.87,
+      "real_time_factor": 0.1338,
+      "transcripts": {
+        "reference_ja": "持ち主とはぐれた傘が風で舞い看板もなぎ倒されてしまったようです。",
+        "asr_final_ja": "こち主とはぐれた傘が風で舞い看板もなぎ倒されてしまったようです",
+        "reference_en": "An umbrella separated from its owner blew in the wind, and signboards also seem to have been knocked down.",
+        "mt_final_en": "It seems that the umbrella was knocked down by the wind."
+      },
+      "e2e_latency_summary": {
+        "total_user_visible_latency_p50_ms": 65.45,
+        "total_user_visible_latency_p95_ms": 81.7,
+        "total_user_visible_latency_p99_ms": 89.04,
+        "mt_latency_p50_ms": 40.29,
+        "mt_latency_p95_ms": 57.45,
+        "asr_latency_p50_ms": 24.84,
+        "asr_latency_p95_ms": 25.52,
+        "events_count": 19
+      },
+      "finalization_latency_ms": {
+        "asr_finalization_ms": 0.03,
+        "mt_finalization_ms": 47.69,
+        "total_finalization_ms": 47.72
+      },
+      "timeline_events": [
+        {
+          "chunk_index": 6,
+          "audio_timestamp_sec": 1.79,
+          "asr_text": "こ",
+          "english_translation": "Shit.",
+          "latency_breakdown_ms": {
+            "asr_ms": 25.5,
+            "ipc_glue_ms": 0.003,
+            "mt_tokenizer_ms": 0.139,
+            "mt_inference_ms": 11.947,
+            "mt_detokenizer_ms": 0.171,
+            "mt_total_ms": 12.28,
+            "total_user_visible_ms": 37.78
+          }
+        },
+        {
+          "chunk_index": 10,
+          "audio_timestamp_sec": 2.82,
+          "asr_text": "こち主",
+          "english_translation": "Creepy",
+          "latency_breakdown_ms": {
+            "asr_ms": 24.02,
+            "ipc_glue_ms": 0.003,
+            "mt_tokenizer_ms": 0.136,
+            "mt_inference_ms": 19.068,
+            "mt_detokenizer_ms": 0.176,
+            "mt_total_ms": 19.4,
+            "total_user_visible_ms": 43.42
+          }
+        },
+        {
+          "chunk_index": 11,
+          "audio_timestamp_sec": 3.07,
+          "asr_text": "こち主と",
+          "english_translation": "With the Creep.",
+          "latency_breakdown_ms": {
+            "asr_ms": 25.09,
+            "ipc_glue_ms": 0.002,
+            "mt_tokenizer_ms": 0.147,
+            "mt_inference_ms": 25.603,
+            "mt_detokenizer_ms": 0.196,
+            "mt_total_ms": 25.97,
+            "total_user_visible_ms": 51.06
+          }
+        },
+        {
+          "chunk_index": 13,
+          "audio_timestamp_sec": 3.58,
+          "asr_text": "こち主とはぐれ",
+          "english_translation": "You're not gonna be a tough guy.",
+          "latency_breakdown_ms": {
+            "asr_ms": 25.74,
+            "ipc_glue_ms": 0.001,
+            "mt_tokenizer_ms": 0.156,
+            "mt_inference_ms": 38.052,
+            "mt_detokenizer_ms": 0.244,
+            "mt_total_ms": 38.47,
+            "total_user_visible_ms": 64.21
+          }
+        },
+        {
+          "chunk_index": 14,
+          "audio_timestamp_sec": 3.84,
+          "asr_text": "こち主とはぐれた傘",
+          "english_translation": "A broken umbrella with a stiffly held man.",
+          "latency_breakdown_ms": {
+            "asr_ms": 25.16,
+            "ipc_glue_ms": 0.002,
+            "mt_tokenizer_ms": 0.162,
+            "mt_inference_ms": 39.863,
+            "mt_detokenizer_ms": 0.245,
+            "mt_total_ms": 40.29,
+            "total_user_visible_ms": 65.45
+          }
+        },
+        {
+          "chunk_index": 15,
+          "audio_timestamp_sec": 4.1,
+          "asr_text": "こち主とはぐれた傘が",
+          "english_translation": "I've got an umbrella that's lost to the landlord.",
+          "latency_breakdown_ms": {
+            "asr_ms": 24.71,
+            "ipc_glue_ms": 0.001,
+            "mt_tokenizer_ms": 0.157,
+            "mt_inference_ms": 51.415,
+            "mt_detokenizer_ms": 0.245,
+            "mt_total_ms": 51.83,
+            "total_user_visible_ms": 76.55
+          }
+        },
+        {
+          "chunk_index": 16,
+          "audio_timestamp_sec": 4.35,
+          "asr_text": "こち主とはぐれた傘が風",
+          "english_translation": "The wind and the wind are off.",
+          "latency_breakdown_ms": {
+            "asr_ms": 24.79,
+            "ipc_glue_ms": 0.001,
+            "mt_tokenizer_ms": 0.158,
+            "mt_inference_ms": 33.194,
+            "mt_detokenizer_ms": 0.189,
+            "mt_total_ms": 33.56,
+            "total_user_visible_ms": 58.35
+          }
+        },
+        {
+          "chunk_index": 18,
+          "audio_timestamp_sec": 4.86,
+          "asr_text": "こち主とはぐれた傘が風で",
+          "english_translation": "It's a wind.",
+          "latency_breakdown_ms": {
+            "asr_ms": 24.63,
+            "ipc_glue_ms": 0.001,
+            "mt_tokenizer_ms": 0.171,
+            "mt_inference_ms": 26.168,
+            "mt_detokenizer_ms": 0.169,
+            "mt_total_ms": 26.53,
+            "total_user_visible_ms": 51.15
+          }
+        },
+        {
+          "chunk_index": 19,
+          "audio_timestamp_sec": 5.12,
+          "asr_text": "こち主とはぐれた傘が風で舞",
+          "english_translation": "The wind blows away the umbrella that is separated from the landlord.",
+          "latency_breakdown_ms": {
+            "asr_ms": 24.99,
+            "ipc_glue_ms": 0.002,
+            "mt_tokenizer_ms": 0.163,
+            "mt_inference_ms": 48.946,
+            "mt_detokenizer_ms": 0.234,
+            "mt_total_ms": 49.36,
+            "total_user_visible_ms": 74.36
+          }
+        },
+        {
+          "chunk_index": 20,
+          "audio_timestamp_sec": 5.38,
+          "asr_text": "こち主とはぐれた傘が風で舞い",
+          "english_translation": "And I was a little bit nervous.",
+          "latency_breakdown_ms": {
+            "asr_ms": 24.77,
+            "ipc_glue_ms": 0.001,
+            "mt_tokenizer_ms": 0.178,
+            "mt_inference_ms": 32.779,
+            "mt_detokenizer_ms": 0.188,
+            "mt_total_ms": 33.16,
+            "total_user_visible_ms": 57.94
+          }
+        },
+        {
+          "chunk_index": 35,
+          "audio_timestamp_sec": 9.22,
+          "asr_text": "こち主とはぐれた傘が風で舞い看",
+          "english_translation": "A man with an umbrella that is separated from the landlord is a guard.",
+          "latency_breakdown_ms": {
+            "asr_ms": 24.11,
+            "ipc_glue_ms": 0.001,
+            "mt_tokenizer_ms": 0.175,
+            "mt_inference_ms": 56.115,
+            "mt_detokenizer_ms": 0.259,
+            "mt_total_ms": 56.57,
+            "total_user_visible_ms": 80.68
+          }
+        },
+        {
+          "chunk_index": 36,
+          "audio_timestamp_sec": 9.47,
+          "asr_text": "こち主とはぐれた傘が風で舞い看板",
+          "english_translation": "A sign with an umbrella that's separated from the landlord.",
+          "latency_breakdown_ms": {
+            "asr_ms": 24.71,
+            "ipc_glue_ms": 0.001,
+            "mt_tokenizer_ms": 0.171,
+            "mt_inference_ms": 48.926,
+            "mt_detokenizer_ms": 0.236,
+            "mt_total_ms": 49.35,
+            "total_user_visible_ms": 74.07
+          }
+        },
+        {
+          "chunk_index": 38,
+          "audio_timestamp_sec": 9.98,
+          "asr_text": "こち主とはぐれた傘が風で舞い看板も",
+          "english_translation": "And I'm not sure if I'm going to be able to do that.",
+          "latency_breakdown_ms": {
+            "asr_ms": 25.48,
+            "ipc_glue_ms": 0.001,
+            "mt_tokenizer_ms": 0.175,
+            "mt_inference_ms": 64.913,
+            "mt_detokenizer_ms": 0.287,
+            "mt_total_ms": 65.39,
+            "total_user_visible_ms": 90.87
+          }
+        },
+        {
+          "chunk_index": 39,
+          "audio_timestamp_sec": 10.24,
+          "asr_text": "こち主とはぐれた傘が風で舞い看板もなぎ",
+          "english_translation": "I was a little nervous.",
+          "latency_breakdown_ms": {
+            "asr_ms": 25.21,
+            "ipc_glue_ms": 0.001,
+            "mt_tokenizer_ms": 0.177,
+            "mt_inference_ms": 26.956,
+            "mt_detokenizer_ms": 0.174,
+            "mt_total_ms": 27.32,
+            "total_user_visible_ms": 52.54
+          }
+        },
+        {
+          "chunk_index": 40,
+          "audio_timestamp_sec": 10.5,
+          "asr_text": "こち主とはぐれた傘が風で舞い看板もなぎ倒され",
+          "english_translation": "And then I was in the middle of a storm.",
+          "latency_breakdown_ms": {
+            "asr_ms": 24.84,
+            "ipc_glue_ms": 0.001,
+            "mt_tokenizer_ms": 0.185,
+            "mt_inference_ms": 42.896,
+            "mt_detokenizer_ms": 0.216,
+            "mt_total_ms": 43.31,
+            "total_user_visible_ms": 68.15
+          }
+        },
+        {
+          "chunk_index": 41,
+          "audio_timestamp_sec": 10.75,
+          "asr_text": "こち主とはぐれた傘が風で舞い看板もなぎ倒されてし",
+          "english_translation": "I was in the middle of a big building.",
+          "latency_breakdown_ms": {
+            "asr_ms": 24.98,
+            "ipc_glue_ms": 0.002,
+            "mt_tokenizer_ms": 0.187,
+            "mt_inference_ms": 39.571,
+            "mt_detokenizer_ms": 0.209,
+            "mt_total_ms": 39.98,
+            "total_user_visible_ms": 64.96
+          }
+        },
+        {
+          "chunk_index": 43,
+          "audio_timestamp_sec": 11.26,
+          "asr_text": "こち主とはぐれた傘が風で舞い看板もなぎ倒されてしまった",
+          "english_translation": "The umbrella was broken by the wind and the sign was knocked down.",
+          "latency_breakdown_ms": {
+            "asr_ms": 24.59,
+            "ipc_glue_ms": 0.001,
+            "mt_tokenizer_ms": 0.198,
+            "mt_inference_ms": 52.561,
+            "mt_detokenizer_ms": 0.243,
+            "mt_total_ms": 53.02,
+            "total_user_visible_ms": 77.61
+          }
+        },
+        {
+          "chunk_index": 44,
+          "audio_timestamp_sec": 11.52,
+          "asr_text": "こち主とはぐれた傘が風で舞い看板もなぎ倒されてしまったよう",
+          "english_translation": "And I'm going to be a little bit nervous.",
+          "latency_breakdown_ms": {
+            "asr_ms": 24.73,
+            "ipc_glue_ms": 0.001,
+            "mt_tokenizer_ms": 0.202,
+            "mt_inference_ms": 46.038,
+            "mt_detokenizer_ms": 0.239,
+            "mt_total_ms": 46.5,
+            "total_user_visible_ms": 71.22
+          }
+        },
+        {
+          "chunk_index": 45,
+          "audio_timestamp_sec": 11.78,
+          "asr_text": "こち主とはぐれた傘が風で舞い看板もなぎ倒されてしまったようです",
+          "english_translation": "It seems that the umbrella was knocked down by the wind.",
+          "latency_breakdown_ms": {
+            "asr_ms": 24.84,
+            "ipc_glue_ms": 0.001,
+            "mt_tokenizer_ms": 0.205,
+            "mt_inference_ms": 46.153,
+            "mt_detokenizer_ms": 0.224,
+            "mt_total_ms": 46.6,
+            "total_user_visible_ms": 71.44
+          }
+        }
+      ]
+    },
+    "nllb": {
+      "benchmark_sample": "ja_conversational.wav",
+      "audio_duration_sec": 13.96,
+      "total_wall_clock_time_sec": 10.87,
+      "real_time_factor": 0.7785,
+      "transcripts": {
+        "reference_ja": "持ち主とはぐれた傘が風で舞い看板もなぎ倒されてしまったようです。",
+        "asr_final_ja": "こち主とはぐれた傘が風で舞い看板もなぎ倒されてしまったようです",
+        "reference_en": "An umbrella separated from its owner blew in the wind, and signboards also seem to have been knocked down.",
+        "mt_final_en": "The umbrella that was there, and the signage on it, seemed to have been torn down."
+      },
+      "e2e_latency_summary": {
+        "total_user_visible_latency_p50_ms": 485.42,
+        "total_user_visible_latency_p95_ms": 784.13,
+        "total_user_visible_latency_p99_ms": 832.18,
+        "mt_latency_p50_ms": 461.07,
+        "mt_latency_p95_ms": 759.59,
+        "asr_latency_p50_ms": 24.96,
+        "asr_latency_p95_ms": 27.44,
+        "events_count": 19
+      },
+      "finalization_latency_ms": {
+        "asr_finalization_ms": 0.04,
+        "mt_finalization_ms": 752.37,
+        "total_finalization_ms": 752.4
+      },
+      "timeline_events": [
+        {
+          "chunk_index": 6,
+          "audio_timestamp_sec": 1.79,
+          "asr_text": "こ",
+          "english_translation": "- What?",
+          "latency_breakdown_ms": {
+            "asr_ms": 25.08,
+            "ipc_glue_ms": 0.002,
+            "mt_tokenizer_ms": 0.14,
+            "mt_inference_ms": 173.536,
+            "mt_detokenizer_ms": 0.095,
+            "mt_total_ms": 173.79,
+            "total_user_visible_ms": 198.87
+          }
+        },
+        {
+          "chunk_index": 10,
+          "audio_timestamp_sec": 2.82,
+          "asr_text": "こち主",
+          "english_translation": "This is my lord.",
+          "latency_breakdown_ms": {
+            "asr_ms": 24.1,
+            "ipc_glue_ms": 0.001,
+            "mt_tokenizer_ms": 0.121,
+            "mt_inference_ms": 239.054,
+            "mt_detokenizer_ms": 0.1,
+            "mt_total_ms": 239.3,
+            "total_user_visible_ms": 263.4
+          }
+        },
+        {
+          "chunk_index": 11,
+          "audio_timestamp_sec": 3.07,
+          "asr_text": "こち主と",
+          "english_translation": "I'm with you.",
+          "latency_breakdown_ms": {
+            "asr_ms": 26.77,
+            "ipc_glue_ms": 0.002,
+            "mt_tokenizer_ms": 0.123,
+            "mt_inference_ms": 269.245,
+            "mt_detokenizer_ms": 0.135,
+            "mt_total_ms": 269.52,
+            "total_user_visible_ms": 296.3
+          }
+        },
+        {
+          "chunk_index": 13,
+          "audio_timestamp_sec": 3.58,
+          "asr_text": "こち主とはぐれ",
+          "english_translation": "Get away from me.",
+          "latency_breakdown_ms": {
+            "asr_ms": 25.25,
+            "ipc_glue_ms": 0.001,
+            "mt_tokenizer_ms": 0.127,
+            "mt_inference_ms": 239.399,
+            "mt_detokenizer_ms": 0.093,
+            "mt_total_ms": 239.64,
+            "total_user_visible_ms": 264.9
+          }
+        },
+        {
+          "chunk_index": 14,
+          "audio_timestamp_sec": 3.84,
+          "asr_text": "こち主とはぐれた傘",
+          "english_translation": "This is a very good umbrella.",
+          "latency_breakdown_ms": {
+            "asr_ms": 27.32,
+            "ipc_glue_ms": 0.001,
+            "mt_tokenizer_ms": 0.128,
+            "mt_inference_ms": 334.492,
+            "mt_detokenizer_ms": 0.11,
+            "mt_total_ms": 334.75,
+            "total_user_visible_ms": 362.07
+          }
+        },
+        {
+          "chunk_index": 15,
+          "audio_timestamp_sec": 4.1,
+          "asr_text": "こち主とはぐれた傘が",
+          "english_translation": "I'm going to have a umbrella.",
+          "latency_breakdown_ms": {
+            "asr_ms": 24.81,
+            "ipc_glue_ms": 0.001,
+            "mt_tokenizer_ms": 0.144,
+            "mt_inference_ms": 396.083,
+            "mt_detokenizer_ms": 0.107,
+            "mt_total_ms": 396.36,
+            "total_user_visible_ms": 421.17
+          }
+        },
+        {
+          "chunk_index": 16,
+          "audio_timestamp_sec": 4.35,
+          "asr_text": "こち主とはぐれた傘が風",
+          "english_translation": "I'm here with a windy umbrella.",
+          "latency_breakdown_ms": {
+            "asr_ms": 25.44,
+            "ipc_glue_ms": 0.001,
+            "mt_tokenizer_ms": 0.141,
+            "mt_inference_ms": 432.984,
+            "mt_detokenizer_ms": 0.101,
+            "mt_total_ms": 433.24,
+            "total_user_visible_ms": 458.69
+          }
+        },
+        {
+          "chunk_index": 18,
+          "audio_timestamp_sec": 4.86,
+          "asr_text": "こち主とはぐれた傘が風で",
+          "english_translation": "I'm here with a shade of the wind.",
+          "latency_breakdown_ms": {
+            "asr_ms": 24.1,
+            "ipc_glue_ms": 0.002,
+            "mt_tokenizer_ms": 0.145,
+            "mt_inference_ms": 461.036,
+            "mt_detokenizer_ms": 0.112,
+            "mt_total_ms": 461.31,
+            "total_user_visible_ms": 485.42
+          }
+        },
+        {
+          "chunk_index": 19,
+          "audio_timestamp_sec": 5.12,
+          "asr_text": "こち主とはぐれた傘が風で舞",
+          "english_translation": "I'm here with a windy umbrella.",
+          "latency_breakdown_ms": {
+            "asr_ms": 24.59,
+            "ipc_glue_ms": 0.001,
+            "mt_tokenizer_ms": 0.153,
+            "mt_inference_ms": 432.548,
+            "mt_detokenizer_ms": 0.112,
+            "mt_total_ms": 432.83,
+            "total_user_visible_ms": 457.43
+          }
+        },
+        {
+          "chunk_index": 20,
+          "audio_timestamp_sec": 5.38,
+          "asr_text": "こち主とはぐれた傘が風で舞い",
+          "english_translation": "I'm here with a windy umbrella.",
+          "latency_breakdown_ms": {
+            "asr_ms": 25.45,
+            "ipc_glue_ms": 0.001,
+            "mt_tokenizer_ms": 0.138,
+            "mt_inference_ms": 438.077,
+            "mt_detokenizer_ms": 0.123,
+            "mt_total_ms": 438.36,
+            "total_user_visible_ms": 463.82
+          }
+        },
+        {
+          "chunk_index": 35,
+          "audio_timestamp_sec": 9.22,
+          "asr_text": "こち主とはぐれた傘が風で舞い看",
+          "english_translation": "I'm looking at the wind, with a shade of umbrella.",
+          "latency_breakdown_ms": {
+            "asr_ms": 24.08,
+            "ipc_glue_ms": 0.002,
+            "mt_tokenizer_ms": 0.138,
+            "mt_inference_ms": 590.908,
+            "mt_detokenizer_ms": 0.119,
+            "mt_total_ms": 591.19,
+            "total_user_visible_ms": 615.27
+          }
+        },
+        {
+          "chunk_index": 36,
+          "audio_timestamp_sec": 9.47,
+          "asr_text": "こち主とはぐれた傘が風で舞い看板",
+          "english_translation": "I'm the one with a windy umbrella.",
+          "latency_breakdown_ms": {
+            "asr_ms": 24.96,
+            "ipc_glue_ms": 0.002,
+            "mt_tokenizer_ms": 0.132,
+            "mt_inference_ms": 460.799,
+            "mt_detokenizer_ms": 0.118,
+            "mt_total_ms": 461.07,
+            "total_user_visible_ms": 486.03
+          }
+        },
+        {
+          "chunk_index": 38,
+          "audio_timestamp_sec": 9.98,
+          "asr_text": "こち主とはぐれた傘が風で舞い看板も",
+          "english_translation": "I'm going to have a windy umbrella and some signs.",
+          "latency_breakdown_ms": {
+            "asr_ms": 24.99,
+            "ipc_glue_ms": 0.001,
+            "mt_tokenizer_ms": 0.147,
+            "mt_inference_ms": 563.975,
+            "mt_detokenizer_ms": 0.117,
+            "mt_total_ms": 564.26,
+            "total_user_visible_ms": 589.25
+          }
+        },
+        {
+          "chunk_index": 39,
+          "audio_timestamp_sec": 10.24,
+          "asr_text": "こち主とはぐれた傘が風で舞い看板もなぎ",
+          "english_translation": "I'm here with a windy umbrella and signs.",
+          "latency_breakdown_ms": {
+            "asr_ms": 24.79,
+            "ipc_glue_ms": 0.001,
+            "mt_tokenizer_ms": 0.209,
+            "mt_inference_ms": 498.043,
+            "mt_detokenizer_ms": 0.106,
+            "mt_total_ms": 498.38,
+            "total_user_visible_ms": 523.17
+          }
+        },
+        {
+          "chunk_index": 40,
+          "audio_timestamp_sec": 10.5,
+          "asr_text": "こち主とはぐれた傘が風で舞い看板もなぎ倒され",
+          "english_translation": "And here's the umbrella that was just a little bit of windy, and the sign fell down.",
+          "latency_breakdown_ms": {
+            "asr_ms": 25.3,
+            "ipc_glue_ms": 0.001,
+            "mt_tokenizer_ms": 0.149,
+            "mt_inference_ms": 818.593,
+            "mt_detokenizer_ms": 0.128,
+            "mt_total_ms": 818.89,
+            "total_user_visible_ms": 844.19
+          }
+        },
+        {
+          "chunk_index": 41,
+          "audio_timestamp_sec": 10.75,
+          "asr_text": "こち主とはぐれた傘が風で舞い看板もなぎ倒されてし",
+          "english_translation": "I'm here with a windy umbrella and the sign is down.",
+          "latency_breakdown_ms": {
+            "asr_ms": 24.28,
+            "ipc_glue_ms": 0.001,
+            "mt_tokenizer_ms": 0.149,
+            "mt_inference_ms": 594.864,
+            "mt_detokenizer_ms": 0.115,
+            "mt_total_ms": 595.15,
+            "total_user_visible_ms": 619.44
+          }
+        },
+        {
+          "chunk_index": 43,
+          "audio_timestamp_sec": 11.26,
+          "asr_text": "こち主とはぐれた傘が風で舞い看板もなぎ倒されてしまった",
+          "english_translation": "The umbrella that was with him had been blown up and the signage torn down.",
+          "latency_breakdown_ms": {
+            "asr_ms": 28.49,
+            "ipc_glue_ms": 0.002,
+            "mt_tokenizer_ms": 0.21,
+            "mt_inference_ms": 692.358,
+            "mt_detokenizer_ms": 0.12,
+            "mt_total_ms": 692.71,
+            "total_user_visible_ms": 721.2
+          }
+        },
+        {
+          "chunk_index": 44,
+          "audio_timestamp_sec": 11.52,
+          "asr_text": "こち主とはぐれた傘が風で舞い看板もなぎ倒されてしまったよう",
+          "english_translation": "It's like a wind-blown umbrella and the sign is torn down.",
+          "latency_breakdown_ms": {
+            "asr_ms": 24.79,
+            "ipc_glue_ms": 0.002,
+            "mt_tokenizer_ms": 0.182,
+            "mt_inference_ms": 655.624,
+            "mt_detokenizer_ms": 0.13,
+            "mt_total_ms": 655.96,
+            "total_user_visible_ms": 680.75
+          }
+        },
+        {
+          "chunk_index": 45,
+          "audio_timestamp_sec": 11.78,
+          "asr_text": "こち主とはぐれた傘が風で舞い看板もなぎ倒されてしまったようです",
+          "english_translation": "The umbrella that was there, and the signage on it, seemed to have been torn down.",
+          "latency_breakdown_ms": {
+            "asr_ms": 24.46,
+            "ipc_glue_ms": 0.001,
+            "mt_tokenizer_ms": 0.148,
+            "mt_inference_ms": 752.696,
+            "mt_detokenizer_ms": 0.134,
+            "mt_total_ms": 753.0,
+            "total_user_visible_ms": 777.46
+          }
+        }
+      ]
+    }
+  },
+  "licensing_audit": {
+    "marian_opus_mt_ja_en": {
+      "license": "Apache 2.0 / CC-BY 4.0",
+      "commercial_use_allowed": true,
+      "redistribution_allowed": true,
+      "attribution_required": true,
+      "model_conversion_allowed": true,
+      "deployment_feasibility": "UNRESTRICTED - Permissive open-source license suitable for distribution and commercial deployment."
+    },
+    "nllb_200_distilled_600m": {
+      "license": "CC-BY-NC 4.0 (Non-Commercial)",
+      "commercial_use_allowed": false,
+      "redistribution_allowed": true,
+      "attribution_required": true,
+      "model_conversion_allowed": true,
+      "deployment_feasibility": "RESTRICTED - Non-commercial only under CC-BY-NC 4.0; commercial distribution prohibited without special Meta licensing exception."
+    }
+  },
+  "decision_matrix": {
+    "MT_p50_ms": {
+      "marian": 65.73,
+      "nllb": 699.61,
+      "target": "<100ms"
+    },
+    "MT_p95_ms": {
+      "marian": 180.19,
+      "nllb": 2105.67,
+      "target": "<200ms"
+    },
+    "MT_p99_ms": {
+      "marian": 197.15,
+      "nllb": 2145.24,
+      "target": "<300ms"
+    },
+    "Peak_RSS_MB": {
+      "marian": 514.0,
+      "nllb": 1231.36,
+      "target": "<1000MB"
+    },
+    "Model_Disk_MB": {
+      "marian": 77.97,
+      "nllb": 634.82,
+      "target": "Min"
+    },
+    "BLEU_Clean": {
+      "marian": 18.54,
+      "nllb": 26.63
+    },
+    "BLEU_ASR": {
+      "marian": 13.14,
+      "nllb": 24.14
+    },
+    "chrF_plus_plus_ASR": {
+      "marian": 36.25,
+      "nllb": 49.69
+    },
+    "COMET_ASR": {
+      "marian": 0.7685,
+      "nllb": 0.7964
+    },
+    "TPS_Stability": {
+      "marian": 0.2659,
+      "nllb": 0.3084,
+      "target": ">0.50"
+    },
+    "Destructive_Revisions": {
+      "marian": 50,
+      "nllb": 46,
+      "target": "Min"
+    },
+    "Commercial_License": {
+      "marian": "Permissive (Apache 2.0 / CC-BY)",
+      "nllb": "Non-Commercial (CC-BY-NC 4.0)"
+    }
+  },
+  "decision_summary": {
+    "stage": "Stage S3 (Local Machine Translation Feasibility)",
+    "s3_result": "GO",
+    "primary_mt_candidate": "Helsinki-NLP/opus-mt-ja-en (Marian CTranslate2 INT8)",
+    "secondary_fallback": "facebook/nllb-200-distilled-600M (CTranslate2 INT8)",
+    "feasibility_assessment": "VERIFIED: Local Japanese->English MT is feasible on CPU with Marian INT8 (p50=65.73ms, p95=180.19ms), satisfying the real-time budget (p50 < 100ms).",
+    "key_findings": [
+      "Marian INT8 achieves ultra-low latency (p50=65.73ms, p95=180.19ms) with a tiny 77.97 MB footprint.",
+      "NLLB-200 INT8 exhibits high CPU decode latency (p50=699.61ms, p95=2105.67ms), failing the real-time streaming gate (<100ms) on CPU.",
+      "On realistic S2 streaming ASR outputs, Marian achieves BLEU=13.14, chrF++=36.25, TPS=0.2659.",
+      "End-to-end user visible latency for Marian in the streaming audio pipeline is p50=65.45ms.",
+      "Marian is distributed under permissive Apache 2.0 / CC-BY licenses, while NLLB-200 is restricted by CC-BY-NC 4.0."
+    ]
+  }
+}

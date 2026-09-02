@@ -1,0 +1,1046 @@
+[
+  {
+    "parent_id": "ja_short_01",
+    "condition": "FULL",
+    "source_text": "こんにちは。",
+    "source_type": "reference_clean",
+    "char_count": 6,
+    "reference_en": "Hello.",
+    "length_bucket": "1-10"
+  },
+  {
+    "parent_id": "ja_short_01",
+    "condition": "UNPUNCTUATED",
+    "source_text": "こんにちは",
+    "source_type": "reference_unpunctuated",
+    "char_count": 5,
+    "reference_en": "Hello.",
+    "length_bucket": "1-10"
+  },
+  {
+    "parent_id": "ja_short_01",
+    "condition": "PARTIAL_25",
+    "source_text": "こ",
+    "source_type": "asr_partial",
+    "char_count": 1,
+    "prefix_ratio": 0.2,
+    "reference_en": "Hello.",
+    "length_bucket": "1-10"
+  },
+  {
+    "parent_id": "ja_short_01",
+    "condition": "PARTIAL_50",
+    "source_text": "こん",
+    "source_type": "asr_partial",
+    "char_count": 2,
+    "prefix_ratio": 0.4,
+    "reference_en": "Hello.",
+    "length_bucket": "1-10"
+  },
+  {
+    "parent_id": "ja_short_01",
+    "condition": "PARTIAL_75",
+    "source_text": "こんにち",
+    "source_type": "asr_partial",
+    "char_count": 4,
+    "prefix_ratio": 0.8,
+    "reference_en": "Hello.",
+    "length_bucket": "1-10"
+  },
+  {
+    "parent_id": "ja_short_01",
+    "condition": "PARTIAL_100",
+    "source_text": "こんにちは",
+    "source_type": "asr_partial",
+    "char_count": 5,
+    "prefix_ratio": 1.0,
+    "reference_en": "Hello.",
+    "length_bucket": "1-10"
+  },
+  {
+    "parent_id": "ja_short_02",
+    "condition": "FULL",
+    "source_text": "はい、分かりました。",
+    "source_type": "reference_clean",
+    "char_count": 10,
+    "reference_en": "Yes, I understand.",
+    "length_bucket": "1-10"
+  },
+  {
+    "parent_id": "ja_short_02",
+    "condition": "UNPUNCTUATED",
+    "source_text": "はい分かりました",
+    "source_type": "reference_unpunctuated",
+    "char_count": 8,
+    "reference_en": "Yes, I understand.",
+    "length_bucket": "1-10"
+  },
+  {
+    "parent_id": "ja_short_02",
+    "condition": "PARTIAL_25",
+    "source_text": "はい",
+    "source_type": "asr_partial",
+    "char_count": 2,
+    "prefix_ratio": 0.25,
+    "reference_en": "Yes, I understand.",
+    "length_bucket": "1-10"
+  },
+  {
+    "parent_id": "ja_short_02",
+    "condition": "PARTIAL_50",
+    "source_text": "はい分か",
+    "source_type": "asr_partial",
+    "char_count": 4,
+    "prefix_ratio": 0.5,
+    "reference_en": "Yes, I understand.",
+    "length_bucket": "1-10"
+  },
+  {
+    "parent_id": "ja_short_02",
+    "condition": "PARTIAL_75",
+    "source_text": "はい分かりま",
+    "source_type": "asr_partial",
+    "char_count": 6,
+    "prefix_ratio": 0.75,
+    "reference_en": "Yes, I understand.",
+    "length_bucket": "1-10"
+  },
+  {
+    "parent_id": "ja_short_02",
+    "condition": "PARTIAL_100",
+    "source_text": "はい分かりました",
+    "source_type": "asr_partial",
+    "char_count": 8,
+    "prefix_ratio": 1.0,
+    "reference_en": "Yes, I understand.",
+    "length_bucket": "1-10"
+  },
+  {
+    "parent_id": "ja_short_03",
+    "condition": "FULL",
+    "source_text": "ありがとうございます！",
+    "source_type": "reference_clean",
+    "char_count": 11,
+    "reference_en": "Thank you very much!",
+    "length_bucket": "1-10"
+  },
+  {
+    "parent_id": "ja_short_03",
+    "condition": "UNPUNCTUATED",
+    "source_text": "ありがとうございます",
+    "source_type": "reference_unpunctuated",
+    "char_count": 10,
+    "reference_en": "Thank you very much!",
+    "length_bucket": "1-10"
+  },
+  {
+    "parent_id": "ja_short_03",
+    "condition": "PARTIAL_25",
+    "source_text": "あり",
+    "source_type": "asr_partial",
+    "char_count": 2,
+    "prefix_ratio": 0.2,
+    "reference_en": "Thank you very much!",
+    "length_bucket": "1-10"
+  },
+  {
+    "parent_id": "ja_short_03",
+    "condition": "PARTIAL_50",
+    "source_text": "ありがとう",
+    "source_type": "asr_partial",
+    "char_count": 5,
+    "prefix_ratio": 0.5,
+    "reference_en": "Thank you very much!",
+    "length_bucket": "1-10"
+  },
+  {
+    "parent_id": "ja_short_03",
+    "condition": "PARTIAL_75",
+    "source_text": "ありがとうござい",
+    "source_type": "asr_partial",
+    "char_count": 8,
+    "prefix_ratio": 0.8,
+    "reference_en": "Thank you very much!",
+    "length_bucket": "1-10"
+  },
+  {
+    "parent_id": "ja_short_03",
+    "condition": "PARTIAL_100",
+    "source_text": "ありがとうございます",
+    "source_type": "asr_partial",
+    "char_count": 10,
+    "prefix_ratio": 1.0,
+    "reference_en": "Thank you very much!",
+    "length_bucket": "1-10"
+  },
+  {
+    "parent_id": "ja_short_04",
+    "condition": "FULL",
+    "source_text": "そうなんだよね。",
+    "source_type": "reference_clean",
+    "char_count": 8,
+    "reference_en": "That's how it is, isn't it.",
+    "length_bucket": "1-10"
+  },
+  {
+    "parent_id": "ja_short_04",
+    "condition": "UNPUNCTUATED",
+    "source_text": "そうなんだよね",
+    "source_type": "reference_unpunctuated",
+    "char_count": 7,
+    "reference_en": "That's how it is, isn't it.",
+    "length_bucket": "1-10"
+  },
+  {
+    "parent_id": "ja_short_04",
+    "condition": "PARTIAL_25",
+    "source_text": "そう",
+    "source_type": "asr_partial",
+    "char_count": 2,
+    "prefix_ratio": 0.29,
+    "reference_en": "That's how it is, isn't it.",
+    "length_bucket": "1-10"
+  },
+  {
+    "parent_id": "ja_short_04",
+    "condition": "PARTIAL_50",
+    "source_text": "そうなん",
+    "source_type": "asr_partial",
+    "char_count": 4,
+    "prefix_ratio": 0.57,
+    "reference_en": "That's how it is, isn't it.",
+    "length_bucket": "1-10"
+  },
+  {
+    "parent_id": "ja_short_04",
+    "condition": "PARTIAL_75",
+    "source_text": "そうなんだ",
+    "source_type": "asr_partial",
+    "char_count": 5,
+    "prefix_ratio": 0.71,
+    "reference_en": "That's how it is, isn't it.",
+    "length_bucket": "1-10"
+  },
+  {
+    "parent_id": "ja_short_04",
+    "condition": "PARTIAL_100",
+    "source_text": "そうなんだよね",
+    "source_type": "asr_partial",
+    "char_count": 7,
+    "prefix_ratio": 1.0,
+    "reference_en": "That's how it is, isn't it.",
+    "length_bucket": "1-10"
+  },
+  {
+    "parent_id": "ja_med_01",
+    "condition": "FULL",
+    "source_text": "今日の東京はとても天気が良くて暖かいですね。",
+    "source_type": "reference_clean",
+    "char_count": 22,
+    "reference_en": "The weather in Tokyo is very nice and warm today, isn't it.",
+    "length_bucket": "11-30"
+  },
+  {
+    "parent_id": "ja_med_01",
+    "condition": "UNPUNCTUATED",
+    "source_text": "今日の東京はとても天気が良くて暖かいですね",
+    "source_type": "reference_unpunctuated",
+    "char_count": 21,
+    "reference_en": "The weather in Tokyo is very nice and warm today, isn't it.",
+    "length_bucket": "11-30"
+  },
+  {
+    "parent_id": "ja_med_01",
+    "condition": "PARTIAL_25",
+    "source_text": "今日の東京",
+    "source_type": "asr_partial",
+    "char_count": 5,
+    "prefix_ratio": 0.24,
+    "reference_en": "The weather in Tokyo is very nice and warm today, isn't it.",
+    "length_bucket": "11-30"
+  },
+  {
+    "parent_id": "ja_med_01",
+    "condition": "PARTIAL_50",
+    "source_text": "今日の東京はとても天",
+    "source_type": "asr_partial",
+    "char_count": 10,
+    "prefix_ratio": 0.48,
+    "reference_en": "The weather in Tokyo is very nice and warm today, isn't it.",
+    "length_bucket": "11-30"
+  },
+  {
+    "parent_id": "ja_med_01",
+    "condition": "PARTIAL_75",
+    "source_text": "今日の東京はとても天気が良くて暖",
+    "source_type": "asr_partial",
+    "char_count": 16,
+    "prefix_ratio": 0.76,
+    "reference_en": "The weather in Tokyo is very nice and warm today, isn't it.",
+    "length_bucket": "11-30"
+  },
+  {
+    "parent_id": "ja_med_01",
+    "condition": "PARTIAL_100",
+    "source_text": "今日の東京はとても天気が良くて暖かいですね",
+    "source_type": "asr_partial",
+    "char_count": 21,
+    "prefix_ratio": 1.0,
+    "reference_en": "The weather in Tokyo is very nice and warm today, isn't it.",
+    "length_bucket": "11-30"
+  },
+  {
+    "parent_id": "ja_med_02",
+    "condition": "FULL",
+    "source_text": "この商品は３０％オフで１５００円になりますよ。",
+    "source_type": "reference_clean",
+    "char_count": 23,
+    "reference_en": "This product is 30% off, so it will be 1,500 yen.",
+    "length_bucket": "11-30"
+  },
+  {
+    "parent_id": "ja_med_02",
+    "condition": "UNPUNCTUATED",
+    "source_text": "この商品は３０％オフで１５００円になりますよ",
+    "source_type": "reference_unpunctuated",
+    "char_count": 22,
+    "reference_en": "This product is 30% off, so it will be 1,500 yen.",
+    "length_bucket": "11-30"
+  },
+  {
+    "parent_id": "ja_med_02",
+    "condition": "PARTIAL_25",
+    "source_text": "この商品は3",
+    "source_type": "asr_partial",
+    "char_count": 6,
+    "prefix_ratio": 0.27,
+    "reference_en": "This product is 30% off, so it will be 1,500 yen.",
+    "length_bucket": "11-30"
+  },
+  {
+    "parent_id": "ja_med_02",
+    "condition": "PARTIAL_50",
+    "source_text": "この商品は30%オフで",
+    "source_type": "asr_partial",
+    "char_count": 11,
+    "prefix_ratio": 0.5,
+    "reference_en": "This product is 30% off, so it will be 1,500 yen.",
+    "length_bucket": "11-30"
+  },
+  {
+    "parent_id": "ja_med_02",
+    "condition": "PARTIAL_75",
+    "source_text": "この商品は30%オフで1500円",
+    "source_type": "asr_partial",
+    "char_count": 16,
+    "prefix_ratio": 0.73,
+    "reference_en": "This product is 30% off, so it will be 1,500 yen.",
+    "length_bucket": "11-30"
+  },
+  {
+    "parent_id": "ja_med_02",
+    "condition": "PARTIAL_100",
+    "source_text": "この商品は30%オフで1500円になりますよ",
+    "source_type": "asr_partial",
+    "char_count": 22,
+    "prefix_ratio": 1.0,
+    "reference_en": "This product is 30% off, so it will be 1,500 yen.",
+    "length_bucket": "11-30"
+  },
+  {
+    "parent_id": "ja_med_03",
+    "condition": "FULL",
+    "source_text": "新宿の任天堂ストアに行ってみました。",
+    "source_type": "reference_clean",
+    "char_count": 18,
+    "reference_en": "I tried going to the Nintendo Store in Shinjuku.",
+    "length_bucket": "11-30"
+  },
+  {
+    "parent_id": "ja_med_03",
+    "condition": "UNPUNCTUATED",
+    "source_text": "新宿の任天堂ストアに行ってみました",
+    "source_type": "reference_unpunctuated",
+    "char_count": 17,
+    "reference_en": "I tried going to the Nintendo Store in Shinjuku.",
+    "length_bucket": "11-30"
+  },
+  {
+    "parent_id": "ja_med_03",
+    "condition": "PARTIAL_25",
+    "source_text": "新宿の任",
+    "source_type": "asr_partial",
+    "char_count": 4,
+    "prefix_ratio": 0.24,
+    "reference_en": "I tried going to the Nintendo Store in Shinjuku.",
+    "length_bucket": "11-30"
+  },
+  {
+    "parent_id": "ja_med_03",
+    "condition": "PARTIAL_50",
+    "source_text": "新宿の任天堂スト",
+    "source_type": "asr_partial",
+    "char_count": 8,
+    "prefix_ratio": 0.47,
+    "reference_en": "I tried going to the Nintendo Store in Shinjuku.",
+    "length_bucket": "11-30"
+  },
+  {
+    "parent_id": "ja_med_03",
+    "condition": "PARTIAL_75",
+    "source_text": "新宿の任天堂ストアに行って",
+    "source_type": "asr_partial",
+    "char_count": 13,
+    "prefix_ratio": 0.76,
+    "reference_en": "I tried going to the Nintendo Store in Shinjuku.",
+    "length_bucket": "11-30"
+  },
+  {
+    "parent_id": "ja_med_03",
+    "condition": "PARTIAL_100",
+    "source_text": "新宿の任天堂ストアに行ってみました",
+    "source_type": "asr_partial",
+    "char_count": 17,
+    "prefix_ratio": 1.0,
+    "reference_en": "I tried going to the Nintendo Store in Shinjuku.",
+    "length_bucket": "11-30"
+  },
+  {
+    "parent_id": "ja_med_04",
+    "condition": "FULL",
+    "source_text": "YouTubeのライブ配信を始めたいと思います。",
+    "source_type": "reference_clean",
+    "char_count": 24,
+    "reference_en": "I would like to start the YouTube live stream.",
+    "length_bucket": "11-30"
+  },
+  {
+    "parent_id": "ja_med_04",
+    "condition": "UNPUNCTUATED",
+    "source_text": "YouTubeのライブ配信を始めたいと思います",
+    "source_type": "reference_unpunctuated",
+    "char_count": 23,
+    "reference_en": "I would like to start the YouTube live stream.",
+    "length_bucket": "11-30"
+  },
+  {
+    "parent_id": "ja_med_04",
+    "condition": "PARTIAL_25",
+    "source_text": "YouTub",
+    "source_type": "asr_partial",
+    "char_count": 6,
+    "prefix_ratio": 0.26,
+    "reference_en": "I would like to start the YouTube live stream.",
+    "length_bucket": "11-30"
+  },
+  {
+    "parent_id": "ja_med_04",
+    "condition": "PARTIAL_50",
+    "source_text": "YouTubeのライブ配",
+    "source_type": "asr_partial",
+    "char_count": 12,
+    "prefix_ratio": 0.52,
+    "reference_en": "I would like to start the YouTube live stream.",
+    "length_bucket": "11-30"
+  },
+  {
+    "parent_id": "ja_med_04",
+    "condition": "PARTIAL_75",
+    "source_text": "YouTubeのライブ配信を始めた",
+    "source_type": "asr_partial",
+    "char_count": 17,
+    "prefix_ratio": 0.74,
+    "reference_en": "I would like to start the YouTube live stream.",
+    "length_bucket": "11-30"
+  },
+  {
+    "parent_id": "ja_med_04",
+    "condition": "PARTIAL_100",
+    "source_text": "YouTubeのライブ配信を始めたいと思います",
+    "source_type": "asr_partial",
+    "char_count": 23,
+    "prefix_ratio": 1.0,
+    "reference_en": "I would like to start the YouTube live stream.",
+    "length_bucket": "11-30"
+  },
+  {
+    "parent_id": "ja_med_05",
+    "condition": "FULL",
+    "source_text": "持ち主とはぐれた傘が風で舞い看板もなぎ倒されてしまったようです。",
+    "source_type": "reference_clean",
+    "char_count": 32,
+    "reference_en": "An umbrella separated from its owner blew in the wind, and signboards also seem to have been knocked down.",
+    "length_bucket": "11-30"
+  },
+  {
+    "parent_id": "ja_med_05",
+    "condition": "UNPUNCTUATED",
+    "source_text": "持ち主とはぐれた傘が風で舞い看板もなぎ倒されてしまったようです",
+    "source_type": "reference_unpunctuated",
+    "char_count": 31,
+    "reference_en": "An umbrella separated from its owner blew in the wind, and signboards also seem to have been knocked down.",
+    "length_bucket": "11-30"
+  },
+  {
+    "parent_id": "ja_med_05",
+    "condition": "PARTIAL_25",
+    "source_text": "こち主とはぐれた",
+    "source_type": "asr_partial",
+    "char_count": 8,
+    "prefix_ratio": 0.26,
+    "reference_en": "An umbrella separated from its owner blew in the wind, and signboards also seem to have been knocked down.",
+    "length_bucket": "11-30"
+  },
+  {
+    "parent_id": "ja_med_05",
+    "condition": "PARTIAL_50",
+    "source_text": "こち主とはぐれた傘が風で舞い看板",
+    "source_type": "asr_partial",
+    "char_count": 16,
+    "prefix_ratio": 0.52,
+    "reference_en": "An umbrella separated from its owner blew in the wind, and signboards also seem to have been knocked down.",
+    "length_bucket": "11-30"
+  },
+  {
+    "parent_id": "ja_med_05",
+    "condition": "PARTIAL_75",
+    "source_text": "こち主とはぐれた傘が風で舞い看板もなぎ倒されて",
+    "source_type": "asr_partial",
+    "char_count": 23,
+    "prefix_ratio": 0.74,
+    "reference_en": "An umbrella separated from its owner blew in the wind, and signboards also seem to have been knocked down.",
+    "length_bucket": "11-30"
+  },
+  {
+    "parent_id": "ja_med_05",
+    "condition": "PARTIAL_100",
+    "source_text": "こち主とはぐれた傘が風で舞い看板もなぎ倒されてしまったようです",
+    "source_type": "asr_partial",
+    "char_count": 31,
+    "prefix_ratio": 1.0,
+    "reference_en": "An umbrella separated from its owner blew in the wind, and signboards also seem to have been knocked down.",
+    "length_bucket": "11-30"
+  },
+  {
+    "parent_id": "ja_long_01",
+    "condition": "FULL",
+    "source_text": "昨日は友達と一緒に渋谷のカフェに行って、美味しいコーヒーとケーキを楽しみました。",
+    "source_type": "reference_clean",
+    "char_count": 40,
+    "reference_en": "Yesterday I went to a cafe in Shibuya with a friend and enjoyed delicious coffee and cake.",
+    "length_bucket": "31-60"
+  },
+  {
+    "parent_id": "ja_long_01",
+    "condition": "UNPUNCTUATED",
+    "source_text": "昨日は友達と一緒に渋谷のカフェに行って美味しいコーヒーとケーキを楽しみました",
+    "source_type": "reference_unpunctuated",
+    "char_count": 38,
+    "reference_en": "Yesterday I went to a cafe in Shibuya with a friend and enjoyed delicious coffee and cake.",
+    "length_bucket": "31-60"
+  },
+  {
+    "parent_id": "ja_long_01",
+    "condition": "PARTIAL_25",
+    "source_text": "昨日は友達と一緒に渋",
+    "source_type": "asr_partial",
+    "char_count": 10,
+    "prefix_ratio": 0.26,
+    "reference_en": "Yesterday I went to a cafe in Shibuya with a friend and enjoyed delicious coffee and cake.",
+    "length_bucket": "31-60"
+  },
+  {
+    "parent_id": "ja_long_01",
+    "condition": "PARTIAL_50",
+    "source_text": "昨日は友達と一緒に渋谷のカフェに行って",
+    "source_type": "asr_partial",
+    "char_count": 19,
+    "prefix_ratio": 0.5,
+    "reference_en": "Yesterday I went to a cafe in Shibuya with a friend and enjoyed delicious coffee and cake.",
+    "length_bucket": "31-60"
+  },
+  {
+    "parent_id": "ja_long_01",
+    "condition": "PARTIAL_75",
+    "source_text": "昨日は友達と一緒に渋谷のカフェに行って美味しいコーヒーと",
+    "source_type": "asr_partial",
+    "char_count": 28,
+    "prefix_ratio": 0.74,
+    "reference_en": "Yesterday I went to a cafe in Shibuya with a friend and enjoyed delicious coffee and cake.",
+    "length_bucket": "31-60"
+  },
+  {
+    "parent_id": "ja_long_01",
+    "condition": "PARTIAL_100",
+    "source_text": "昨日は友達と一緒に渋谷のカフェに行って美味しいコーヒーとケーキを楽しみました",
+    "source_type": "asr_partial",
+    "char_count": 38,
+    "prefix_ratio": 1.0,
+    "reference_en": "Yesterday I went to a cafe in Shibuya with a friend and enjoyed delicious coffee and cake.",
+    "length_bucket": "31-60"
+  },
+  {
+    "parent_id": "ja_long_02",
+    "condition": "FULL",
+    "source_text": "この新しい音声認識モデルは、低遅延でリアルタイムに字幕を生成することができます。",
+    "source_type": "reference_clean",
+    "char_count": 40,
+    "reference_en": "This new speech recognition model can generate subtitles in real-time with low latency.",
+    "length_bucket": "31-60"
+  },
+  {
+    "parent_id": "ja_long_02",
+    "condition": "UNPUNCTUATED",
+    "source_text": "この新しい音声認識モデルは低遅延でリアルタイムに字幕を生成することができます",
+    "source_type": "reference_unpunctuated",
+    "char_count": 38,
+    "reference_en": "This new speech recognition model can generate subtitles in real-time with low latency.",
+    "length_bucket": "31-60"
+  },
+  {
+    "parent_id": "ja_long_02",
+    "condition": "PARTIAL_25",
+    "source_text": "この新しい音声認識モ",
+    "source_type": "asr_partial",
+    "char_count": 10,
+    "prefix_ratio": 0.26,
+    "reference_en": "This new speech recognition model can generate subtitles in real-time with low latency.",
+    "length_bucket": "31-60"
+  },
+  {
+    "parent_id": "ja_long_02",
+    "condition": "PARTIAL_50",
+    "source_text": "この新しい音声認識モデルは低遅延でリア",
+    "source_type": "asr_partial",
+    "char_count": 19,
+    "prefix_ratio": 0.5,
+    "reference_en": "This new speech recognition model can generate subtitles in real-time with low latency.",
+    "length_bucket": "31-60"
+  },
+  {
+    "parent_id": "ja_long_02",
+    "condition": "PARTIAL_75",
+    "source_text": "この新しい音声認識モデルは低遅延でリアルタイムに字幕を生",
+    "source_type": "asr_partial",
+    "char_count": 28,
+    "prefix_ratio": 0.74,
+    "reference_en": "This new speech recognition model can generate subtitles in real-time with low latency.",
+    "length_bucket": "31-60"
+  },
+  {
+    "parent_id": "ja_long_02",
+    "condition": "PARTIAL_100",
+    "source_text": "この新しい音声認識モデルは低遅延でリアルタイムに字幕を生成することができます",
+    "source_type": "asr_partial",
+    "char_count": 38,
+    "prefix_ratio": 1.0,
+    "reference_en": "This new speech recognition model can generate subtitles in real-time with low latency.",
+    "length_bucket": "31-60"
+  },
+  {
+    "parent_id": "ja_long_03",
+    "condition": "FULL",
+    "source_text": "ええと、明日の午後にラッセル博士ともう一度その件について相談するつもりです。",
+    "source_type": "reference_clean",
+    "char_count": 38,
+    "reference_en": "Well, I intend to discuss that matter once again with Dr. Russell tomorrow afternoon.",
+    "length_bucket": "31-60"
+  },
+  {
+    "parent_id": "ja_long_03",
+    "condition": "UNPUNCTUATED",
+    "source_text": "ええと明日の午後にラッセル博士ともう一度その件について相談するつもりです",
+    "source_type": "reference_unpunctuated",
+    "char_count": 36,
+    "reference_en": "Well, I intend to discuss that matter once again with Dr. Russell tomorrow afternoon.",
+    "length_bucket": "31-60"
+  },
+  {
+    "parent_id": "ja_long_03",
+    "condition": "PARTIAL_25",
+    "source_text": "えーと明日の午後に",
+    "source_type": "asr_partial",
+    "char_count": 9,
+    "prefix_ratio": 0.24,
+    "reference_en": "Well, I intend to discuss that matter once again with Dr. Russell tomorrow afternoon.",
+    "length_bucket": "31-60"
+  },
+  {
+    "parent_id": "ja_long_03",
+    "condition": "PARTIAL_50",
+    "source_text": "えーと明日の午後にドクタラッセルとも",
+    "source_type": "asr_partial",
+    "char_count": 18,
+    "prefix_ratio": 0.49,
+    "reference_en": "Well, I intend to discuss that matter once again with Dr. Russell tomorrow afternoon.",
+    "length_bucket": "31-60"
+  },
+  {
+    "parent_id": "ja_long_03",
+    "condition": "PARTIAL_75",
+    "source_text": "えーと明日の午後にドクタラッセルともう一度その件について",
+    "source_type": "asr_partial",
+    "char_count": 28,
+    "prefix_ratio": 0.76,
+    "reference_en": "Well, I intend to discuss that matter once again with Dr. Russell tomorrow afternoon.",
+    "length_bucket": "31-60"
+  },
+  {
+    "parent_id": "ja_long_03",
+    "condition": "PARTIAL_100",
+    "source_text": "えーと明日の午後にドクタラッセルともう一度その件について相談するつもりです",
+    "source_type": "asr_partial",
+    "char_count": 37,
+    "prefix_ratio": 1.0,
+    "reference_en": "Well, I intend to discuss that matter once again with Dr. Russell tomorrow afternoon.",
+    "length_bucket": "31-60"
+  },
+  {
+    "parent_id": "ja_long_04",
+    "condition": "FULL",
+    "source_text": "台風の影響により、明日の朝から関東地方の各地で強い雨と風が予想されています。",
+    "source_type": "reference_clean",
+    "char_count": 38,
+    "reference_en": "Due to the typhoon, heavy rain and strong winds are expected in various parts of the Kanto region from tomorrow morning.",
+    "length_bucket": "31-60"
+  },
+  {
+    "parent_id": "ja_long_04",
+    "condition": "UNPUNCTUATED",
+    "source_text": "台風の影響により明日の朝から関東地方の各地で強い雨と風が予想されています",
+    "source_type": "reference_unpunctuated",
+    "char_count": 36,
+    "reference_en": "Due to the typhoon, heavy rain and strong winds are expected in various parts of the Kanto region from tomorrow morning.",
+    "length_bucket": "31-60"
+  },
+  {
+    "parent_id": "ja_long_04",
+    "condition": "PARTIAL_25",
+    "source_text": "台風の影響により明",
+    "source_type": "asr_partial",
+    "char_count": 9,
+    "prefix_ratio": 0.25,
+    "reference_en": "Due to the typhoon, heavy rain and strong winds are expected in various parts of the Kanto region from tomorrow morning.",
+    "length_bucket": "31-60"
+  },
+  {
+    "parent_id": "ja_long_04",
+    "condition": "PARTIAL_50",
+    "source_text": "台風の影響により明日の朝から関東地方",
+    "source_type": "asr_partial",
+    "char_count": 18,
+    "prefix_ratio": 0.5,
+    "reference_en": "Due to the typhoon, heavy rain and strong winds are expected in various parts of the Kanto region from tomorrow morning.",
+    "length_bucket": "31-60"
+  },
+  {
+    "parent_id": "ja_long_04",
+    "condition": "PARTIAL_75",
+    "source_text": "台風の影響により明日の朝から関東地方の各地で強い雨と風",
+    "source_type": "asr_partial",
+    "char_count": 27,
+    "prefix_ratio": 0.75,
+    "reference_en": "Due to the typhoon, heavy rain and strong winds are expected in various parts of the Kanto region from tomorrow morning.",
+    "length_bucket": "31-60"
+  },
+  {
+    "parent_id": "ja_long_04",
+    "condition": "PARTIAL_100",
+    "source_text": "台風の影響により明日の朝から関東地方の各地で強い雨と風が予想されています",
+    "source_type": "asr_partial",
+    "char_count": 36,
+    "prefix_ratio": 1.0,
+    "reference_en": "Due to the typhoon, heavy rain and strong winds are expected in various parts of the Kanto region from tomorrow morning.",
+    "length_bucket": "31-60"
+  },
+  {
+    "parent_id": "ja_vlong_01",
+    "condition": "FULL",
+    "source_text": "気象庁の発表によりますと、非常に強い勢力の台風が勢力を維持したまま北上しており、沿岸部では高波や土砂崩れに厳重な警戒が必要とのことです。",
+    "source_type": "reference_clean",
+    "char_count": 68,
+    "reference_en": "According to the Meteorological Agency, a very powerful typhoon is moving north while maintaining its intensity, and strict vigilance is required for high waves and landslides in coastal areas.",
+    "length_bucket": "61-120"
+  },
+  {
+    "parent_id": "ja_vlong_01",
+    "condition": "UNPUNCTUATED",
+    "source_text": "気象庁の発表によりますと非常に強い勢力の台風が勢力を維持したまま北上しており沿岸部では高波や土砂崩れに厳重な警戒が必要とのことです",
+    "source_type": "reference_unpunctuated",
+    "char_count": 65,
+    "reference_en": "According to the Meteorological Agency, a very powerful typhoon is moving north while maintaining its intensity, and strict vigilance is required for high waves and landslides in coastal areas.",
+    "length_bucket": "61-120"
+  },
+  {
+    "parent_id": "ja_vlong_01",
+    "condition": "PARTIAL_25",
+    "source_text": "気象庁の発表によりますと非常に強",
+    "source_type": "asr_partial",
+    "char_count": 16,
+    "prefix_ratio": 0.25,
+    "reference_en": "According to the Meteorological Agency, a very powerful typhoon is moving north while maintaining its intensity, and strict vigilance is required for high waves and landslides in coastal areas.",
+    "length_bucket": "61-120"
+  },
+  {
+    "parent_id": "ja_vlong_01",
+    "condition": "PARTIAL_50",
+    "source_text": "気象庁の発表によりますと非常に強い勢力の台風が勢力を維持したまま",
+    "source_type": "asr_partial",
+    "char_count": 32,
+    "prefix_ratio": 0.49,
+    "reference_en": "According to the Meteorological Agency, a very powerful typhoon is moving north while maintaining its intensity, and strict vigilance is required for high waves and landslides in coastal areas.",
+    "length_bucket": "61-120"
+  },
+  {
+    "parent_id": "ja_vlong_01",
+    "condition": "PARTIAL_75",
+    "source_text": "気象庁の発表によりますと非常に強い勢力の台風が勢力を維持したまま北上しており沿岸部では高波や土砂崩",
+    "source_type": "asr_partial",
+    "char_count": 49,
+    "prefix_ratio": 0.75,
+    "reference_en": "According to the Meteorological Agency, a very powerful typhoon is moving north while maintaining its intensity, and strict vigilance is required for high waves and landslides in coastal areas.",
+    "length_bucket": "61-120"
+  },
+  {
+    "parent_id": "ja_vlong_01",
+    "condition": "PARTIAL_100",
+    "source_text": "気象庁の発表によりますと非常に強い勢力の台風が勢力を維持したまま北上しており沿岸部では高波や土砂崩れに厳重な警戒が必要とのことです",
+    "source_type": "asr_partial",
+    "char_count": 65,
+    "prefix_ratio": 1.0,
+    "reference_en": "According to the Meteorological Agency, a very powerful typhoon is moving north while maintaining its intensity, and strict vigilance is required for high waves and landslides in coastal areas.",
+    "length_bucket": "61-120"
+  },
+  {
+    "parent_id": "ja_vlong_02",
+    "condition": "FULL",
+    "source_text": "みなさんこんばんは、今日の配信では新しくリリースされたゲームの難関ボスをノーダメージで倒せるか挑戦してみたいと思いますので、応援よろしくお願いしますね。",
+    "source_type": "reference_clean",
+    "char_count": 76,
+    "reference_en": "Good evening everyone, in today's stream I would like to try defeating the difficult boss of the newly released game without taking damage, so thank you for your support.",
+    "length_bucket": "61-120"
+  },
+  {
+    "parent_id": "ja_vlong_02",
+    "condition": "UNPUNCTUATED",
+    "source_text": "みなさんこんばんは今日の配信では新しくリリースされたゲームの難関ボスをノーダメージで倒せるか挑戦してみたいと思いますので応援よろしくお願いしますね",
+    "source_type": "reference_unpunctuated",
+    "char_count": 73,
+    "reference_en": "Good evening everyone, in today's stream I would like to try defeating the difficult boss of the newly released game without taking damage, so thank you for your support.",
+    "length_bucket": "61-120"
+  },
+  {
+    "parent_id": "ja_vlong_02",
+    "condition": "PARTIAL_25",
+    "source_text": "皆さんこんばんは今日の配信では新しく",
+    "source_type": "asr_partial",
+    "char_count": 18,
+    "prefix_ratio": 0.25,
+    "reference_en": "Good evening everyone, in today's stream I would like to try defeating the difficult boss of the newly released game without taking damage, so thank you for your support.",
+    "length_bucket": "61-120"
+  },
+  {
+    "parent_id": "ja_vlong_02",
+    "condition": "PARTIAL_50",
+    "source_text": "皆さんこんばんは今日の配信では新しくリリースされたゲームの難関ボスをノー",
+    "source_type": "asr_partial",
+    "char_count": 36,
+    "prefix_ratio": 0.5,
+    "reference_en": "Good evening everyone, in today's stream I would like to try defeating the difficult boss of the newly released game without taking damage, so thank you for your support.",
+    "length_bucket": "61-120"
+  },
+  {
+    "parent_id": "ja_vlong_02",
+    "condition": "PARTIAL_75",
+    "source_text": "皆さんこんばんは今日の配信では新しくリリースされたゲームの難関ボスをノーダメージで倒せるか挑戦してみたいと思",
+    "source_type": "asr_partial",
+    "char_count": 54,
+    "prefix_ratio": 0.75,
+    "reference_en": "Good evening everyone, in today's stream I would like to try defeating the difficult boss of the newly released game without taking damage, so thank you for your support.",
+    "length_bucket": "61-120"
+  },
+  {
+    "parent_id": "ja_vlong_02",
+    "condition": "PARTIAL_100",
+    "source_text": "皆さんこんばんは今日の配信では新しくリリースされたゲームの難関ボスをノーダメージで倒せるか挑戦してみたいと思いますので応援よろしくお願いしますね",
+    "source_type": "asr_partial",
+    "char_count": 72,
+    "prefix_ratio": 1.0,
+    "reference_en": "Good evening everyone, in today's stream I would like to try defeating the difficult boss of the newly released game without taking damage, so thank you for your support.",
+    "length_bucket": "61-120"
+  },
+  {
+    "parent_id": "ja_vlong_03",
+    "condition": "FULL",
+    "source_text": "当社は2026年9月より、次世代のAI技術を活用した新しいリアルタイム翻訳サービスの提供を開始することを本日正式に発表いたしました。",
+    "source_type": "reference_clean",
+    "char_count": 66,
+    "reference_en": "We officially announced today that starting in September 2026, we will begin offering a new real-time translation service utilizing next-generation AI technology.",
+    "length_bucket": "61-120"
+  },
+  {
+    "parent_id": "ja_vlong_03",
+    "condition": "UNPUNCTUATED",
+    "source_text": "当社は2026年9月より次世代のAI技術を活用した新しいリアルタイム翻訳サービスの提供を開始することを本日正式に発表いたしました",
+    "source_type": "reference_unpunctuated",
+    "char_count": 64,
+    "reference_en": "We officially announced today that starting in September 2026, we will begin offering a new real-time translation service utilizing next-generation AI technology.",
+    "length_bucket": "61-120"
+  },
+  {
+    "parent_id": "ja_vlong_03",
+    "condition": "PARTIAL_25",
+    "source_text": "当社は2026年9月より次世代の",
+    "source_type": "asr_partial",
+    "char_count": 16,
+    "prefix_ratio": 0.25,
+    "reference_en": "We officially announced today that starting in September 2026, we will begin offering a new real-time translation service utilizing next-generation AI technology.",
+    "length_bucket": "61-120"
+  },
+  {
+    "parent_id": "ja_vlong_03",
+    "condition": "PARTIAL_50",
+    "source_text": "当社は2026年9月より次世代のAI技術を活用した新しいリアルタ",
+    "source_type": "asr_partial",
+    "char_count": 32,
+    "prefix_ratio": 0.5,
+    "reference_en": "We officially announced today that starting in September 2026, we will begin offering a new real-time translation service utilizing next-generation AI technology.",
+    "length_bucket": "61-120"
+  },
+  {
+    "parent_id": "ja_vlong_03",
+    "condition": "PARTIAL_75",
+    "source_text": "当社は2026年9月より次世代のAI技術を活用した新しいリアルタイム翻訳サービスの提供を開始する",
+    "source_type": "asr_partial",
+    "char_count": 48,
+    "prefix_ratio": 0.75,
+    "reference_en": "We officially announced today that starting in September 2026, we will begin offering a new real-time translation service utilizing next-generation AI technology.",
+    "length_bucket": "61-120"
+  },
+  {
+    "parent_id": "ja_vlong_03",
+    "condition": "PARTIAL_100",
+    "source_text": "当社は2026年9月より次世代のAI技術を活用した新しいリアルタイム翻訳サービスの提供を開始することを本日正式に発表いたしました",
+    "source_type": "asr_partial",
+    "char_count": 64,
+    "prefix_ratio": 1.0,
+    "reference_en": "We officially announced today that starting in September 2026, we will begin offering a new real-time translation service utilizing next-generation AI technology.",
+    "length_bucket": "61-120"
+  },
+  {
+    "parent_id": "ja_xlong_01",
+    "condition": "FULL",
+    "source_text": "先週の週末に家族みんなで京都へ旅行に行ったのですが、観光名所の金閣寺や清水寺はどこも国内外からの観光客で非常に混雑していました。それでも美味しい抹茶アイスや湯豆腐を食べることができて、とても充実した素晴らしい思い出深い休日になりました。",
+    "source_type": "reference_clean",
+    "char_count": 118,
+    "reference_en": "Last weekend I went on a trip to Kyoto with my entire family, but tourist spots like Kinkaku-ji and Kiyomizu-dera were all extremely crowded with domestic and international tourists. Nevertheless, we were able to eat delicious matcha ice cream and boiled tofu, making it a very fulfilling, wonderful, and memorable holiday.",
+    "length_bucket": ">120"
+  },
+  {
+    "parent_id": "ja_xlong_01",
+    "condition": "UNPUNCTUATED",
+    "source_text": "先週の週末に家族みんなで京都へ旅行に行ったのですが観光名所の金閣寺や清水寺はどこも国内外からの観光客で非常に混雑していましたそれでも美味しい抹茶アイスや湯豆腐を食べることができてとても充実した素晴らしい思い出深い休日になりました",
+    "source_type": "reference_unpunctuated",
+    "char_count": 114,
+    "reference_en": "Last weekend I went on a trip to Kyoto with my entire family, but tourist spots like Kinkaku-ji and Kiyomizu-dera were all extremely crowded with domestic and international tourists. Nevertheless, we were able to eat delicious matcha ice cream and boiled tofu, making it a very fulfilling, wonderful, and memorable holiday.",
+    "length_bucket": ">120"
+  },
+  {
+    "parent_id": "ja_xlong_01",
+    "condition": "PARTIAL_25",
+    "source_text": "先週の週末に家族みんなで京都へ旅行に行ったのですが観光名",
+    "source_type": "asr_partial",
+    "char_count": 28,
+    "prefix_ratio": 0.25,
+    "reference_en": "Last weekend I went on a trip to Kyoto with my entire family, but tourist spots like Kinkaku-ji and Kiyomizu-dera were all extremely crowded with domestic and international tourists. Nevertheless, we were able to eat delicious matcha ice cream and boiled tofu, making it a very fulfilling, wonderful, and memorable holiday.",
+    "length_bucket": ">120"
+  },
+  {
+    "parent_id": "ja_xlong_01",
+    "condition": "PARTIAL_50",
+    "source_text": "先週の週末に家族みんなで京都へ旅行に行ったのですが観光名所の金閣寺や清水寺はどこも国内外からの観光客で非常に混雑し",
+    "source_type": "asr_partial",
+    "char_count": 57,
+    "prefix_ratio": 0.5,
+    "reference_en": "Last weekend I went on a trip to Kyoto with my entire family, but tourist spots like Kinkaku-ji and Kiyomizu-dera were all extremely crowded with domestic and international tourists. Nevertheless, we were able to eat delicious matcha ice cream and boiled tofu, making it a very fulfilling, wonderful, and memorable holiday.",
+    "length_bucket": ">120"
+  },
+  {
+    "parent_id": "ja_xlong_01",
+    "condition": "PARTIAL_75",
+    "source_text": "先週の週末に家族みんなで京都へ旅行に行ったのですが観光名所の金閣寺や清水寺はどこも国内外からの観光客で非常に混雑していましたそれでも美味しい抹茶アイスや湯豆腐を食べることが",
+    "source_type": "asr_partial",
+    "char_count": 86,
+    "prefix_ratio": 0.75,
+    "reference_en": "Last weekend I went on a trip to Kyoto with my entire family, but tourist spots like Kinkaku-ji and Kiyomizu-dera were all extremely crowded with domestic and international tourists. Nevertheless, we were able to eat delicious matcha ice cream and boiled tofu, making it a very fulfilling, wonderful, and memorable holiday.",
+    "length_bucket": ">120"
+  },
+  {
+    "parent_id": "ja_xlong_01",
+    "condition": "PARTIAL_100",
+    "source_text": "先週の週末に家族みんなで京都へ旅行に行ったのですが観光名所の金閣寺や清水寺はどこも国内外からの観光客で非常に混雑していましたそれでも美味しい抹茶アイスや湯豆腐を食べることができてとても充実した素晴らしい思い出深い休日になりました",
+    "source_type": "asr_partial",
+    "char_count": 114,
+    "prefix_ratio": 1.0,
+    "reference_en": "Last weekend I went on a trip to Kyoto with my entire family, but tourist spots like Kinkaku-ji and Kiyomizu-dera were all extremely crowded with domestic and international tourists. Nevertheless, we were able to eat delicious matcha ice cream and boiled tofu, making it a very fulfilling, wonderful, and memorable holiday.",
+    "length_bucket": ">120"
+  },
+  {
+    "parent_id": "ja_xlong_02",
+    "condition": "FULL",
+    "source_text": "本プロジェクトの目的は、クラウド依存を完全に排除し、ユーザーの手元にある一般的なノートパソコンのCPU上でのみ動作する超低遅延なリアルタイムストリーミング音声翻訳システムを実現することです。これにより、プライバシーを完全に保護しながら高品質な多言語コミュニケーション体験を提供できます。",
+    "source_type": "reference_clean",
+    "char_count": 143,
+    "reference_en": "The objective of this project is to completely eliminate cloud dependency and achieve an ultra-low-latency real-time streaming speech translation system running solely on the CPU of an ordinary laptop owned by the user. Through this, we can provide a high-quality multilingual communication experience while completely protecting privacy.",
+    "length_bucket": ">120"
+  },
+  {
+    "parent_id": "ja_xlong_02",
+    "condition": "UNPUNCTUATED",
+    "source_text": "本プロジェクトの目的はクラウド依存を完全に排除しユーザーの手元にある一般的なノートパソコンのCPU上でのみ動作する超低遅延なリアルタイムストリーミング音声翻訳システムを実現することですこれによりプライバシーを完全に保護しながら高品質な多言語コミュニケーション体験を提供できます",
+    "source_type": "reference_unpunctuated",
+    "char_count": 138,
+    "reference_en": "The objective of this project is to completely eliminate cloud dependency and achieve an ultra-low-latency real-time streaming speech translation system running solely on the CPU of an ordinary laptop owned by the user. Through this, we can provide a high-quality multilingual communication experience while completely protecting privacy.",
+    "length_bucket": ">120"
+  },
+  {
+    "parent_id": "ja_xlong_02",
+    "condition": "PARTIAL_25",
+    "source_text": "本プロジェクトの目的はクラウド依存を完全に排除しユーザーの手元にある",
+    "source_type": "asr_partial",
+    "char_count": 34,
+    "prefix_ratio": 0.25,
+    "reference_en": "The objective of this project is to completely eliminate cloud dependency and achieve an ultra-low-latency real-time streaming speech translation system running solely on the CPU of an ordinary laptop owned by the user. Through this, we can provide a high-quality multilingual communication experience while completely protecting privacy.",
+    "length_bucket": ">120"
+  },
+  {
+    "parent_id": "ja_xlong_02",
+    "condition": "PARTIAL_50",
+    "source_text": "本プロジェクトの目的はクラウド依存を完全に排除しユーザーの手元にある一般的なノートパソコンのCPU上でのみ動作する超低遅延なリアルタイムス",
+    "source_type": "asr_partial",
+    "char_count": 69,
+    "prefix_ratio": 0.5,
+    "reference_en": "The objective of this project is to completely eliminate cloud dependency and achieve an ultra-low-latency real-time streaming speech translation system running solely on the CPU of an ordinary laptop owned by the user. Through this, we can provide a high-quality multilingual communication experience while completely protecting privacy.",
+    "length_bucket": ">120"
+  },
+  {
+    "parent_id": "ja_xlong_02",
+    "condition": "PARTIAL_75",
+    "source_text": "本プロジェクトの目的はクラウド依存を完全に排除しユーザーの手元にある一般的なノートパソコンのCPU上でのみ動作する超低遅延なリアルタイムストリーミング音声翻訳システムを実現することですこれによりプライバシーを",
+    "source_type": "asr_partial",
+    "char_count": 104,
+    "prefix_ratio": 0.75,
+    "reference_en": "The objective of this project is to completely eliminate cloud dependency and achieve an ultra-low-latency real-time streaming speech translation system running solely on the CPU of an ordinary laptop owned by the user. Through this, we can provide a high-quality multilingual communication experience while completely protecting privacy.",
+    "length_bucket": ">120"
+  },
+  {
+    "parent_id": "ja_xlong_02",
+    "condition": "PARTIAL_100",
+    "source_text": "本プロジェクトの目的はクラウド依存を完全に排除しユーザーの手元にある一般的なノートパソコンのCPU上でのみ動作する超低遅延なリアルタイムストリーミング音声翻訳システムを実現することですこれによりプライバシーを完全に保護しながら高品質な多言語コミュニケーション体験を提供できます",
+    "source_type": "asr_partial",
+    "char_count": 138,
+    "prefix_ratio": 1.0,
+    "reference_en": "The objective of this project is to completely eliminate cloud dependency and achieve an ultra-low-latency real-time streaming speech translation system running solely on the CPU of an ordinary laptop owned by the user. Through this, we can provide a high-quality multilingual communication experience while completely protecting privacy.",
+    "length_bucket": ">120"
+  }
+]

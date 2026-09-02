@@ -25,6 +25,7 @@ yarn-error.log*
 # ML Models & Heavy Checkpoints (Downloaded via scripts/download_models.py)
 **/models/*
 !**/models/.gitkeep
+!**/models/*.py
 *.onnx
 *.bin
 *.safetensors

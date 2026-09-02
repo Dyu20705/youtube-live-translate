@@ -50,7 +50,7 @@ class WebSocketBridgeServer:
     async def handler(self, websocket):
         self.clients.add(websocket)
         logger.info(f"Client connected: {websocket.remote_address} (total clients: {len(self.clients)})")
-        
+
         # Send initial READY status
         status = StatusMessage(state="RUNNING", message="S5 WebSocket Bridge Connected")
         await websocket.send(serialize_wire_message(status))

@@ -22,7 +22,7 @@ def simulate_rendering_pipeline(events: List[Dict[str, Any]]) -> Dict[str, Any]:
     raw_dom_replacements = 0
     raw_displacements = []
     prev_raw_display = ""
-    
+
     # Strategy 2: S5 Anchored Rendering (Dual container + coalescing)
     anchored_renders = 0
     anchored_committed_updates = 0
@@ -31,15 +31,15 @@ def simulate_rendering_pipeline(events: List[Dict[str, Any]]) -> Dict[str, Any]:
     anchored_coalesced = 0
     anchored_dom_replacements = 0
     anchored_displacements = []
-    
+
     prev_committed = ""
     prev_provisional = ""
-    
+
     render_latencies_ms = []
 
     for i, ev in enumerate(events):
         t0 = time.perf_counter()
-        
+
         c_text = ev.get("committed_text", "")
         p_text = ev.get("provisional_text", "")
         d_text = ev.get("display_text", "")
@@ -63,13 +63,13 @@ def simulate_rendering_pipeline(events: List[Dict[str, Any]]) -> Dict[str, Any]:
             anchored_noop_duplicates += 1
         else:
             anchored_renders += 1
-            
+
             if c_text != prev_committed:
                 anchored_committed_updates += 1
-            
+
             if p_text != prev_provisional:
                 anchored_provisional_updates += 1
-                
+
             # In anchored dual-box rendering, the committed origin is fixed.
             # Thus anchor displacement is strictly 0.0px.
             anchored_displacements.append(0.0)

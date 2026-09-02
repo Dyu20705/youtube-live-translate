@@ -20,7 +20,7 @@ def test_fault_injection_process_sigkill_recovery():
     """Verifies that a SIGKILL (kill -9) on the native host process allows immediate clean restart."""
     # Start instance 1
     p1 = subprocess.Popen([str(HOST_RUNNER)], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    
+
     # Read initial prefix
     raw_len = p1.stdout.read(4)
     assert len(raw_len) == 4
@@ -51,7 +51,7 @@ def test_security_fuzzing_malformed_and_adversarial_payloads():
         # Missing fields
         json.dumps({}),
         json.dumps({"type": "subtitle.update"}),
-        
+
         # Negative revision / segment
         json.dumps({"version": "1.0", "type": "subtitle.update", "segment_id": -1, "source_revision": 1, "committed_text": "A", "provisional_text": "B"}),
         json.dumps({"version": "1.0", "type": "subtitle.update", "segment_id": 1, "source_revision": -10, "committed_text": "A", "provisional_text": "B"}),

@@ -89,7 +89,7 @@ def test_scenario_3_malformed_json_handling():
     proc = spawn_native_host()
     try:
         _ = read_stdio_message(proc, timeout_sec=12.0)
-        
+
         bad_json = b"NOT_VALID_JSON{}"
         proc.stdin.write(struct.pack("@I", len(bad_json)) + bad_json)
         proc.stdin.flush()
@@ -108,7 +108,7 @@ def test_scenario_4_oversized_message_protection():
     proc = spawn_native_host()
     try:
         _ = read_stdio_message(proc, timeout_sec=12.0)
-        
+
         # Send length prefix claiming 2 MiB
         oversized_len = 2 * 1024 * 1024
         proc.stdin.write(struct.pack("@I", oversized_len))
@@ -127,11 +127,11 @@ def test_scenario_5_malformed_length_prefix():
     proc = spawn_native_host()
     try:
         _ = read_stdio_message(proc, timeout_sec=12.0)
-        
+
         # Send only 2 bytes and close stdin
         proc.stdin.write(b"\x01\x00")
         proc.stdin.close()
-        
+
         try:
             resp = read_stdio_message(proc, timeout_sec=3.0)
             assert resp.get("type") == "error" or resp == {}

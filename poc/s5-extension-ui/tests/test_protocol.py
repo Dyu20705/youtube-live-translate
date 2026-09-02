@@ -27,7 +27,7 @@ def test_protocol_subtitle_update_serialization():
     )
     raw = serialize_wire_message(msg)
     data = json.loads(raw)
-    
+
     assert data["version"] == PROTOCOL_VERSION
     assert data["type"] == "subtitle.update"
     assert data["segment_id"] == 1

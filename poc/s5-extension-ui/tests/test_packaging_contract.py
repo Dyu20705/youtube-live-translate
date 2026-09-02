@@ -20,7 +20,7 @@ def test_extension_manifest_contract():
 
     # 1. Manifest V3 validation
     assert manifest.get("manifest_version") == 3, "Must be Manifest V3"
-    assert manifest.get("name") == "YouTube Live Translate S5"
+    assert manifest.get("name") == "YouTube Live Translate"
     assert manifest.get("version") == "1.0.0"
 
     # 2. Service Worker validation
@@ -43,12 +43,17 @@ def test_extension_manifest_contract():
     assert (S5_DIR / "offscreen.js").exists(), "offscreen.js does not exist"
     assert (S5_DIR / "audio-processor.js").exists(), "audio-processor.js does not exist"
 
-    # 5. Permissions validation (Minimum required)
+    # 5. Icons validation
+    icons = manifest.get("icons", {})
+    for size, icon_path in icons.items():
+        assert (S5_DIR / icon_path).exists(), f"Icon {icon_path} does not exist"
+
+    # 6. Permissions validation (Minimum required)
     permissions = manifest.get("permissions", [])
-    for req in ["tabCapture", "offscreen", "activeTab", "nativeMessaging"]:
+    for req in ["tabCapture", "offscreen", "activeTab", "nativeMessaging", "storage"]:
         assert req in permissions, f"Missing required permission: {req}"
 
-    # 6. Host permissions validation
+    # 7. Host permissions validation
     host_perms = manifest.get("host_permissions", [])
     assert any("youtube.com" in hp for hp in host_perms), "Host permissions must cover YouTube"
 

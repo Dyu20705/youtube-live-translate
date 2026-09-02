@@ -1,0 +1,50 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube Live Translate S5",
+  "version": "1.0.0",
+  "description": "Local-first real-time subtitle translation for YouTube Live using Sherpa-ONNX Zipformer, Marian INT8 MT, and Anchored Subtitle Presentation.",
+  "permissions": [
+    "tabCapture",
+    "offscreen",
+    "activeTab",
+    "storage",
+    "nativeMessaging"
+  ],
+  "host_permissions": [
+    "*://*.youtube.com/*",
+    "*://youtube.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.youtube.com/*",
+        "*://youtube.com/*"
+      ],
+      "js": [
+        "content/content_script.js"
+      ],
+      "css": [
+        "content/subtitle_overlay.css"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "YouTube Live Translate"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "content/*"
+      ],
+      "matches": [
+        "*://*.youtube.com/*"
+      ]
+    }
+  ]
+}

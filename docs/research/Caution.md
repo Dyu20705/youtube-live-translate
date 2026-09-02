@@ -401,6 +401,12 @@ https://aclanthology.org/2026.iwslt-1.30/
 
 > **Do not claim semantic stability is superior until it beats LCP experimentally.**
 
+### Stage S4 Resolution (September 2026)
+Stage S4 empirically implemented and validated **Local Agreement ($K=2$) + Adaptive Frontier ($W=2$)** (`S4 Functional / Contract = PASS`, `S4 Perceptual UX = OPEN`):
+- **Committed-Prefix Immutability Verified:** Zero committed revisions ($\text{revisions} = 0$), sub-millisecond overhead ($\text{p50} = 0.029\text{ ms}$), and $82.7\%$ MT call reduction.
+- **Architectural Rule on Conflict Semantics:** Committed output is a temporal UX stability guarantee, not a guarantee that already-committed text is semantically correct under arbitrary later ASR corrections.
+- **Handoff to S5:** Perceptual flicker reduction requires Stage S5 anchored layout rendering (solid committed text + dimmed provisional tail without line reflow). See [`ADR-006`](../adr/ADR-006-incremental-translation-frontier.md) and [`s4-incremental-translation.md`](s4-incremental-translation.md).
+
 ---
 
 # 9. Risk #5 — YouTube Integration Is an Unverified Boundary
@@ -459,6 +465,12 @@ Acceptance:
 ✓ no progressive latency drift
 ✓ 60-minute session passes
 ```
+
+### Stage S5 Resolution (September 2026)
+Stage S5 implemented and verified the **Extension UI & Native Host Integration** (`S5 Verdict = PASS`):
+- **Anchored Presentation Verified:** $\text{anchor\_displacement} = 0.0000\text{px}$ under continuous provisional updates.
+- **End-to-End Pipeline Verified:** Ingests live audio $\to$ Zipformer (S2) $\to$ Marian INT8 (S3) $\to$ Incremental Translator (S4) $\to$ Extension Overlay (S5).
+- **Sub-Millisecond Dispatch Latency:** $\text{p50} = 0.000\text{ ms}$, $\text{p95} = 0.001\text{ ms}$. See [`ADR-007`](../adr/ADR-007-extension-renderer-and-native-host-integration.md) and [`s5-extension-ui-native-host.md`](s5-extension-ui-native-host.md).
 
 ---
 

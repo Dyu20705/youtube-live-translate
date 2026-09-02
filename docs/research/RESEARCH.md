@@ -2295,3 +2295,39 @@ The user should only experience **immediate understanding**.
 
 14. **facebook/nllb-200-distilled-600M**
     https://huggingface.co/facebook/nllb-200-distilled-600M
+
+---
+
+# 67. Stage S4 Empirical Validation: Local Agreement & Adaptive Frontier
+
+In September 2026, Stage S4 was implemented and empirically validated:
+
+1. **Stateful Streaming Policy:**
+   Implemented deterministic state machine separating output into an **immutable committed prefix** and a **revisable provisional suffix**.
+2. **Local Agreement ($K=2$) + Protected Unstable Suffix ($W=2$):**
+   - Verified zero committed prefix revisions ($\text{revisions} = 0$) across 100% of test fixtures.
+   - S4 policy overhead measured at $\text{p50} = 0.030\text{ ms}$ and $\text{p95} = 0.046\text{ ms}$ ($< 0.1\%$ of latency budget).
+   - Eliminated $82.7\%$ of redundant MT calls on live streaming audio via input deduplication.
+   - Preserved translation quality ($\text{chrF++} = 37.53$) while eliminating subtitle flicker.
+3. **Evidence Artifacts:**
+   - [`docs/adr/ADR-006-incremental-translation-frontier.md`](file:///home/duy/Code/tools/youtube-live-translate/docs/adr/ADR-006-incremental-translation-frontier.md)
+   - [`docs/research/s4-incremental-translation.md`](file:///home/duy/Code/tools/youtube-live-translate/docs/research/s4-incremental-translation.md)
+   - [`docs/evidence/s4-incremental-translation/s4_benchmark_measurements.json`](file:///home/duy/Code/tools/youtube-live-translate/docs/evidence/s4-incremental-translation/s4_benchmark_measurements.json)
+
+---
+
+# 68. Stage S5 Empirical Validation: Anchored Subtitle Presentation & Native Host
+
+In September 2026, Stage S5 was implemented and empirically validated:
+
+1. **Anchored Presentation Layer:**
+   - Implemented dual-box layout (`ylt-committed-box` + `ylt-provisional-box`).
+   - Verified **0.0000 px** spatial anchor displacement under continuous provisional mutations ($\Delta \text{left} = 0\text{ px}$, $\Delta \text{top} = 0\text{ px}$).
+2. **Native Host & Local WebSocket Transport:**
+   - Established versioned JSON protocol `v1.0`.
+   - Connected full streaming pipeline: Tab Capture (S1) $\to$ Zipformer (S2) $\to$ Marian INT8 (S3) $\to$ Incremental Translator (S4) $\to$ Extension Overlay (S5).
+   - Render dispatch latency verified at $\text{p50} = 0.000\text{ ms}$, $\text{p95} = 0.001\text{ ms}$.
+3. **Evidence Artifacts:**
+   - [`docs/adr/ADR-007-extension-renderer-and-native-host-integration.md`](file:///home/duy/Code/tools/youtube-live-translate/docs/adr/ADR-007-extension-renderer-and-native-host-integration.md)
+   - [`docs/research/s5-extension-ui-native-host.md`](file:///home/duy/Code/tools/youtube-live-translate/docs/research/s5-extension-ui-native-host.md)
+   - [`docs/evidence/s5-extension-ui/s5_benchmark_measurements.json`](file:///home/duy/Code/tools/youtube-live-translate/docs/evidence/s5-extension-ui/s5_benchmark_measurements.json)

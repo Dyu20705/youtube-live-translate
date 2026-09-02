@@ -1,0 +1,22 @@
+{
+  "total_incoming_events": 98,
+  "raw_unified_strategy": {
+    "total_renders": 19,
+    "dom_node_replacements": 19,
+    "max_anchor_displacement_px": 239.4,
+    "avg_anchor_displacement_px": 80.27,
+    "spatial_anchoring": "UNSTABLE (Whole-line reflow)"
+  },
+  "s5_anchored_strategy": {
+    "total_renders": 20,
+    "committed_updates": 2,
+    "provisional_updates": 20,
+    "noop_duplicate_events": 78,
+    "dom_node_replacements": 0,
+    "max_anchor_displacement_px": 0.0,
+    "avg_anchor_displacement_px": 0.0,
+    "spatial_anchoring": "PERFECT (0.0px displacement)",
+    "render_latency_p50_ms": 0.0,
+    "render_latency_p95_ms": 0.001
+  }
+}

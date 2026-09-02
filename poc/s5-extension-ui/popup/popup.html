@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>YouTube Live Translate S5</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <header class="header">
+      <div class="title-row">
+        <h2>Live Translate</h2>
+        <span class="badge" id="statusBadge">READY</span>
+      </div>
+      <p class="subtitle">S5 Anchored Subtitles & Native Bridge</p>
+    </header>
+
+    <div class="card status-card">
+      <div class="row">
+        <span class="label">Runtime Status:</span>
+        <span class="value" id="runtimeState">Ready</span>
+      </div>
+      <div class="row">
+        <span class="label">Transport:</span>
+        <span class="value" id="transportType">WebSocket</span>
+      </div>
+      <div class="row">
+        <span class="label">Audio Recorded:</span>
+        <span class="value" id="audioDuration">0.0s</span>
+      </div>
+      <div class="row">
+        <span class="label">Subtitles Emitted:</span>
+        <span class="value" id="subtitlesCount">0</span>
+      </div>
+    </div>
+
+    <div class="card settings-card">
+      <div class="field">
+        <label for="bridgeUrl">Bridge WebSocket URL:</label>
+        <input type="text" id="bridgeUrl" value="ws://127.0.0.1:8765" />
+      </div>
+    </div>
+
+    <div class="actions">
+      <button id="toggleBtn" class="btn btn-primary">Start Live Translation</button>
+    </div>
+
+    <div class="telemetry-bar">
+      <span id="telemetryStatus">Bridge: Connected | ASR: Sherpa Zipformer | MT: Marian INT8</span>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

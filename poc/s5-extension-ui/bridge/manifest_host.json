@@ -1,0 +1,10 @@
+{
+  "name": "com.duy.youtube_live_translate",
+  "description": "YouTube Live Translate Local AI Native Messaging Host",
+  "path": "/home/duy/Code/tools/youtube-live-translate/poc/s5-extension-ui/bridge/run_native_host.sh",
+  "type": "stdio",
+  "allowed_origins": [
+    "chrome-extension://*/*",
+    "chrome-extension://*/"
+  ]
+}

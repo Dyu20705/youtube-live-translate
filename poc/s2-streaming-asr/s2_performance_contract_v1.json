@@ -1,0 +1,40 @@
+{
+  "contract_name": "s2_performance_contract_v1",
+  "version": "1.0.0",
+  "status": "FROZEN",
+  "date_frozen": "2026-09-02",
+  "description": "Baseline performance and streaming contract for Stage S2 streaming ASR. Future stages (S3+) must not violate these thresholds without an explicit contract bump.",
+  "scope_disclaimer": "Thresholds represent engineering baseline limits measured on standard regression fixtures (10 repetitions), not universal quality or latency guarantees across all audio domains.",
+  "thresholds": {
+    "latency": {
+      "en_ttft_p50_max_ms": 80.0,
+      "en_ttft_p95_max_ms": 100.0,
+      "ja_ttft_p50_max_ms": 150.0,
+      "ja_ttft_p95_max_ms": 180.0,
+      "chunk_decode_max_ms": 25.0,
+      "finalization_max_ms": 10.0
+    },
+    "throughput": {
+      "en_rtf_max": 0.05,
+      "ja_rtf_max": 0.10
+    },
+    "resource": {
+      "model_heap_max_mb": 100.0,
+      "peak_rss_max_mb": 750.0,
+      "streaming_leak_max_mb_per_min": 1.0,
+      "max_cpu_threads": 4
+    },
+    "stability": {
+      "stable_prefix_ratio_min": 0.95,
+      "destructive_revisions_allowed": 0
+    },
+    "accuracy_fixtures": {
+      "en_clean_wer_max": 0.25,
+      "ja_news_cer_max": 0.06
+    },
+    "audio_thread_constraints": {
+      "disallow_heap_allocations_in_process": true,
+      "disallow_blocking_io_in_worklet": true
+    }
+  }
+}

@@ -1,0 +1,69 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Python virtual environments & packaging
+.venv/
+venv/
+ENV/
+env/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Node.js & Web build artifacts
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ML Models & Heavy Checkpoints (Downloaded via scripts/download_models.py)
+**/models/*
+!**/models/.gitkeep
+*.onnx
+*.bin
+*.safetensors
+*.pt
+*.pth
+*.ckpt
+*.h5
+*.tflite
+
+# Archives & Compressed files
+*.tar
+*.tar.gz
+*.tar.bz2
+*.tar.xz
+*.zip
+*.7z
+*.rar
+
+# Runtime captured audio & temporary audio streams
+*.pcm
+youtube_captured_*.wav
+captured_*.wav
+temp_*.wav
+*.wav.part
+
+# Environment variables & secrets
+.env
+.env.*
+*.local
+
+# IDE & OS metadata
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Logs & scratch files
+*.log
+scratch/

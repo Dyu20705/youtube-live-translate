@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>S1 Audio Capture PoC</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="logo-group">
+        <span class="badge stage-badge">Stage S1</span>
+        <h2>Live Audio Capture</h2>
+      </div>
+      <div id="statusBadge" class="status-indicator idle">
+        <span class="dot"></span>
+        <span id="statusText">IDLE</span>
+      </div>
+    </header>
+
+    <div class="card tab-card">
+      <div class="card-label">Target YouTube Tab</div>
+      <div id="tabTitle" class="tab-title">Detecting active tab...</div>
+      <div id="tabWarning" class="warning-text hidden">Not a YouTube tab. Capture works on active YouTube streams.</div>
+    </div>
+
+    <div class="card meter-card">
+      <div class="meter-header">
+        <span>Signal Level</span>
+        <span id="dbfsValue">-∞ dBFS</span>
+      </div>
+      <div class="meter-track">
+        <div id="meterBar" class="meter-bar" style="width: 0%;"></div>
+      </div>
+    </div>
+
+    <div class="card telemetry-card">
+      <div class="grid-2col">
+        <div class="stat-box">
+          <div class="stat-label">Duration</div>
+          <div id="durationVal" class="stat-value">00:00:00</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Captured Size</div>
+          <div id="sizeVal" class="stat-value">0.0 KB</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Format</div>
+          <div class="stat-value highlight">16kHz 16-bit Mono</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Samples</div>
+          <div id="samplesVal" class="stat-value">0</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button id="btnStart" class="btn btn-primary">
+        Start Capture
+      </button>
+      <button id="btnStop" class="btn btn-danger hidden">
+        Stop Capture
+      </button>
+    </div>
+
+    <div class="card export-card">
+      <div class="card-label">Artifact Export</div>
+      <div class="btn-group">
+        <button id="btnDownloadWav" class="btn btn-secondary" disabled>
+          Download .WAV (16kHz)
+        </button>
+        <button id="btnDownloadPcm" class="btn btn-secondary" disabled>
+          Download Raw .PCM
+        </button>
+      </div>
+
+      <div class="ws-config">
+        <label class="checkbox-label">
+          <input type="checkbox" id="chkWsStream">
+          Stream to Local Native Host
+        </label>
+        <input type="text" id="txtWsUrl" class="text-input" value="ws://localhost:8765" placeholder="ws://localhost:8765">
+      </div>
+    </div>
+
+    <footer class="footer">
+      <span>Audio Pipeline S1 PoC</span>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

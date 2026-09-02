@@ -1,9 +1,9 @@
 # Stage S4 Empirical Research Report: Incremental Translation & Adaptive Frontier Stabilization
 
-**Date:** 2026-09-02  
-**Status:** Completed & Empirically Audited (`S4 Functional / Contract = PASS`, `S4 Perceptual UX = OPEN`)  
-**Deciders:** Core Engineering Team  
-**Evidence Artifact:** [`docs/evidence/s4-incremental-translation/s4_benchmark_measurements.json`](file:///home/duy/Code/tools/youtube-live-translate/docs/evidence/s4-incremental-translation/s4_benchmark_measurements.json)  
+**Date:** 2026-09-02
+**Status:** Completed & Empirically Audited (`S4 Functional / Contract = PASS`, `S4 Perceptual UX = OPEN`)
+**Deciders:** Core Engineering Team
+**Evidence Artifact:** [`docs/evidence/s4-incremental-translation/s4_benchmark_measurements.json`](file:///home/duy/Code/tools/youtube-live-translate/docs/evidence/s4-incremental-translation/s4_benchmark_measurements.json)
 
 ---
 

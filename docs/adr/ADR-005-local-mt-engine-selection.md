@@ -1,9 +1,9 @@
 # ADR-005: Selection of Local Machine Translation (MT) Engine and Model Family
 
-**Status:** Accepted  
-**Date:** 2026-09-02  
-**Deciders:** Core Engineering Team  
-**Consulted:** Stage S3 Empirical Research Report ([`docs/research/s3-local-mt.md`](file:///home/duy/Code/tools/youtube-live-translate/docs/research/s3-local-mt.md))  
+**Status:** Accepted
+**Date:** 2026-09-02
+**Deciders:** Core Engineering Team
+**Consulted:** Stage S3 Empirical Research Report ([`docs/research/s3-local-mt.md`](file:///home/duy/Code/tools/youtube-live-translate/docs/research/s3-local-mt.md))
 
 ---
 

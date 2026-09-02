@@ -1,8 +1,8 @@
 # S2 Research Report: Local Streaming ASR Feasibility & Model Selection
 
-**Date:** 2026-09-01  
-**Status:** `MEASURED / VALIDATED`  
-**Milestone:** Stage S2 ASR Feasibility  
+**Date:** 2026-09-01
+**Status:** `MEASURED / VALIDATED`
+**Milestone:** Stage S2 ASR Feasibility
 **Target:** Low-latency live transcription for YouTube speech under Chrome Extension & Local Runtime constraints.
 
 ---

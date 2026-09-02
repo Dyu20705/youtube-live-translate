@@ -1,9 +1,9 @@
 # ADR-007: Extension Presentation Layer & Native Host Integration
 
-**Status:** Accepted  
-**Date:** 2026-09-02  
-**Deciders:** Core Engineering Team  
-**Consulted:** Stage S5 Empirical Research Report ([`docs/research/s5-extension-ui-native-host.md`](file:///home/duy/Code/tools/youtube-live-translate/docs/research/s5-extension-ui-native-host.md))  
+**Status:** Accepted
+**Date:** 2026-09-02
+**Deciders:** Core Engineering Team
+**Consulted:** Stage S5 Empirical Research Report ([`docs/research/s5-extension-ui-native-host.md`](file:///home/duy/Code/tools/youtube-live-translate/docs/research/s5-extension-ui-native-host.md))
 
 ---
 

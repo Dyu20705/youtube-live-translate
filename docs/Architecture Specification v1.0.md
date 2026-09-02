@@ -2039,43 +2039,20 @@ Realtime latency and revision behavior are first-class quality dimensions.
 
 # 52. Architecture Decision Records
 
-Important future decisions should be recorded as ADRs.
-
-Initial ADR candidates:
+Important architectural decisions are formally recorded as ADRs under [`docs/adr/`](adr/):
 
 ```text
-ADR-001
-Chrome Extension + Local Runtime architecture
-
-ADR-002
-Native Messaging vs localhost IPC
-
-ADR-003
-ASR engine selection
-
-ADR-004
-Translation runtime selection
-
-ADR-005
-Model licensing policy
-
-ADR-006
-Incremental translation/revision algorithm
-
-ADR-007
-Runtime implementation language
-
-ADR-008
-Model packaging strategy
-
-ADR-009
-Hardware-adaptive model selection
-
-ADR-010
-Cross-platform strategy
+ADR-000: Architecture Baseline, Evidence Policy & S0 Freeze (Accepted)
+ADR-001: Manifest V3 Tab Audio Capture & Offscreen Document Architecture (Accepted)
+ADR-002: Real-Time In-Browser Audio Preprocessing & Resampling Contract (Accepted)
+ADR-003: Streaming ASR Engine Selection — Sherpa-ONNX Zipformer (Accepted)
+ADR-004: Stage S2 Frozen Performance Contract (Accepted)
+ADR-005: Local Machine Translation Engine Selection — Marian INT8 (Accepted)
+ADR-006: Incremental Translation Policy — Local Agreement (K=2, W=2) (Accepted)
+ADR-007: Extension Presentation Layer & Native Host Integration (Accepted)
 ```
 
-A technology change should modify the relevant ADR rather than silently changing the architecture.
+A technology change should modify or supersede the relevant ADR rather than silently altering the architecture.
 
 ---
 

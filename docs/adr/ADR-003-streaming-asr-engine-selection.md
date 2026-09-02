@@ -1,9 +1,9 @@
 # ADR-003: Selection of Streaming ASR Runtime and Model Family
 
-**Status:** Accepted  
-**Date:** 2026-09-01  
-**Deciders:** Core Engineering Team  
-**Consulted:** Stage S2 Empirical Benchmark Report  
+**Status:** Accepted
+**Date:** 2026-09-01
+**Deciders:** Core Engineering Team
+**Consulted:** Stage S2 Empirical Benchmark Report
 
 ---
 

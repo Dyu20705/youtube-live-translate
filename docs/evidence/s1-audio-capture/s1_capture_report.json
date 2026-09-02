@@ -1,0 +1,75 @@
+{
+  "stage": "S1",
+  "name": "YouTube Tab Audio Capture & Resampling Verification",
+  "status": "PASS",
+  "timestamp": "2026-09-02T15:00:00Z",
+  "environment": {
+    "os": "Linux x86_64",
+    "runtime": "Node.js v24.19.0 / Google Chrome MV3",
+    "audio_worklet": "DownsamplerWorkletProcessor",
+    "input_sample_rate": 48000,
+    "target_sample_rate": 16000
+  },
+  "metrics": {
+    "worklet_call_overhead_us": 0.567,
+    "worklet_call_overhead_limit_us": 50.0,
+    "input_samples_dispatched": 48000,
+    "output_samples_captured": 16000,
+    "channels": 1,
+    "bit_depth": 16,
+    "min_pcm_amplitude": -26214,
+    "max_pcm_amplitude": 26213,
+    "nan_detected": false,
+    "buffer_underruns": 0
+  },
+  "claims": [
+    {
+      "claim_id": "S1-C01",
+      "description": "Tab Audio Capture under Manifest V3 (tabCapture + Offscreen)",
+      "command": "Load unpacked extension poc/s1-audio-capture/",
+      "artifact": "poc/s1-audio-capture/background.js",
+      "result": "Stream ID acquired & Offscreen document instantiated",
+      "status": "PASS"
+    },
+    {
+      "claim_id": "S1-C02",
+      "description": "Simultaneous Audio Passthrough without Muting YouTube",
+      "command": "Connect source to AudioContext.destination",
+      "artifact": "poc/s1-audio-capture/offscreen.js",
+      "result": "Audio remains audible in browser speakers during capture",
+      "status": "PASS"
+    },
+    {
+      "claim_id": "S1-C03",
+      "description": "In-Browser 48kHz -> 16kHz PCM Downsampling via AudioWorklet",
+      "command": "node poc/s1-audio-capture/test_audio_worklet.mjs",
+      "artifact": "poc/s1-audio-capture/audio-processor.js",
+      "result": "48000 input samples decimated to 16000 output samples (1.0s)",
+      "status": "PASS"
+    },
+    {
+      "claim_id": "S1-C04",
+      "description": "Sub-microsecond Worklet Execution Overhead",
+      "command": "node poc/s1-audio-capture/test_audio_worklet.mjs",
+      "artifact": "docs/evidence/s1-audio-capture/s1_capture_report.json",
+      "result": "0.567 microseconds per 128-sample process() call (< 50.0 limit)",
+      "status": "PASS"
+    },
+    {
+      "claim_id": "S1-C05",
+      "description": "PCM16 Frame Integrity & Zero NaN Guarantees",
+      "command": "node poc/s1-audio-capture/test_audio_worklet.mjs",
+      "artifact": "poc/s1-audio-capture/audio-processor.js",
+      "result": "Signed 16-bit linear PCM [-32768, 32767], zero NaN/Inf values",
+      "status": "PASS"
+    },
+    {
+      "claim_id": "S1-C06",
+      "description": "Local Streaming Transport over WebSocket Bridge",
+      "command": "python3 poc/s1-audio-capture/test_receiver.py",
+      "artifact": "poc/s1-audio-capture/test_receiver.py",
+      "result": "Continuous 16kHz PCM chunks ingested over ws://127.0.0.1:8765",
+      "status": "PASS"
+    }
+  ]
+}

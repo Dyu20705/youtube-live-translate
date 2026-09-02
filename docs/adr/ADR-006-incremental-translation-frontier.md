@@ -1,9 +1,9 @@
 # ADR-006: Incremental Translation Policy & Adaptive Frontier Stabilization
 
-**Status:** Accepted  
-**Date:** 2026-09-02  
-**Deciders:** Core Engineering Team  
-**Consulted:** Stage S4 Empirical Research Report ([`docs/research/s4-incremental-translation.md`](file:///home/duy/Code/tools/youtube-live-translate/docs/research/s4-incremental-translation.md))  
+**Status:** Accepted
+**Date:** 2026-09-02
+**Deciders:** Core Engineering Team
+**Consulted:** Stage S4 Empirical Research Report ([`docs/research/s4-incremental-translation.md`](file:///home/duy/Code/tools/youtube-live-translate/docs/research/s4-incremental-translation.md))
 
 ---
 

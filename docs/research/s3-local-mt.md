@@ -1,9 +1,9 @@
 # Stage S3 Empirical Research Report: Local Machine Translation Feasibility
 
-**Date:** 2026-09-02  
-**Status:** Completed & Empirically Validated  
-**Deciders:** Core Engineering Team  
-**Evidence Artifact:** [`docs/evidence/s3-local-mt/s3_benchmark_measurements.json`](file:///home/duy/Code/tools/youtube-live-translate/docs/evidence/s3-local-mt/s3_benchmark_measurements.json)  
+**Date:** 2026-09-02
+**Status:** Completed & Empirically Validated
+**Deciders:** Core Engineering Team
+**Evidence Artifact:** [`docs/evidence/s3-local-mt/s3_benchmark_measurements.json`](file:///home/duy/Code/tools/youtube-live-translate/docs/evidence/s3-local-mt/s3_benchmark_measurements.json)
 
 ---
 
@@ -29,8 +29,8 @@ The benchmark compared two local neural translation architectures under an INT8 
    - Naive unconstrained re-translation of partial ASR updates yields low prefix stability ($\text{TPS} = 0.2659$ for Marian, $\text{TPS} = 0.3084$ for NLLB) with frequent destructive revisions ($50$ revisions across the test set).
    - This empirically confirms that naive re-translation produces visible subtitle flicker, establishing that **Stage S4 (Incremental Translation & Adaptive Frontier Stabilization)** is architecturally mandatory.
 
-**Gate Decision: `S3 RESULT = GO`**  
-- **Primary MT Candidate (Real-Time Hot-Path):** Helsinki-NLP `opus-mt-ja-en` (Marian CTranslate2 INT8).  
+**Gate Decision: `S3 RESULT = GO`**
+- **Primary MT Candidate (Real-Time Hot-Path):** Helsinki-NLP `opus-mt-ja-en` (Marian CTranslate2 INT8).
 - **Secondary Quality/Reference Engine (Offline / Non-Real-Time):** Meta `nllb-200-distilled-600M` (CTranslate2 INT8).
 
 ---
@@ -221,12 +221,12 @@ Memory was measured by tracking process resident set size (RSS) across baseline,
 
 ### Outcome: `S3 RESULT = GO`
 
-1. **Primary Real-Time Hot-Path Engine:**  
-   **Helsinki-NLP `opus-mt-ja-en` (Marian CTranslate2 INT8)**  
+1. **Primary Real-Time Hot-Path Engine:**
+   **Helsinki-NLP `opus-mt-ja-en` (Marian CTranslate2 INT8)**
    *Justification:* Marian is the only evaluated model that satisfies all hard real-time feasibility gates ($\text{p50} = 65.73\text{ ms}$, $78\text{ MB}$ disk footprint, $514\text{ MB}$ peak RSS, permissive licensing).
 
-2. **Secondary Quality / Reference Engine:**  
-   **Meta `nllb-200-distilled-600M` (CTranslate2 INT8)**  
+2. **Secondary Quality / Reference Engine:**
+   **Meta `nllb-200-distilled-600M` (CTranslate2 INT8)**
    *Justification:* Retained strictly as an offline quality benchmark or asynchronous cold-path engine where real-time constraints do not apply.
 
 ---

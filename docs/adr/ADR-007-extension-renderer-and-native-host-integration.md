@@ -9,11 +9,11 @@
 
 ## 1. Context and Problem Statement
 
-In Stage S4, we verified that the Local Agreement ($K=2$) + Adaptive Frontier ($W=2$) policy guarantees committed prefix immutability ($\text{committed\_prefix\_revision\_count} = 0$) with sub-millisecond policy overhead ($\text{p50} = 0.029\text{ ms}$). However, the S4 research audit proved that **backend translation policy alone cannot eliminate subtitle flicker if the frontend UI renders the full text as an unanchored, monolithic string**, because the uncommitted provisional tail fluctuates as sentence context arrives.
+In Stage S4, we verified that the Local Agreement ($K=2$) + Adaptive Frontier ($W=2$) policy guarantees committed prefix immutability ($\text{committed prefix revisions} = 0$) with sub-millisecond policy overhead ($\text{p50} = 0.029\text{ ms}$). However, the S4 research audit proved that **backend translation policy alone cannot eliminate subtitle flicker if the frontend UI renders the full text as an unanchored, monolithic string**, because the uncommitted provisional tail fluctuates as sentence context arrives.
 
 Stage S5 was charged with:
 1. Implementing an **Anchored Layout & Stable Subtitle Presentation Layer** in a Manifest V3 Chrome Extension.
-2. Eliminating spatial displacement and line reflow on already-read committed text ($\text{anchor\_displacement} = 0\text{ px}$).
+2. Eliminating spatial displacement and line reflow on already-read committed text ($\text{anchor displacement} = 0\text{ px}$).
 3. Establishing a versioned wire protocol (`v1.0`) and bridging the frozen S2 Zipformer ASR + S4 Incremental Translator Python runtime with the browser extension.
 4. Implementing frame coalescing via `requestAnimationFrame` and backpressure protection (stale provisional frames dropped, committed frames never lost).
 5. Defining graceful degraded/error states when native bridges disconnect.

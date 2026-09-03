@@ -112,7 +112,7 @@ Quality was evaluated across two paths:
 ### 6.1 Translation Prefix Stability (TPS)
 We measured stability across consecutive partial slices ($25\% \to 50\% \to 75\% \to 100\%$):
 
-$$\text{TPS} = \frac{\text{len}(\text{LCP}(\text{prev\_tokens}, \text{curr\_tokens}))}{\text{len}(\text{prev\_tokens})}$$
+$$\text{TPS} = \frac{\text{len}(\text{LCP}(\text{prev tokens}, \text{curr tokens}))}{\text{len}(\text{prev tokens})}$$
 
 | Streaming Stability Dimension | Marian INT8 | NLLB-200 INT8 | Architectural Consequence |
 | :--- | :---: | :---: | :--- |

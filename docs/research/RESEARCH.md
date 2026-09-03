@@ -56,7 +56,7 @@ Anchored Dual-Box Subtitle Presentation Layer (0.0000px displacement)
 
 The system optimizes across four competing dimensions simultaneously:
 1. **Useful Latency:** Time from speech utterance to readable translation on screen ($\text{TTFT} < 130\text{ms}$, $\text{MT} < 70\text{ms}$).
-2. **Visual & Temporal Stability:** Zero retroactive line reflow or spatial jumping on already-read committed words ($\text{anchor\_displacement} = 0\text{px}$).
+2. **Visual & Temporal Stability:** Zero retroactive line reflow or spatial jumping on already-read committed words ($\text{anchor displacement} = 0\text{px}$).
 3. **Semantic Fidelity:** Coherent, natural English (US) output without broken word fragments.
 4. **Local Resource Bounds:** Multi-core CPU inference with $\text{RTF} < 0.09$, memory $\text{RSS} < 700\text{MB}$, and zero cloud API dependencies.
 

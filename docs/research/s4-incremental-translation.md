@@ -25,14 +25,14 @@ S4 Perceptual UX:             OPEN (Handed off to Stage S5 UI anchored rendering
 ## 2. Explicit Guarantees and Boundaries
 
 ### What Stage S4 Guarantees
-- **Committed-Prefix Immutability:** Once promoted to `committed_text` within an active segment, output never mutates ($\text{committed\_prefix\_revision\_count} = 0$).
+- **Committed-Prefix Immutability:** Once promoted to `committed_text` within an active segment, output never mutates ($\text{committed prefix revisions} = 0$).
 - **Bounded Revision Surface:** All temporal mutability is confined to `provisional_text`.
 - **Deterministic State Lifecycle:** Clean transitions (`RESET` $\to$ `ACTIVE` $\to$ `ENDPOINT` $\to$ `FLUSHED`).
 - **Input Deduplication:** Skips redundant MT calls on identical streaming partials ($82.7\%$ call reduction on audio).
 - **Sub-Millisecond Policy Overhead:** Measured $\text{p50} = 0.029\text{ ms}$, $\text{p95} = 0.050\text{ ms}$ on 2 CPU threads.
 
 ### What Stage S4 Does NOT Guarantee
-- **Zero Provisional Revisions:** Provisional tail updates frequently ($\text{provisional\_revision\_rate} \approx 0.98$) as acoustic tokens accumulate.
+- **Zero Provisional Revisions:** Provisional tail updates frequently ($\text{provisional revision rate} \approx 0.98$) as acoustic tokens accumulate.
 - **Zero Whole-Display Textual Changes:** Raw concatenated display text exhibits 50 destructive revisions across 18 items (equal to S3 baseline).
 - **Human-Perceived Flicker Elimination:** Flicker elimination cannot be achieved by MT policy alone; it requires anchored visual differentiation in Stage S5 UI.
 - **Semantic Correctness After Arbitrary Late ASR Corrections:** If upstream ASR rewrites an earlier word after commit, committed English remains frozen.

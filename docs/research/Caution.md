@@ -468,7 +468,7 @@ Acceptance:
 
 ### Stage S5 Resolution (September 2026)
 Stage S5 implemented and verified the **Extension UI & Native Host Integration** (`S5 Verdict = PASS`):
-- **Anchored Presentation Verified:** $\text{anchor\_displacement} = 0.0000\text{px}$ under continuous provisional updates.
+- **Anchored Presentation Verified:** $\text{anchor displacement} = 0.0000\text{px}$ under continuous provisional updates.
 - **End-to-End Pipeline Verified:** Ingests live audio $\to$ Zipformer (S2) $\to$ Marian INT8 (S3) $\to$ Incremental Translator (S4) $\to$ Extension Overlay (S5).
 - **Sub-Millisecond Dispatch Latency:** $\text{p50} = 0.000\text{ ms}$, $\text{p95} = 0.001\text{ ms}$. See [`ADR-007`](../adr/ADR-007-extension-renderer-and-native-host-integration.md) and [`s5-extension-ui-native-host.md`](s5-extension-ui-native-host.md).
 

@@ -13,7 +13,7 @@ In Stage S3, we verified that local INT8 Marian Machine Translation (MT) execute
 
 Stage S4 was charged with implementing a deterministic, lightweight, stateful streaming translation layer between frozen Stage S2 ASR and Stage S3 MT to:
 1. Provide a formal state abstraction distinguishing an **immutable committed prefix** from a **revisable provisional suffix**.
-2. Enforce $\text{committed\_prefix\_revision\_count} = 0$ as a strict correctness invariant.
+2. Enforce $\text{committed prefix revisions} = 0$ as a strict correctness invariant.
 3. Quantify policy overhead ($\text{p50} < 5\text{ ms}$, $\text{p95} < 15\text{ ms}$) without adding neural models or LLMs.
 4. Optimize MT compute via input deduplication.
 
@@ -57,14 +57,14 @@ The research audit identified that "stability" cannot be reduced to a single TPS
 To prevent architectural ambiguity in downstream stages (S5/S6), the formal boundaries of Stage S4 are defined as follows:
 
 ### S4 Guarantees
-* **Committed-Prefix Immutability:** Once a token prefix is promoted to `committed_text` within an active segment, it will never mutate, delete, or re-order ($\text{committed\_prefix\_revision\_count} = 0$).
+* **Committed-Prefix Immutability:** Once a token prefix is promoted to `committed_text` within an active segment, it will never mutate, delete, or re-order ($\text{committed prefix revisions} = 0$).
 * **Bounded Revision Surface:** All temporal instability is strictly confined to `provisional_text`.
 * **Deterministic State Transitions:** State lifecycle transitions (`RESET` $\to$ `ACTIVE` $\to$ `ENDPOINT` $\to$ `FLUSHED`) are 100% reproducible and model-free.
 * **Compute Optimization:** Identical ASR partial updates bypass redundant MT inference ($82.7\%$ reduction on streaming audio).
 * **Sub-Millisecond Policy Overhead:** Policy execution consumes $< 0.1\%$ of the per-chunk CPU time budget ($\text{p50} = 0.029\text{ ms}$, $\text{p95} = 0.050\text{ ms}$).
 
 ### S4 Does NOT Guarantee
-* **Zero Provisional Revisions:** Provisional tail text updates frequently ($\text{provisional\_revision\_rate} \approx 0.98$) as new acoustic tokens arrive.
+* **Zero Provisional Revisions:** Provisional tail text updates frequently ($\text{provisional revision rate} \approx 0.98$) as new acoustic tokens arrive.
 * **Zero Whole-Display Textual Changes:** Unified display text (`committed + provisional`) exhibits 50 destructive revisions across 18 utterances—equivalent to the S3 naive baseline.
 * **Human-Perceived Flicker Elimination:** Flicker elimination cannot be solved by the backend policy alone; it requires anchored visual differentiation in the UI renderer.
 * **Semantic Correctness After Arbitrary Late ASR Corrections:** If upstream ASR rewrites an earlier source word after its translation was already committed, the committed English text remains immutable.

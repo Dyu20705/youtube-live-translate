@@ -35,35 +35,11 @@ fi
 if [[ "$(uname -s)" != Linux || "$(uname -m)" != x86_64 ]]; then
     echo "ERROR: Linux x86_64 is required." >&2; exit 1
 fi
+unset PYTHONPATH PYTHONHOME
 command -v python3 >/dev/null
-python3 -c 'import sys; assert (3, 12) <= sys.version_info[:2] < (3, 14), "Python 3.12–3.13 is required"'
-TARGET_DIR="$(python3 -c 'import pathlib,sys; print(pathlib.Path(sys.argv[1]).resolve())' "$TARGET_DIR")"
-if [[ "$TARGET_DIR" == "$SOURCE_DIR" || "$TARGET_DIR" == "$SOURCE_DIR/"* || "$TARGET_DIR" == / ]]; then
-    echo "ERROR: Install into a separate runtime directory." >&2; exit 2
+python3 -I -c 'import sys; assert (3, 12) <= sys.version_info[:2] < (3, 14), "Python 3.12–3.13 is required"'
+ARGS=(--source "$SOURCE_DIR" --target "$TARGET_DIR" --browser-config "$BROWSER_CONFIG_DIR" --extension-id "$EXTENSION_ID")
+if [[ "$DOWNLOAD_MODELS" == 0 ]]; then
+    ARGS+=(--skip-download)
 fi
-
-mkdir -p "$TARGET_DIR"
-for directory in bin host engines policy models; do
-    cp -R "$SOURCE_DIR/$directory" "$TARGET_DIR/"
-done
-cp "$SOURCE_DIR/requirements.txt" "$SOURCE_DIR/requirements-models.txt" "$SOURCE_DIR/uninstall.sh" "$TARGET_DIR/"
-chmod +x "$TARGET_DIR/bin/youtube-live-translate-host" "$TARGET_DIR/uninstall.sh"
-python3 -m venv "$TARGET_DIR/venv"
-PYTHON_BIN="$TARGET_DIR/venv/bin/python"
-"$PYTHON_BIN" -m pip install --disable-pip-version-check -r "$TARGET_DIR/requirements.txt"
-"$PYTHON_BIN" -m pip check
-if [[ "$DOWNLOAD_MODELS" == 1 ]]; then
-    # PyTorch is needed for conversion only, not local CTranslate2 inference.
-    if ! "$PYTHON_BIN" "$TARGET_DIR/models/model_manager.py" verify >/dev/null 2>&1; then
-        "$PYTHON_BIN" -m pip install --disable-pip-version-check -r "$TARGET_DIR/requirements-models.txt"
-        "$PYTHON_BIN" "$TARGET_DIR/models/model_manager.py" download
-    fi
-fi
-"$PYTHON_BIN" "$TARGET_DIR/models/model_manager.py" verify
-"$PYTHON_BIN" "$TARGET_DIR/models/model_manager.py" self-test
-
-# A failed dependency install, acquisition, verification, or inference must never
-# leave a newly registered host or print SUCCESS.
-"$PYTHON_BIN" "$TARGET_DIR/host/register_host.py" "$TARGET_DIR" "$BROWSER_CONFIG_DIR" "$EXTENSION_ID"
-
-echo "SUCCESS: Verified CPU runtime installed and registered for extension $EXTENSION_ID at $TARGET_DIR"
+exec python3 -I "$SOURCE_DIR/host/install_runtime.py" "${ARGS[@]}"

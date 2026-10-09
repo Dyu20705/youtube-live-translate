@@ -4,8 +4,8 @@
 set -e
 
 # Resolve installation root directory
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-RUNTIME_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
+RUNTIME_ROOT="$(cd "$SCRIPT_DIR/.." && pwd -P)"
 
 # Always use this installation's isolated environment.
 PYTHON_BIN="$RUNTIME_ROOT/venv/bin/python3"
@@ -14,6 +14,6 @@ if [ ! -x "$PYTHON_BIN" ]; then
     exit 1
 fi
 
-export PYTHONPATH="$RUNTIME_ROOT:${PYTHONPATH:-}"
+unset PYTHONPATH PYTHONHOME
 
-exec "$PYTHON_BIN" "$RUNTIME_ROOT/host/native_messaging_host.py" "$@"
+exec "$PYTHON_BIN" -I "$RUNTIME_ROOT/host/native_messaging_host.py" "$@"

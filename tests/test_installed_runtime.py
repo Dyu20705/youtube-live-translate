@@ -18,16 +18,12 @@ from scipy.signal import resample_poly
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def test_installed_native_host_speech_and_lifecycle():
-    configured = os.environ.get('YLT_TEST_RUNTIME')
-    if not configured:
-        pytest.skip('Set YLT_TEST_RUNTIME to a freshly installed canonical runtime')
-    runtime = Path(configured).resolve()
+def exercise_installed_host(runtime, environment=None):
+    runtime = Path(runtime).resolve()
     launcher = runtime / 'bin/youtube-live-translate-host'
     assert launcher.is_file()
-    # Remove development PYTHONPATH to prove the installed launcher stands alone.
-    environment = dict(os.environ)
-    environment.pop('PYTHONPATH', None)
+    # The launcher itself must isolate Python; callers deliberately keep hostile PYTHONPATH.
+    environment = dict(os.environ) if environment is None else environment
     process = subprocess.Popen([str(launcher)], stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                                stderr=subprocess.PIPE, env=environment, cwd=runtime)
     messages = queue.Queue()
@@ -98,3 +94,24 @@ def test_installed_native_host_speech_and_lifecycle():
         process.wait(timeout=10)
         receiver.join(timeout=2)
         stderr_reader.join(timeout=2)
+
+
+def test_installed_native_host_speech_and_lifecycle():
+    configured = os.environ.get('YLT_TEST_RUNTIME')
+    if not configured:
+        pytest.fail('YLT_TEST_RUNTIME is required for production acceptance')
+    exercise_installed_host(configured)
+
+
+def test_installed_launcher_rejects_module_shadowing(tmp_path):
+    configured = os.environ.get('YLT_TEST_RUNTIME')
+    if not configured:
+        pytest.fail('YLT_TEST_RUNTIME is required for production acceptance')
+    # Would execute before installed site-packages with the old launcher.
+    marker = tmp_path / 'shadow-imported'
+    poison = f"from pathlib import Path\nPath({str(marker)!r}).write_text('unsafe')\nraise RuntimeError('inherited module shadowed runtime')\n"
+    for name in ('numpy', 'sherpa_onnx', 'ctranslate2', 'transformers'):
+        (tmp_path / f'{name}.py').write_text(poison)
+    environment = dict(os.environ, PYTHONPATH=str(tmp_path))
+    exercise_installed_host(configured, environment)
+    assert not marker.exists()

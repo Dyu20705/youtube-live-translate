@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "scripts": {
+    "test:content": "node test_content_script_browser.mjs",
+    "test:extension": "node test_extension_loading.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.64.0"
+  }
+}

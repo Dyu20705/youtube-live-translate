@@ -1,143 +1,69 @@
 #!/usr/bin/env bash
-# install.sh - Automated installer for YouTube Live Translate Local Native Runtime
-
-set -e
-
-echo "======================================================================"
-echo "  YouTube Live Translate — Local Native Runtime Installer (Linux x86_64)"
-echo "======================================================================"
+# Isolated Linux CPU runtime installer. Register only after verified inference.
+set -euo pipefail
 
 SOURCE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 TARGET_DIR="${HOME}/.local/share/youtube-live-translate"
+BROWSER_CONFIG_DIR="${XDG_CONFIG_HOME:-${HOME}/.config}"
 EXTENSION_ID=""
+DOWNLOAD_MODELS=1
 
-# Parse arguments
+usage() {
+    echo "Usage: $0 --extension-id <32 letters a-p> [--target-dir DIR] [--browser-config-dir DIR] [--skip-download]"
+}
 while [[ $# -gt 0 ]]; do
-  case $1 in
-    --extension-id)
-      EXTENSION_ID="$2"
-      shift 2
-      ;;
-    --target-dir)
-      TARGET_DIR="$2"
-      shift 2
-      ;;
-    *)
-      if [[ "$1" != --* ]] && [[ -z "$EXTENSION_ID" ]]; then
-        EXTENSION_ID="$1"
-      fi
-      shift
-      ;;
-  esac
+    case "$1" in
+        --extension-id|--target-dir|--browser-config-dir)
+            if [[ $# -lt 2 || -z "$2" || "$2" == --* ]]; then
+                usage >&2; exit 2
+            fi
+            case "$1" in
+                --extension-id) EXTENSION_ID="$2" ;;
+                --target-dir) TARGET_DIR="$2" ;;
+                --browser-config-dir) BROWSER_CONFIG_DIR="$2" ;;
+            esac
+            shift 2 ;;
+        --skip-download) DOWNLOAD_MODELS=0; shift ;;
+        --help|-h) usage; exit 0 ;;
+        *) echo "Unknown option: $1" >&2; usage >&2; exit 2 ;;
+    esac
 done
-
-if [[ -z "$EXTENSION_ID" ]]; then
-    # Fallback to standard development extension ID placeholder if not specified
-    EXTENSION_ID="youtube-live-translate-v1"
+if [[ ! "$EXTENSION_ID" =~ ^[a-p]{32}$ ]]; then
+    echo "ERROR: --extension-id must be the actual 32-character ID from chrome://extensions/ (letters a-p)." >&2
+    exit 2
+fi
+if [[ "$(uname -s)" != Linux || "$(uname -m)" != x86_64 ]]; then
+    echo "ERROR: Linux x86_64 is required." >&2; exit 1
+fi
+command -v python3 >/dev/null
+python3 -c 'import sys; assert (3, 12) <= sys.version_info[:2] < (3, 14), "Python 3.12–3.13 is required"'
+TARGET_DIR="$(python3 -c 'import pathlib,sys; print(pathlib.Path(sys.argv[1]).resolve())' "$TARGET_DIR")"
+if [[ "$TARGET_DIR" == "$SOURCE_DIR" || "$TARGET_DIR" == "$SOURCE_DIR/"* || "$TARGET_DIR" == / ]]; then
+    echo "ERROR: Install into a separate runtime directory." >&2; exit 2
 fi
 
-# 1. System Requirements Check
-echo "[1/5] Checking system environment..."
-if [[ "$(uname -s)" != "Linux" ]]; then
-    echo "ERROR: This release supports Linux x86_64 only." >&2
-    exit 1
-fi
-
-if [[ "$(uname -m)" != "x86_64" ]]; then
-    echo "ERROR: Unsupported architecture: $(uname -m). Required: x86_64." >&2
-    exit 1
-fi
-
-if ! command -v python3 >/dev/null 2>&1; then
-    echo "ERROR: python3 is required but not installed." >&2
-    exit 1
-fi
-
-PYTHON_VER=$(python3 -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')")
-echo "  Detected Linux $(uname -m), Python $PYTHON_VER"
-
-# 2. Setup Runtime Files
-echo "[2/5] Setting up runtime files in $TARGET_DIR..."
 mkdir -p "$TARGET_DIR"
-cp -r "$SOURCE_DIR/bin" "$TARGET_DIR/"
-cp -r "$SOURCE_DIR/host" "$TARGET_DIR/"
-cp -r "$SOURCE_DIR/engines" "$TARGET_DIR/"
-cp -r "$SOURCE_DIR/policy" "$TARGET_DIR/"
-cp -r "$SOURCE_DIR/models" "$TARGET_DIR/"
-chmod +x "$TARGET_DIR/bin/youtube-live-translate-host"
-chmod +x "$TARGET_DIR/host/native_messaging_host.py"
-
-if [ -f "$SOURCE_DIR/uninstall.sh" ]; then
-    cp "$SOURCE_DIR/uninstall.sh" "$TARGET_DIR/"
-    chmod +x "$TARGET_DIR/uninstall.sh"
+for directory in bin host engines policy models; do
+    cp -R "$SOURCE_DIR/$directory" "$TARGET_DIR/"
+done
+cp "$SOURCE_DIR/requirements.txt" "$SOURCE_DIR/requirements-models.txt" "$SOURCE_DIR/uninstall.sh" "$TARGET_DIR/"
+chmod +x "$TARGET_DIR/bin/youtube-live-translate-host" "$TARGET_DIR/uninstall.sh"
+python3 -m venv "$TARGET_DIR/venv"
+PYTHON_BIN="$TARGET_DIR/venv/bin/python"
+"$PYTHON_BIN" -m pip install --disable-pip-version-check -r "$TARGET_DIR/requirements.txt"
+"$PYTHON_BIN" -m pip check
+if [[ "$DOWNLOAD_MODELS" == 1 ]]; then
+    # PyTorch is needed for conversion only, not local CTranslate2 inference.
+    if ! "$PYTHON_BIN" "$TARGET_DIR/models/model_manager.py" verify >/dev/null 2>&1; then
+        "$PYTHON_BIN" -m pip install --disable-pip-version-check -r "$TARGET_DIR/requirements-models.txt"
+        "$PYTHON_BIN" "$TARGET_DIR/models/model_manager.py" download
+    fi
 fi
+"$PYTHON_BIN" "$TARGET_DIR/models/model_manager.py" verify
+"$PYTHON_BIN" "$TARGET_DIR/models/model_manager.py" self-test
 
-# 3. Setup / Link Models
-echo "[3/5] Verifying AI model assets..."
-# Check potential workspace directories
-WORKSPACE_CANDIDATE="$(cd "$SOURCE_DIR/../.." 2>/dev/null && pwd || true)"
-WORKSPACE_ROOT="$(cd "$SOURCE_DIR/../../.." 2>/dev/null && pwd || true)"
+# A failed dependency install, acquisition, verification, or inference must never
+# leave a newly registered host or print SUCCESS.
+"$PYTHON_BIN" "$TARGET_DIR/host/register_host.py" "$TARGET_DIR" "$BROWSER_CONFIG_DIR" "$EXTENSION_ID"
 
-ASR_MODEL_NAME="sherpa-onnx-streaming-zipformer-ar_en_id_ja_ru_th_vi_zh-2025-02-10"
-MT_MODEL_NAME="opus-mt-ja-en-ct2-int8"
-
-# Check if models exist in SOURCE_DIR
-if [ -d "$SOURCE_DIR/models/$ASR_MODEL_NAME" ]; then
-    cp -r "$SOURCE_DIR/models/$ASR_MODEL_NAME" "$TARGET_DIR/models/" 2>/dev/null || true
-elif [ -d "$WORKSPACE_CANDIDATE/poc/s2-streaming-asr/models/$ASR_MODEL_NAME" ]; then
-    cp -r "$WORKSPACE_CANDIDATE/poc/s2-streaming-asr/models/$ASR_MODEL_NAME" "$TARGET_DIR/models/" 2>/dev/null || true
-fi
-
-if [ -d "$SOURCE_DIR/models/$MT_MODEL_NAME" ]; then
-    cp -r "$SOURCE_DIR/models/$MT_MODEL_NAME" "$TARGET_DIR/models/" 2>/dev/null || true
-elif [ -d "$WORKSPACE_CANDIDATE/poc/s3-local-mt/models/$MT_MODEL_NAME" ]; then
-    cp -r "$WORKSPACE_CANDIDATE/poc/s3-local-mt/models/$MT_MODEL_NAME" "$TARGET_DIR/models/" 2>/dev/null || true
-fi
-
-# Run model verification
-python3 "$TARGET_DIR/models/model_manager.py" verify || {
-    echo "WARNING: Model verification reported missing or incomplete files."
-}
-
-# 4. Register Chrome / Chromium Native Messaging Host Manifest
-echo "[4/5] Registering Native Messaging Host Manifest with browser..."
-HOST_BIN="$TARGET_DIR/bin/youtube-live-translate-host"
-
-CHROME_HOST_DIR="$HOME/.config/google-chrome/NativeMessagingHosts"
-CHROMIUM_HOST_DIR="$HOME/.config/chromium/NativeMessagingHosts"
-mkdir -p "$CHROME_HOST_DIR" "$CHROMIUM_HOST_DIR"
-
-python3 -c "
-import json
-from pathlib import Path
-
-manifest = {
-    'name': 'com.duy.youtube_live_translate',
-    'description': 'YouTube Live Translate Local AI Native Messaging Host',
-    'path': '${HOST_BIN}',
-    'type': 'stdio',
-    'allowed_origins': [
-        'chrome-extension://${EXTENSION_ID}/'
-    ]
-}
-
-for d in [Path('${CHROME_HOST_DIR}'), Path('${CHROMIUM_HOST_DIR}')]:
-    d.mkdir(parents=True, exist_ok=True)
-    with open(d / 'com.duy.youtube_live_translate.json', 'w', encoding='utf-8') as f:
-        json.dump(manifest, f, indent=2)
-"
-
-echo "  Registered host manifest at: $CHROME_HOST_DIR/com.duy.youtube_live_translate.json"
-
-# 5. Verification & Self-Test
-echo "[5/5] Performing runtime self-test..."
-if [ -x "$HOST_BIN" ]; then
-    echo "  Host binary executable: PASS"
-else
-    echo "ERROR: Host binary not executable: $HOST_BIN" >&2
-    exit 1
-fi
-
-echo "======================================================================"
-echo "  SUCCESS: YouTube Live Translate Native Runtime Installed Successfully!"
-echo "======================================================================"
+echo "SUCCESS: Verified CPU runtime installed and registered for extension $EXTENSION_ID at $TARGET_DIR"

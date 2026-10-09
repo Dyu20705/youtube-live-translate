@@ -1,0 +1,10 @@
+# Canonical CPU runtime; independent of PoC virtual environments.
+numpy==2.5.3
+sherpa-onnx==1.13.8
+ctranslate2==4.8.2
+transformers==4.57.6
+huggingface-hub==0.36.2
+tokenizers==0.22.2
+sentencepiece==0.2.2
+sacremoses==0.2.0
+websockets==13.1

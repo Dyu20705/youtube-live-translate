@@ -1,21 +1,16 @@
 #!/usr/bin/env bash
-# uninstall.sh - Clean uninstallation of YouTube Live Translate Local Native Runtime
-
-set -e
-
-echo "Uninstalling YouTube Live Translate Local Runtime..."
-
-CHROME_HOST_DIR="$HOME/.config/google-chrome/NativeMessagingHosts"
-CHROMIUM_HOST_DIR="$HOME/.config/chromium/NativeMessagingHosts"
-
-rm -f "$CHROME_HOST_DIR/com.duy.youtube_live_translate.json"
-rm -f "$CHROMIUM_HOST_DIR/com.duy.youtube_live_translate.json"
-echo "Removed browser Native Messaging Host manifests."
-
-TARGET_DIR="${HOME}/.local/share/youtube-live-translate"
-if [ -d "$TARGET_DIR" ]; then
-    echo "Runtime installation directory: $TARGET_DIR"
-    echo "To completely remove models and assets, run: rm -rf $TARGET_DIR"
-fi
-
-echo "Uninstallation complete."
+set -euo pipefail
+RUNTIME_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+python3 - "$RUNTIME_ROOT" <<'PY'
+import json
+from pathlib import Path
+import sys
+runtime = Path(sys.argv[1])
+record = runtime / 'installation.json'
+if record.exists():
+    for name in json.loads(record.read_text())['registrations']:
+        path = Path(name)
+        if path.exists() and json.loads(path.read_text()).get('path') == str(runtime / 'bin/youtube-live-translate-host'):
+            path.unlink()
+print(f'Browser registrations removed. Runtime and models retained at {runtime}.')
+PY

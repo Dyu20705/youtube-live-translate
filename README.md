@@ -66,11 +66,11 @@ youtube-live-translate/
 
 ## 4. Quick Start for Users
 
-1. **Install Local Runtime (Linux x86_64):**
+1. **Load the Chrome extension first** using the steps below and copy its 32-character ID from `chrome://extensions/`. **Install Local Runtime (Linux x86_64, Python 3.12–3.13):**
    ```bash
    tar -xzf dist/runtime/youtube-live-translate-runtime-linux-x86_64-v1.0.0.tar.gz
    cd youtube-live-translate-runtime-linux-x86_64-v1.0.0
-   ./install.sh
+   ./install.sh --extension-id YOUR_ACTUAL_EXTENSION_ID
    ```
 2. **Install Chrome Extension:**
    - Open Chrome $\to$ `chrome://extensions/` $\to$ Enable **Developer mode** $\to$ **Load unpacked** $\to$ Select `dist/extension/youtube-live-translate`.
@@ -83,7 +83,9 @@ For detailed instructions, see [`docs/user/INSTALL.md`](docs/user/INSTALL.md) an
 
 ## 5. Automated Verification & Testing
 
-To run the complete 7-gate release verification suite:
+Production remediation checks are documented in [`tests/README.md`](tests/README.md). Full fresh-install and live translation verification remains required before declaring release readiness.
+
+The historical 7-gate suite additionally requires all PoC model assets:
 
 ```bash
 ./scripts/verify_release.sh

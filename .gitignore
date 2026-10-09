@@ -26,6 +26,7 @@ yarn-error.log*
 **/models/*
 !**/models/.gitkeep
 !**/models/*.py
+!src/runtime/models/model_manifest.json
 *.onnx
 *.bin
 *.safetensors

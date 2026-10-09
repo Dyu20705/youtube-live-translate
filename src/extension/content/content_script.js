@@ -3,8 +3,13 @@
  * Handles SPA navigation, ad transitions, player recreation, and subtitle rendering.
  */
 
-import { SubtitleRenderer } from './subtitle_renderer.js';
-import { SubtitleStateAdapter } from './subtitle_adapter.js';
+// Manifest content scripts are classic scripts. Import extension modules through
+// their absolute, web-accessible URLs rather than using static module imports.
+(async () => {
+const [{ SubtitleRenderer }, { SubtitleStateAdapter }] = await Promise.all([
+  import(chrome.runtime.getURL('content/subtitle_renderer.js')),
+  import(chrome.runtime.getURL('content/subtitle_adapter.js'))
+]);
 
 let renderer = null;
 let adapter = null;
@@ -130,3 +135,4 @@ if (document.readyState === 'loading') {
   currentVideoId = getVideoIdFromUrl();
   initializeOverlay();
 }
+})().catch(error => console.error('[YouTube Live Translate] Overlay initialization failed:', error));

@@ -7,6 +7,10 @@ WORKSPACE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 PYTHON_BIN="$WORKSPACE_DIR/poc/s2-streaming-asr/.venv/bin/python"
 PYTEST_BIN="$WORKSPACE_DIR/poc/s2-streaming-asr/.venv/bin/pytest"
 DIST_DIR="$WORKSPACE_DIR/dist"
+TEST_SANDBOX="$(mktemp -d)"
+trap 'rm -rf "$TEST_SANDBOX"' EXIT
+# A test-only origin in an isolated registry, never a user's browser profile.
+TEST_EXTENSION_ID="abcdefghijklmnopabcdefghijklmnop"
 
 echo "======================================================================"
 echo "  YouTube Live Translate v1.0.0 — Automated Release Verification Gate"
@@ -91,8 +95,9 @@ PYTHONPATH="$WORKSPACE_DIR/poc/s4-incremental-translation:$WORKSPACE_DIR/poc/s3-
 echo "  PASS: S3 and S4 test suites passed."
 
 # 6. Install & Register Canonical V1 Runtime
-echo "[Gate 6/7] Installing & registering canonical V1 runtime in ~/.local/share/youtube-live-translate..."
-"$WORKSPACE_DIR/src/runtime/install.sh" --extension-id "v1-production-extension-id" > /dev/null
+echo "[Gate 6/7] Installing & registering canonical V1 runtime in an isolated test directory..."
+"$WORKSPACE_DIR/src/runtime/install.sh" --extension-id "$TEST_EXTENSION_ID" \
+  --target-dir "$TEST_SANDBOX/runtime" --browser-config-dir "$TEST_SANDBOX/browser" > /dev/null
 
 # 7. S5 Presentation, Geometry & Integration Tests + Fresh-Install E2E
 echo "[Gate 7/7] Executing S5 Renderer, Geometry & Real Native Messaging tests..."
@@ -104,10 +109,11 @@ PYTHONPATH="$WORKSPACE_DIR/poc/s5-extension-ui:$WORKSPACE_DIR/poc/s4-incremental
 "$PYTEST_BIN" \
   "$WORKSPACE_DIR/poc/s5-extension-ui/tests/test_protocol.py" \
   "$WORKSPACE_DIR/poc/s5-extension-ui/tests/test_runtime_pipeline.py" \
-  "$WORKSPACE_DIR/poc/s5-extension-ui/tests/test_packaging_contract.py" \
   "$WORKSPACE_DIR/poc/s5-extension-ui/tests/test_native_messaging_real.py" \
   "$WORKSPACE_DIR/poc/s5-extension-ui/tests/test_fault_injection.py" \
   "$WORKSPACE_DIR/poc/s5-extension-ui/tests/test_e2e_streaming.py" -q
+
+"$PYTHON_BIN" -m pytest "$WORKSPACE_DIR/tests/test_production_setup.py" -q
 
 python3 - << PY_EOF
 import os
@@ -117,15 +123,20 @@ import struct
 import json
 from pathlib import Path
 
-installed_dir = Path.home() / ".local" / "share" / "youtube-live-translate"
+installed_dir = Path("$TEST_SANDBOX/runtime")
 host_bin = installed_dir / "bin" / "youtube-live-translate-host"
 assert host_bin.exists() and os.access(host_bin, os.X_OK), "Installed host binary not executable"
 
 env = os.environ.copy()
-env["PYTHONPATH"] = f"{installed_dir}:{env.get('PYTHONPATH', '')}"
+env.pop("PYTHONPATH", None)
+
+registration = Path("$TEST_SANDBOX/browser/google-chrome/NativeMessagingHosts/com.duy.youtube_live_translate.json")
+registered = json.loads(registration.read_text())
+assert registered["path"] == str(host_bin)
+assert registered["allowed_origins"] == ["chrome-extension://$TEST_EXTENSION_ID/"]
 
 proc = subprocess.Popen(
-    ["$PYTHON_BIN", str(installed_dir / "host" / "native_messaging_host.py")],
+    [str(host_bin)],
     stdin=subprocess.PIPE,
     stdout=subprocess.PIPE,
     stderr=subprocess.PIPE,

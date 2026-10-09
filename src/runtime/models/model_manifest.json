@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "models": {
+    "asr": {
+      "name": "sherpa-onnx-streaming-zipformer-ar_en_id_ja_ru_th_vi_zh-2025-02-10",
+      "source": {
+        "type": "archive",
+        "url": "https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-streaming-zipformer-ar_en_id_ja_ru_th_vi_zh-2025-02-10.tar.bz2",
+        "sha256": "28044b67324f7f831689f0a3761473dd2ade380e93aa53f1dbcd479ef71c40d4"
+      },
+      "required_files": [
+        "encoder-epoch-75-avg-11-chunk-16-left-128.int8.onnx",
+        "decoder-epoch-75-avg-11-chunk-16-left-128.onnx",
+        "joiner-epoch-75-avg-11-chunk-16-left-128.int8.onnx",
+        "tokens.txt"
+      ],
+      "files": {
+        "decoder-epoch-75-avg-11-chunk-16-left-128.onnx": {
+          "size_bytes": 33837085,
+          "sha256": "7ebc63f34b21c8efb4a41a5a2eee7fe1448829ce0230ecc5369e67fc14d90d48"
+        },
+        "encoder-epoch-75-avg-11-chunk-16-left-128.int8.onnx": {
+          "size_bytes": 296583597,
+          "sha256": "f9001ed7a9e46d0294438c1a30cd7c72d1cc4bdd4e7880edbcda36f67081e32e"
+        },
+        "tokens.txt": {
+          "size_bytes": 195244,
+          "sha256": "784f24950f6bcce1b0021035632dd60fd4617ecd8ca0581ab57d7b39d77ba5ab"
+        },
+        "joiner-epoch-75-avg-11-chunk-16-left-128.int8.onnx": {
+          "size_bytes": 8257421,
+          "sha256": "db88e3172323551abaa99b91b18fb422a27ea4a834fd0db10389f9478816f917"
+        }
+      }
+    },
+    "mt": {
+      "name": "opus-mt-ja-en-ct2-int8",
+      "source": {
+        "type": "huggingface_conversion",
+        "repository": "Helsinki-NLP/opus-mt-ja-en",
+        "revision": "0770961a39ba6bd66305b149c3f4110bcafca2e6",
+        "quantization": "int8",
+        "files": {
+          "config.json": {
+            "size_bytes": 1381,
+            "git_blob_sha1": "2860e0a64affcb7530b295ef84fb3b0ed48b8896"
+          },
+          "pytorch_model.bin": {
+            "size_bytes": 303294189,
+            "sha256": "ed649116c143fc2d7aea690246f4b2b7caa814e9e00a8d5bbe047822b18de022"
+          },
+          "source.spm": {
+            "size_bytes": 781853,
+            "git_blob_sha1": "a4e37a5c32db4435e561c31cbdd358211f63b967"
+          },
+          "target.spm": {
+            "size_bytes": 801883,
+            "git_blob_sha1": "1eb1c96b041404cde4901e1ea19b156c200b594d"
+          },
+          "tokenizer_config.json": {
+            "size_bytes": 42,
+            "git_blob_sha1": "704dfc6fe07e213006d6985420124ce11bcf9c57"
+          },
+          "vocab.json": {
+            "size_bytes": 1501341,
+            "git_blob_sha1": "7b29094ac717b78f5e536b624e991e555438790d"
+          }
+        }
+      },
+      "source_files": [
+        "config.json",
+        "pytorch_model.bin",
+        "source.spm",
+        "target.spm",
+        "vocab.json",
+        "tokenizer_config.json"
+      ],
+      "required_files": [
+        "model.bin",
+        "config.json",
+        "source.spm",
+        "target.spm",
+        "vocab.json",
+        "tokenizer_config.json"
+      ],
+      "files": {
+        "special_tokens_map.json": {
+          "size_bytes": 74,
+          "sha256": "5e4d1f5e759d74cb1c2fe1d165cfc62b5237aa904de759380cd6f43042eec723"
+        },
+        "shared_vocabulary.json": {
+          "size_bytes": 1208862,
+          "sha256": "c6e7f9988e5fe15c59ed331ce2d7c3dd551e70add8efc09f839f5a48168da4d6"
+        },
+        "vocab.json": {
+          "size_bytes": 1622775,
+          "sha256": "a1667b43d021e09c76f385101bd473f20b5691a12cdca7dda43e4a8daff20021"
+        },
+        "tokenizer_config.json": {
+          "size_bytes": 847,
+          "sha256": "8b77cdb46d1ac4f51b91f916b61a0de788e511fd6de4f89e88a2b6a51d248a68"
+        },
+        "model.bin": {
+          "size_bytes": 77339435,
+          "sha256": "94ea549b9aaca8b4899d8406f8323c1c558874534ba629659af9874c63bbdf63"
+        },
+        "source.spm": {
+          "size_bytes": 781853,
+          "sha256": "d0b5c3b10b5959f056ff2c86e2f2356129242ff1fc72d3a4a34d6a8c0eee4e57"
+        },
+        "config.json": {
+          "size_bytes": 223,
+          "sha256": "8f6496adfc930cbfecbe8281112197705c488fab47d34b4829b06d7f478909af"
+        },
+        "target.spm": {
+          "size_bytes": 801883,
+          "sha256": "35d89c704e270d441fade716a3931d49c43179400682edcca7f180694982a2f6"
+        }
+      }
+    }
+  }
+}

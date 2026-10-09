@@ -7,18 +7,13 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 RUNTIME_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
-# Find Python executable
-if [ -x "$RUNTIME_ROOT/venv/bin/python3" ]; then
-    PYTHON_BIN="$RUNTIME_ROOT/venv/bin/python3"
-elif [ -x "$HOME/.local/share/youtube-live-translate/venv/bin/python3" ]; then
-    PYTHON_BIN="$HOME/.local/share/youtube-live-translate/venv/bin/python3"
-elif command -v python3 >/dev/null 2>&1; then
-    PYTHON_BIN="$(command -v python3)"
-else
-    echo "ERROR: python3 executable not found" >&2
+# Always use this installation's isolated environment.
+PYTHON_BIN="$RUNTIME_ROOT/venv/bin/python3"
+if [ ! -x "$PYTHON_BIN" ]; then
+    echo "ERROR: Runtime virtual environment is missing; rerun install.sh." >&2
     exit 1
 fi
 
-export PYTHONPATH="$RUNTIME_ROOT:$PYTHONPATH"
+export PYTHONPATH="$RUNTIME_ROOT:${PYTHONPATH:-}"
 
 exec "$PYTHON_BIN" "$RUNTIME_ROOT/host/native_messaging_host.py" "$@"

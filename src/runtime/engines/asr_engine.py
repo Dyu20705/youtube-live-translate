@@ -40,9 +40,15 @@ class SherpaOnnxStreamingEngine(ASREngine):
         if not tokens_path.exists():
             raise FileNotFoundError(f"tokens.txt not found in {self.model_dir}")
 
-        encoder_files = list(self.model_dir.glob("encoder*.onnx"))
-        decoder_files = list(self.model_dir.glob("decoder*.onnx"))
-        joiner_files = list(self.model_dir.glob("joiner*.onnx"))
+        # Prefer INT8 deterministically when the source archive also contains
+        # floating-point variants; glob ordering is not a model-selection policy.
+        def candidates(prefix):
+            return sorted(self.model_dir.glob(f"{prefix}*.onnx"),
+                          key=lambda path: (".int8." not in path.name, path.name))
+
+        encoder_files = candidates("encoder")
+        decoder_files = candidates("decoder")
+        joiner_files = candidates("joiner")
 
         if not encoder_files or not decoder_files or not joiner_files:
             raise FileNotFoundError(f"Missing ONNX encoder/decoder/joiner in {self.model_dir}")

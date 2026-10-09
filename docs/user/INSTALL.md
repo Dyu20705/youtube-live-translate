@@ -2,8 +2,7 @@
 
 Supported target: Linux x86_64, Chrome/Chromium 116+, Python 3.12–3.13 with
 `venv` support, Japanese speech → English subtitles on CPU. Development checks
-currently run on Python 3.12. Model acquisition and conversion need at least
-3 GB free disk space and 4 GB available RAM. Inference stays on your machine;
+currently run on Python 3.12. Allow several GB of disk space and RAM for acquisition/conversion; retained generations require additional disk. These are planning estimates, not verified minimums. Inference stays on your machine;
 installation downloads Python packages and model assets.
 
 ## Load the extension and obtain its ID
@@ -25,12 +24,18 @@ Extract the Linux runtime archive, then run from its extracted directory:
 Replace `YOUR_ACTUAL_EXTENSION_ID` with the ID copied from Chrome. It is required;
 the installer rejects missing IDs and placeholders before changing files.
 
-The installer creates its own `venv`, installs pinned runtime dependencies,
-provisions models, verifies their integrity, and runs an ASR/MT inference
-self-test. Only then does it register the Native Messaging host for your exact
-extension origin in Chrome and Chromium. It does not use the PoC environment or
-models from a developer's home directory. Any failed step stops installation
-without reporting success or creating a new host registration.
+The installer stages a new generation in a sibling `.TARGET_NAME.versions`
+directory, creates its own venv, installs dependencies, verifies model digests,
+and runs actual CPU ASR/MT inference before activating it. Existing assets are
+copied and verified against the candidate manifest. Dependency or model failure
+removes the candidate and preserves the active runtime and registrations.
+The target becomes a stable symlink; its launcher resolves the generation and
+ignores inherited `PYTHONPATH`/`PYTHONHOME`. Registration writes are atomic per
+file and roll back on errors, together with the active symlink. Old generations
+are retained for recovery. The first upgrade of an older direct-directory
+installation briefly renames it before installing the symlink. Sudden process
+termination/power loss during promotion is not covered by these rollback tests.
+Do not interrupt promotion or manually edit active generation files.
 
 The ASR archive comes from the official Sherpa-ONNX release and must match the
 SHA256 in the tracked `models/model_manifest.json`. Marian is downloaded from
@@ -44,8 +49,7 @@ it is not a signed publisher attestation. The Marian source revision is pinned t
 
 Model downloads require GitHub release asset access and Hugging Face access,
 including its CDN/Xet destinations. If access is blocked, fix the network policy
-and rerun the installer. Never disable TLS or integrity checks. Invalid existing
-assets are not overwritten: move them aside before reacquiring. PyTorch is needed
+and rerun the installer. Never disable TLS or integrity checks. Invalid copied assets cause candidate validation to fail. Preserve the active installation while investigating; use a separate target/profile for reacquisition rather than modifying active assets. PyTorch is needed
 only for conversion; CTranslate2 handles runtime inference.
 
 Custom installation and browser profile locations are supported:
@@ -69,8 +73,8 @@ For the default installation:
 
 ```bash
 RUNTIME_DIR="$HOME/.local/share/youtube-live-translate"
-"$RUNTIME_DIR/venv/bin/python" "$RUNTIME_DIR/models/model_manager.py" verify
-"$RUNTIME_DIR/venv/bin/python" "$RUNTIME_DIR/models/model_manager.py" self-test
+"$RUNTIME_DIR/venv/bin/python" -I "$RUNTIME_DIR/models/model_manager.py" verify
+"$RUNTIME_DIR/venv/bin/python" -I "$RUNTIME_DIR/models/model_manager.py" self-test
 ```
 
 Reload the extension, open a Japanese YouTube video, and start translation.
@@ -84,5 +88,7 @@ profile. If Chrome refuses the origin, compare the ID with the registered
 Run `uninstall.sh` from the installed runtime directory. It removes only the
 registrations recorded by that installation, and only when they still point to
 its launcher. Runtime files, the venv, and models are retained; remove that
-installation directory separately if you no longer need them. Remove the
+stable target symlink and sibling `.TARGET_NAME.versions` directory separately if you no longer need any retained generation. An inactive generation refuses to unregister the active installation. Remove the
 extension through `chrome://extensions/`.
+
+Current browser acceptance is blocked by managed Chromium policy; see [review evidence](../evidence/remediation-p0/review-closure.md). Installation success alone does not establish release readiness.

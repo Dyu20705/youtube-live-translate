@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# build_release.sh - Deterministic Build & Packaging Script for YouTube Live Translate v1.0.0
+# build_release.sh - Local candidate packaging for YouTube Live Translate v1.0.0
 
 set -e
 
@@ -8,7 +8,7 @@ echo "  Building YouTube Live Translate v1.0.0 Release Packages"
 echo "======================================================================"
 
 WORKSPACE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-DIST_DIR="$WORKSPACE_DIR/dist"
+DIST_DIR="${YLT_DIST_DIR:-$WORKSPACE_DIR/dist}"
 VERSION="1.0.0"
 
 # Clean dist directory

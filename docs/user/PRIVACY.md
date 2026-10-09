@@ -1,30 +1,20 @@
-# Privacy Guarantee & Local AI Statement
+# Local processing and data retention
 
-YouTube Live Translate is designed from the ground up as a **100% local-first** application.
+The production Native Messaging path sends captured tab audio to a local runtime
+through stdio. Sherpa-ONNX ASR and Marian/CTranslate2 translation run on CPU,
+without a cloud translation API. Installation downloads Python dependencies and
+model assets over HTTPS; YouTube itself requires network access. Historical
+WebSocket development paths are separate from production acceptance.
 
----
+There are no third-party analytics SDKs in the extension. Preferences use
+`chrome.storage.local`. These statements describe the implementation, not an
+independent privacy audit.
 
-## Core Privacy Principles
+| Data | Location | Retention |
+| --- | --- | --- |
+| Captured audio | Runtime/browser memory | Processing buffers and browser recorded chunks may remain until the next capture or document teardown; immediate erasure is not guaranteed |
+| Models and venv | Installed generation directories | Retained after unregistering and after upgrades; delete unwanted generations separately |
+| Preferences | chrome.storage.local | Until cleared or extension removed |
+| Diagnostics | stderr/terminal | Depends on whether the caller saves logs |
 
-1. **Zero Audio Uploads:**
-   All tab audio captured from YouTube is processed strictly on your local machine CPU. No audio data, PCM frames, or speech recordings are ever transmitted across the internet.
-
-2. **Zero Cloud Translation APIs:**
-   Both Automatic Speech Recognition (ASR via Sherpa-ONNX Zipformer) and Machine Translation (MT via Helsinki-NLP Marian CTranslate2) run entirely offline inside the local native runtime process.
-
-3. **Zero Telemetry or Tracking:**
-   The extension contains no third-party tracking scripts, analytics SDKs, advertising beacons, or telemetry collectors.
-
-4. **Local Settings Only:**
-   User preferences (font size, subtitle position, display opacity) are stored locally in your browser's private `chrome.storage.local` area.
-
----
-
-## Local Data Storage Summary
-
-| Data Category | Stored Location | Purpose | Retention |
-| :--- | :--- | :--- | :--- |
-| **Audio Stream** | RAM (Circular buffer) | Real-time speech inference | Immediately discarded after processing |
-| **Model Weights** | Local disk (`~/.local/share/youtube-live-translate/models/`) | Neural network weights | Stored until uninstalled |
-| **User Settings** | `chrome.storage.local` | UI display preferences | Until extension removed or reset |
-| **Logs** | Terminal / stderr | Diagnostic debugging only | Ephemeral process session |
+Avoid sharing diagnostic logs or audio fixtures containing private material.

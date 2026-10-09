@@ -1,6 +1,6 @@
 # Quick Start Guide
 
-Translate spoken Japanese audio in YouTube videos and live streams into real-time English subtitles in 5 simple steps.
+First follow [installation](INSTALL.md), using the actual loaded extension ID. The steps below describe the intended workflow; real YouTube end-to-end acceptance remains pending.
 
 ---
 
@@ -9,7 +9,7 @@ Navigate to any Japanese YouTube video or live broadcast (e.g. `https://www.yout
 
 ## 2. Open the Extension Popup
 Click the **YouTube Live Translate** icon in the Chrome extension toolbar.
-The popup will automatically detect the YouTube player and display **Ready**.
+The popup detects supported YouTube URLs and may display **Ready**. This indicates page eligibility, not a verified native-host connection.
 
 ## 3. Start Live Translation
 Click the blue **Start Live Translation** button in the popup.
@@ -17,7 +17,7 @@ Chrome will capture tab audio and send it to your local AI engine.
 
 ## 4. Watch Anchored English Subtitles
 Subtitles will appear at the bottom of the video player:
-- **Solid White Text:** Committed, finalized translation that will not shift or flicker.
+- **Solid White Text:** Committed translation in the anchored layout; historical fixture geometry does not guarantee all page layouts.
 - **Dimmed Italic Text:** Immediate provisional translation as new words are being spoken.
 
 ## 5. Stop Translation

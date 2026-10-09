@@ -1,0 +1,8 @@
+{
+  "status": "BLOCKED",
+  "extension_id": null,
+  "tab_messaging": false,
+  "native_messaging": false,
+  "browser_version": "151.0.7922.173",
+  "error": "cdpSession.send: Protocol error (Extensions.loadUnpacked): Loading of unpacked extensions is disabled by the administrator."
+}

@@ -1,71 +1,32 @@
-# Troubleshooting & Recovery Guide
+# Troubleshooting and recovery
 
-Common issues and their resolutions for YouTube Live Translate.
+If unpacked extension loading is disabled by an administrator, the real browser
+test is blocked. Use an authorized environment that permits unpacked extensions;
+do not substitute a mocked messaging harness for acceptance.
 
----
+For an unreachable host, compare the actual ID in `chrome://extensions/` with
+`allowed_origins` in `~/.config/google-chrome/NativeMessagingHosts/com.duy.youtube_live_translate.json`
+(or the Chromium/custom config equivalent). The manifest must point to the
+installed executable launcher. Reinstall using `./install.sh --extension-id YOUR_ACTUAL_EXTENSION_ID`.
 
-## 1. "Local translation runtime is not installed or unreachable"
+Verify the installed runtime, not source-tree assets:
 
-### Cause
-Chrome Native Messaging cannot locate or execute the registered host binary.
+```bash
+RUNTIME_DIR="$HOME/.local/share/youtube-live-translate"
+"$RUNTIME_DIR/venv/bin/python" -I "$RUNTIME_DIR/models/model_manager.py" verify
+"$RUNTIME_DIR/venv/bin/python" -I "$RUNTIME_DIR/models/model_manager.py" self-test
+```
 
-### Fix
-1. Ensure you ran `./install.sh` from the runtime directory.
-2. Check that the manifest file exists:
-   ```bash
-   cat ~/.config/google-chrome/NativeMessagingHosts/com.duy.youtube_live_translate.json
-   ```
-3. Ensure the path inside the JSON points to the executable launcher `bin/youtube-live-translate-host` and has execute permissions (`chmod +x`).
-4. Run the launcher directly from the terminal to test:
-   ```bash
-   echo '{"type":"control.ping"}' | /path/to/bin/youtube-live-translate-host
-   ```
-   If Python errors appear, check missing Python packages or run `./install.sh` again.
+The native host uses length-prefixed JSON; piping raw JSON from `echo` is not a
+valid test. See [production tests](../../tests/README.md) for real stdio framing
+and separate Chrome Native Messaging acceptance.
 
----
+A failed dependency install or model validation leaves the previous installation
+active. Investigate the error and retry; never disable TLS or digest checks.
+Corrupt active assets require investigation and reacquisition into a separate
+target/profile before replacement. Retained generations consume disk space.
 
-## 2. "Translation model is not installed or corrupt"
-
-### Cause
-The local model weights (Sherpa-ONNX ASR or Marian MT) are missing or incomplete.
-
-### Fix
-1. Run the model verification tool:
-   ```bash
-   python3 src/runtime/models/model_manager.py verify
-   ```
-2. If files are missing or checksums fail, download/repair them:
-   ```bash
-   python3 src/runtime/models/model_manager.py download
-   ```
-
----
-
-## 3. "Chrome did not allow tab audio capture"
-
-### Cause
-Audio capture permission was denied or interrupted.
-
-### Fix
-1. Click anywhere on the YouTube page to ensure the tab is active.
-2. Open the extension popup and click **Start Live Translation**.
-3. If an active capture was already running in another tab, stop it first.
-
----
-
-## 4. No Subtitles Appearing on Video
-
-### Checklist
-- Is the video playing and unmuted?
-- Is spoken Japanese present in the audio?
-- Is the video an advertisement? (Subtitles automatically pause during ads).
-- Did you refresh the page? Click **Start Live Translation** after page reloads.
-
----
-
-## 5. Subtitle Positioning & Customization
-
-You can adjust subtitle appearance directly in the Extension Popup under **Settings**:
-- **Font Size:** Choose between Small (18px), Medium (22px), Large (26px), or Extra Large (32px).
-- **Bottom Offset:** Adjust vertical distance from the video player controls.
-- **Provisional Opacity:** Adjust how bright or dim unfinalized words appear.
+For capture failures, activate the YouTube tab and retry from the popup. For
+missing subtitles, check Japanese audio, playback, and restart after navigation.
+The popup’s Ready label does not prove the native host connected. Live-site,
+quality and long-session behavior still require product validation.

@@ -3,6 +3,7 @@ import hashlib
 import importlib.util
 import io
 import json
+import os
 import subprocess
 import tarfile
 from pathlib import Path
@@ -90,11 +91,11 @@ def test_production_manifest_is_versioned_and_packaged():
     assert subprocess.run(['git', 'check-ignore', '--no-index', path], cwd=ROOT, capture_output=True).returncode == 1
     manifest = json.loads((ROOT / path).read_text())
     assert len(manifest['models']['asr']['source']['sha256']) == 64
-    release = json.loads((ROOT / 'dist/release_manifest.json').read_text())
+    release = json.loads((Path(os.environ.get('YLT_DIST_DIR', ROOT / 'dist')) / 'release_manifest.json').read_text())
     for artifact in release['artifacts'].values():
-        content = (ROOT / 'dist' / artifact['path']).read_bytes()
+        content = (Path(os.environ.get('YLT_DIST_DIR', ROOT / 'dist')) / artifact['path']).read_bytes()
         assert hashlib.sha256(content).hexdigest() == artifact['sha256']
-    with tarfile.open(ROOT / 'dist' / release['artifacts']['runtime_tarball']['path']) as archive:
+    with tarfile.open(Path(os.environ.get('YLT_DIST_DIR', ROOT / 'dist')) / release['artifacts']['runtime_tarball']['path']) as archive:
         names = archive.getnames()
         for suffix in ['/models/model_manifest.json', '/requirements.txt', '/requirements-models.txt']:
             assert any(name.endswith(suffix) for name in names)

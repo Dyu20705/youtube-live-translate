@@ -9,13 +9,13 @@
 `youtube-live-translate` is a local-first real-time AI translation system delivered **Extension-first** through a Manifest V3 Chrome Extension connected to an on-device CPU inference runtime.
 
 * **Ultimate Objective:** Translate spoken Japanese from YouTube streams into **natural, accurate English (US)** while minimizing perceived latency between speech and understandable translated output. Core translation hot-path executes strictly on local hardware with **zero mandatory commercial cloud API dependencies**.
-* **Defining Characteristic:** **Progressive Translation with Anchored Presentation** — emitting immediate provisional translations as acoustic tokens arrive, progressively accumulating context, and stabilizing full-clause translations with zero subtitle flicker ($\text{anchor displacement} = 0.0000\text{px}$).
+* **Defining Characteristic:** **Progressive Translation with Anchored Presentation** — emitting immediate provisional translations as acoustic tokens arrive, progressively accumulating context, and stabilizing full-clause translations with an anchored subtitle layout. Historical geometry measurements are not a guarantee for every YouTube layout.
 
 ---
 
 ## 2. Current Status & Evidence Ladder
 
-The project progresses through a rigorous, empirically verified **Evidence Ladder**:
+S0–S5 below are historical PoC evidence, not acceptance results for the packaged production extension. Current remediation evidence is in [review closure](docs/evidence/remediation-p0/review-closure.md).
 
 * **S0 — Architecture Demonstrator:** **`FROZEN`** ([`s0-architecture.md`](docs/research/s0-architecture.md), [`ADR-000`](docs/adr/ADR-000-evidence-policy-and-s0-freeze.md)) — Initial demonstrator preserved as architectural and UX reference.
 * **S1 — YouTube Audio Capture PoC:** **`PASS`** ([`s1-audio-capture.md`](docs/research/s1-audio-capture.md), [`ADR-001`](docs/adr/ADR-001-manifest-v3-tab-audio-capture.md), [`ADR-002`](docs/adr/ADR-002-realtime-audio-resampling-contract.md)) — Tab audio capture via Manifest V3 Offscreen Document, real-time $48\text{kHz} \to 16\text{kHz}$ linear PCM downsampling ($0.567\mu\text{s}$ overhead), and verified audio passthrough.
@@ -23,7 +23,7 @@ The project progresses through a rigorous, empirically verified **Evidence Ladde
 * **S3 — Local Machine Translation (MT) Feasibility:** **`PASS`** ([`s3-local-mt.md`](docs/research/s3-local-mt.md), [`ADR-005`](docs/adr/ADR-005-local-mt-engine-selection.md)) — Selected **Helsinki-NLP Marian CTranslate2 INT8** ($\text{p50} = 65.73\text{ms}$, $82\text{MB}$ weights, Apache 2.0 permissive license).
 * **S4 — Incremental Translation & Adaptive Frontier:** **`PASS`** ([`s4-incremental-translation.md`](docs/research/s4-incremental-translation.md), [`ADR-006`](docs/adr/ADR-006-incremental-translation-frontier.md)) — Deterministic stateful streaming translation layer with Local Agreement ($K=2$), Adaptive Frontier ($W=2$), strictly immutable committed prefix ($\text{revisions} = 0$), $82.7\%$ MT call reduction on streaming audio, and sub-millisecond policy overhead ($\text{p50} = 0.031\text{ms}$).
 * **S5 — Extension UI & Native Host Integration:** **`PASS`** ([`s5-extension-ui-native-host.md`](docs/research/s5-extension-ui-native-host.md), [`ADR-007`](docs/adr/ADR-007-extension-renderer-and-native-host-integration.md)) — Manifest V3 Chrome Extension and local Native Host / WebSocket bridge with **Anchored Layout Subtitle Presentation** ($\text{anchor displacement} = 0.0000\text{px}$), frame coalescing via `requestAnimationFrame`, versioned wire protocol `v1.0`, and sub-millisecond render dispatch latency ($\text{p50} = 0.000\text{ms}$).
-* **V1 — User-Ready Product Release:** **`PASS`** ([`dist/`](dist/), [`CHANGELOG.md`](CHANGELOG.md), [`INSTALL.md`](docs/user/INSTALL.md)) — Packaged Chrome Extension, automated Linux runtime installer with model lifecycle management, tab detection popup UI, and zero-configuration Native Messaging integration.
+* **V1 — Release readiness: PENDING.** Fresh packaged runtime installation, real CPU inference and failure recovery are tested. Actual packaged extension loading and Chrome Native Messaging are blocked by this environment’s browser policy. Live YouTube audio, translation quality and long sessions still require product validation. The published `1.0.0` release is unchanged.
 
 ---
 
@@ -66,16 +66,9 @@ youtube-live-translate/
 
 ## 4. Quick Start for Users
 
-1. **Load the Chrome extension first** using the steps below and copy its 32-character ID from `chrome://extensions/`. **Install Local Runtime (Linux x86_64, Python 3.12–3.13):**
-   ```bash
-   tar -xzf dist/runtime/youtube-live-translate-runtime-linux-x86_64-v1.0.0.tar.gz
-   cd youtube-live-translate-runtime-linux-x86_64-v1.0.0
-   ./install.sh --extension-id YOUR_ACTUAL_EXTENSION_ID
-   ```
-2. **Install Chrome Extension:**
-   - Open Chrome $\to$ `chrome://extensions/` $\to$ Enable **Developer mode** $\to$ **Load unpacked** $\to$ Select `dist/extension/youtube-live-translate`.
-3. **Translate Live Video:**
-   - Open any Japanese YouTube stream $\to$ Click the extension icon $\to$ Click **Start Live Translation**.
+1. Extract the extension ZIP, open `chrome://extensions/`, enable Developer mode, choose **Load unpacked**, and select the directory containing `manifest.json`. Copy the actual 32-character extension ID. Your browser policy must permit unpacked extensions.
+2. Extract the Linux runtime archive and run `./install.sh --extension-id YOUR_ACTUAL_EXTENSION_ID` from its directory (Linux x86_64, Python 3.12–3.13). Replace the placeholder with the copied ID.
+3. Reload the extension and open a Japanese YouTube video. The intended workflow is **Start Live Translation** in the popup; this workflow still needs end-to-end product validation.
 
 For detailed instructions, see [`docs/user/INSTALL.md`](docs/user/INSTALL.md) and [`docs/user/QUICKSTART.md`](docs/user/QUICKSTART.md).
 
@@ -85,13 +78,13 @@ For detailed instructions, see [`docs/user/INSTALL.md`](docs/user/INSTALL.md) an
 
 Production remediation checks are documented in [`tests/README.md`](tests/README.md). Full fresh-install and live translation verification remains required before declaring release readiness.
 
-The historical 7-gate suite additionally requires all PoC model assets:
+The canonical production gate builds into a temporary directory, installs the packaged runtime into a fresh isolated target, verifies installed models, runs production tests, and attempts actual Chrome extension/Native Messaging acceptance. Browser policy blocks return nonzero:
 
 ```bash
 ./scripts/verify_release.sh
 ```
 
-To run individual stage benchmarks:
+Historical PoC benchmarks are separate from production acceptance:
 ```bash
 # S1: In-browser AudioWorklet downsampling test
 node poc/s1-audio-capture/test_audio_worklet.mjs

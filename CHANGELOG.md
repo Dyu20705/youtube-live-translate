@@ -5,6 +5,21 @@ All notable changes to the YouTube Live Translate project will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased — P0 remediation review
+
+- Stage and validate isolated runtime generations before activation; preserve
+  working installs on dependency/model failures and roll back registration errors.
+- Ignore inherited Python paths and test hostile module shadowing with real inference.
+- Verify freshly installed packaged models in the canonical production gate;
+  keep historical PoC benchmarks separate.
+- Attempt real packaged extension/tab/Native Messaging acceptance with an actual
+  extension ID. Current managed browser blocks loading; readiness remains pending.
+- Correct installation, support and privacy claims to match current evidence.
+
+The 1.0.0 entry below records original release claims, including user-readiness,
+latency and layout claims. Those historical claims do not establish current
+production acceptance. The published release is unchanged.
+
 ## [1.0.0] - 2026-09-02
 
 ### Added

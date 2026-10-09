@@ -4,29 +4,41 @@
  */
 import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
-import { mkdtemp, rm } from 'node:fs/promises';
+import { mkdtemp, rm, readFile, mkdir, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
+import {execFile} from 'node:child_process';
+import {promisify} from 'node:util';
 import { fileURLToPath } from 'node:url';
 const require = createRequire(import.meta.url);
 const { chromium } = require('playwright');
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const extension = path.join(root, 'dist/extension/youtube-live-translate');
-const profile = await mkdtemp(path.join(tmpdir(), 'ylt-browser-'));
+const dist = process.env.YLT_DIST_DIR || path.join(root, 'dist');
+const extension = path.join(dist, 'extension/youtube-live-translate');
+const exec = promisify(execFile);
+const report = {status:'FAILED', extension_id:null, tab_messaging:false, native_messaging:false};
+const sandbox = await mkdtemp(path.join(tmpdir(), 'ylt-browser-'));
+const config = path.join(sandbox, 'config');
+const profile = path.join(config, 'chromium');
+await mkdir(profile, {recursive:true});
 let context;
 try {
   context = await chromium.launchPersistentContext(profile, {
     executablePath: process.env.CHROMIUM_BIN || '/usr/bin/chromium',
     headless: true,
+    env: {...process.env, XDG_CONFIG_HOME:config},
     ignoreDefaultArgs: ['--disable-extensions'],
     args: ['--enable-unsafe-extension-debugging', '--no-sandbox', `--disable-extensions-except=${extension}`, `--load-extension=${extension}`]
   });
+  report.browser_version = context.browser().version();
   const cdp = await context.browser().newBrowserCDPSession();
   await cdp.send('Extensions.loadUnpacked', {path: extension});
   const errors = [];
   context.on('page', page => page.on('pageerror', error => errors.push(error.message)));
   const worker = context.serviceWorkers()[0] || await context.waitForEvent('serviceworker');
   const id = new URL(worker.url()).host;
+  report.extension_id = id;
+  report.browser_version = context.browser().version();
   assert.match(id, /^[a-p]{32}$/);
   const page = await context.newPage();
   await page.route('https://www.youtube.com/**', route => route.fulfill({
@@ -46,8 +58,49 @@ try {
   await page.waitForFunction(() => document.body.textContent.includes('Hello'));
   assert.equal(telemetry.success, true);
   assert.deepEqual(errors, []);
-  console.log(`PASS: Production extension ${id} loaded, received a wire subtitle and rendered it in Chromium.`);
+  report.tab_messaging = true;
+
+  const release = JSON.parse(await readFile(path.join(dist, 'release_manifest.json'), 'utf8'));
+  const extracted = path.join(sandbox, 'package');
+  await mkdir(extracted);
+  await exec('tar', ['-xzf', path.join(dist, release.artifacts.runtime_tarball.path), '-C', extracted]);
+  const packagedRuntime = path.join(extracted, 'youtube-live-translate-runtime-linux-x86_64-v1.0.0');
+  await exec('bash', [path.join(packagedRuntime,'install.sh'), '--extension-id', id,
+    '--target-dir', path.join(sandbox,'runtime'), '--browser-config-dir',config], {timeout:600000, maxBuffer:10*1024*1024});
+  // Installation can outlast the MV3 worker lifetime. An extension page gives
+  // the native-port assertion a fresh, live extension execution context.
+  const nativePage = await context.newPage();
+  await nativePage.goto(`chrome-extension://${id}/popup/popup.html`);
+  const states = await nativePage.evaluate(() => new Promise((resolve,reject) => {
+    const port = chrome.runtime.connectNative('com.duy.youtube_live_translate');
+    const states = [];
+    let finished = false;
+    const timer = setTimeout(() => {port.disconnect(); reject(new Error('Native Messaging timed out'));}, 60000);
+    port.onDisconnect.addListener(() => {
+      const error = chrome.runtime.lastError;
+      if (!finished) {clearTimeout(timer); reject(new Error(error?.message || 'Native host disconnected before lifecycle completed'));}
+    });
+    port.onMessage.addListener(message => {
+      if (message.type === 'error') {clearTimeout(timer); reject(new Error(JSON.stringify(message))); port.disconnect(); return;}
+      states.push(message.state);
+      if (message.state === 'RUNNING') port.postMessage({type:'control.ping'});
+      else if (message.state === 'HEALTHY') port.postMessage({type:'control.stop'});
+      else if (message.state === 'STOPPED') {finished = true; clearTimeout(timer); port.disconnect(); resolve(states);}
+    });
+  }));
+  assert.deepEqual(states, ['RUNNING','HEALTHY','STOPPED']);
+  report.native_messaging = true;
+  report.status = 'PASSED';
+  console.log(`PASS: Production extension ${id} loaded, rendered an actual tab message and completed real Native Messaging RUNNING/HEALTHY/STOPPED.`);
+} catch (error) {
+  report.error = error.message;
+  if (/disabled by the administrator/i.test(error.message)) {
+    report.status = 'BLOCKED';
+    process.exitCode = 2;
+  } else {process.exitCode = 1;}
+  console.error(`${report.status}: ${error.message}`);
 } finally {
   if (context) await context.close();
-  await rm(profile, {recursive:true, force:true});
+  if (process.env.YLT_BROWSER_REPORT) await writeFile(process.env.YLT_BROWSER_REPORT, JSON.stringify(report,null,2)+'\n');
+  await rm(sandbox, {recursive:true, force:true});
 }

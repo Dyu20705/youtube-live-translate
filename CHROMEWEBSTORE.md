@@ -1,4 +1,8 @@
-# Chrome Web Store Listing & Metadata
+# Chrome Web Store Listing & Metadata (draft)
+
+This is proposed listing copy, not evidence of store approval or release readiness.
+Actual packaged-browser acceptance is currently blocked; live-site quality and
+long-session validation remain pending. See [review evidence](docs/evidence/remediation-p0/review-closure.md).
 
 > **Extension Name:** YouTube Live Translate
 > **Short Name:** Live Translate
@@ -21,7 +25,7 @@ Powered entirely by local on-device AI inference (Sherpa-ONNX streaming Zipforme
 
 #### Key Features:
 - **Real-Time Live Translation:** Translates live Japanese audio into natural, accurate English as speech is being delivered.
-- **Anchored Stable Presentation:** Dual-layer subtitle rendering guarantees that already-translated committed words remain spatially fixed on screen ($0\text{px}$ anchor displacement), eliminating visual flicker while displaying provisional words in real-time.
+- **Anchored Stable Presentation:** Dual-layer subtitle rendering uses separate committed and provisional layers. Zero displacement was measured in historical fixtures, not guaranteed for every live page.
 - **100% On-Device & Private:** Audio capture, speech recognition, and translation all execute strictly on your local CPU. No voice recordings or text ever leave your computer.
 - **YouTube Optimized:** Seamlessly integrates with standard YouTube videos, live streams, theater mode, and full-screen playback. Subtitles automatically pause during ads and reset across video navigation.
 - **Customizable Appearance:** Easily adjust subtitle font size, vertical screen offset, and provisional text opacity to match your viewing preferences.
@@ -39,7 +43,7 @@ Powered entirely by local on-device AI inference (Sherpa-ONNX streaming Zipforme
 | `tabCapture` | Required to capture the audio output stream from the active YouTube video tab and route it to the local ASR engine for speech recognition. |
 | `offscreen` | Required to process captured tab audio in an offscreen document context, downsampling 48kHz stereo stream to 16kHz mono linear PCM before local inference. |
 | `storage` | Required to persist user subtitle preferences (font size, position offset, provisional opacity) across browser sessions using `chrome.storage.local`. |
-| `nativeMessaging` | Required to communicate bidirectionally with the local Python/C++ inference runtime host on `127.0.0.1` via standard input/output. |
+| `nativeMessaging` | Required to communicate bidirectionally with the local Python/C++ inference runtime host via length-prefixed standard input/output. |
 | `activeTab` | Required to detect the active YouTube tab, verify player readiness, and mount the subtitle overlay when the user initiates translation. |
 | Host Permissions (`*://*.youtube.com/*`, `*://youtube.com/*`) | Required to inject the subtitle overlay and content script into YouTube watch and live stream pages. |
 
@@ -48,7 +52,7 @@ Powered entirely by local on-device AI inference (Sherpa-ONNX streaming Zipforme
 ## 3. Privacy & Data Use Disclosure
 
 - **Single Purpose:** Translating spoken audio from YouTube videos into on-screen English subtitles.
-- **Audio Data Handling:** Tab audio is captured ephemerally in RAM, streamed to the local native process on `127.0.0.1`, and immediately discarded after speech decoding. Audio is never stored permanently or transmitted over the internet.
+- **Audio Data Handling:** Tab audio is captured in RAM and streamed to the local native process via stdio. Browser chunks may remain until next capture or document teardown. See [retention details](docs/user/PRIVACY.md).
 - **User Data Collected:** None. No personal data, browsing history, authentication tokens, or telemetry are collected or transmitted.
 - **Third-Party Services:** Zero commercial cloud translation APIs or external analytics services are used.
 
@@ -57,8 +61,8 @@ Powered entirely by local on-device AI inference (Sherpa-ONNX streaming Zipforme
 ## 4. Version History
 
 ### Version 1.0.0 (2026-09-02)
-- Initial production release.
+- Original 1.0.0 release; current acceptance remains pending.
 - Local Japanese-to-English live translation on CPU.
-- Anchored subtitle presentation with zero anchor displacement.
+- Anchored subtitle layout, historically measured on fixtures.
 - Native Messaging host integration for Linux x86_64.
 - YouTube SPA navigation and fullscreen player support.
